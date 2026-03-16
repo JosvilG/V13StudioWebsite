@@ -2,6 +2,13 @@
 
 import { useEffect, useState, useRef } from "react"
 import { Parallax, ScrollReveal } from "@/components/parallax"
+import { ThemeLogo } from "@/components/theme-logo"
+import { Marquee } from "@/components/marquee"
+
+const techStack = [
+  "React Native", "Next.js", "TypeScript", "NestJS", "PostgreSQL",
+  "AWS", "OpenAI", "Figma", "React", "Node.js", "GraphQL", "Supabase",
+]
 
 export function Footer() {
   const [time, setTime] = useState("")
@@ -40,7 +47,10 @@ export function Footer() {
   }, [])
 
   return (
-    <footer ref={sectionRef} className="relative py-24 border-t border-border overflow-hidden">
+    <footer ref={sectionRef} className="relative border-t border-border overflow-hidden">
+      {/* Tech stack marquee */}
+      <Marquee items={techStack} speed={25} />
+
       {/* Giant background text */}
       <Parallax speed={-0.15} className="absolute bottom-0 left-0 right-0 pointer-events-none">
         <div
@@ -51,14 +61,12 @@ export function Footer() {
         </div>
       </Parallax>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-24 pb-24">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
           {/* Left */}
           <ScrollReveal>
             <div>
-              <span className="text-5xl md:text-7xl font-bold">
-                V<span className="text-primary">13</span>
-              </span>
+              <ThemeLogo size={80} />
               <p className="text-muted-foreground mt-4 max-w-sm">
                 Software product studio crafting exceptional digital experiences for everyone and everywhere.
               </p>

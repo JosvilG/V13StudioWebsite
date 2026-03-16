@@ -8,11 +8,17 @@ import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
 import { SectionStack } from "@/components/section-stack"
 import { AnimatedBackground } from "@/components/animated-background"
+import { CustomCursor } from "@/components/custom-cursor"
+import { Preloader } from "@/components/preloader"
+import { ScrollProgress } from "@/components/scroll-progress"
 
 export default function Home() {
   return (
     <>
+      <Preloader />
+      <CustomCursor />
       <AnimatedBackground />
+      <ScrollProgress />
       <Header />
       <main>
         <SectionStack>

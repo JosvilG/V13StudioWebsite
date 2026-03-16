@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react"
 import { Parallax, ScrollReveal } from "@/components/parallax"
 import { cn } from "@/lib/utils"
+import Magnetic from "@/components/magnetic"
 
 const steps = [
   {
@@ -205,15 +206,21 @@ export function Process() {
               <p className="text-muted-foreground mb-8">
                 {"Let's discuss how we can help bring your vision to life."}
               </p>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-              >
-                Get in touch
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
+              <Magnetic strength={0.2}>
+                <a
+                  href="#contact"
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 font-medium text-primary-foreground overflow-hidden"
+                  style={{
+                    background: `linear-gradient(135deg, var(--gradient-accent-1), var(--gradient-accent-3))`,
+                  }}
+                >
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <span className="relative z-10">Get in touch</span>
+                  <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </Magnetic>
             </div>
           </div>
         </ScrollReveal>

@@ -1,106 +1,156 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
+
+type CursorMode = "default" | "interactive" | "text"
 
 export function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [followerPosition, setFollowerPosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
-  const [isClicking, setIsClicking] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
+  const dotRef = useRef<HTMLDivElement>(null)
+  const circleRef = useRef<HTMLDivElement>(null)
+  const mouse = useRef({ x: 0, y: 0 })
+  const circlePos = useRef({ x: 0, y: 0 })
+  const rafId = useRef<number>(0)
+  const [visible, setVisible] = useState(false)
+  const [mode, setMode] = useState<CursorMode>("default")
+  const [isMobile, setIsMobile] = useState(true)
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    setPosition({ x: e.clientX, y: e.clientY })
-    setIsVisible(true)
+  // Detect mobile on mount
+  useEffect(() => {
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches
+    setIsMobile(isCoarse)
   }, [])
 
+  // Hide default cursor on non-mobile
   useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("mousedown", () => setIsClicking(true))
-    window.addEventListener("mouseup", () => setIsClicking(false))
-    window.addEventListener("mouseleave", () => setIsVisible(false))
-    window.addEventListener("mouseenter", () => setIsVisible(true))
+    if (isMobile) return
+    document.body.style.cursor = "none"
+    const style = document.createElement("style")
+    style.id = "custom-cursor-hide"
+    style.textContent = "*, *::before, *::after { cursor: none !important; }"
+    document.head.appendChild(style)
+    return () => {
+      document.body.style.cursor = ""
+      const el = document.getElementById("custom-cursor-hide")
+      if (el) el.remove()
+    }
+  }, [isMobile])
+
+  // Mouse tracking
+  const onMouseMove = useCallback((e: MouseEvent) => {
+    mouse.current.x = e.clientX
+    mouse.current.y = e.clientY
+    if (dotRef.current) {
+      dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`
+    }
+    setVisible(true)
+  }, [])
+
+  // rAF loop for the outer circle lerp
+  useEffect(() => {
+    if (isMobile) return
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+
+    const animate = () => {
+      circlePos.current.x = lerp(circlePos.current.x, mouse.current.x, 0.12)
+      circlePos.current.y = lerp(circlePos.current.y, mouse.current.y, 0.12)
+      if (circleRef.current) {
+        circleRef.current.style.transform = `translate(${circlePos.current.x}px, ${circlePos.current.y}px) translate(-50%, -50%)`
+      }
+      rafId.current = requestAnimationFrame(animate)
+    }
+
+    rafId.current = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(rafId.current)
+  }, [isMobile])
+
+  // Global mouse events
+  useEffect(() => {
+    if (isMobile) return
+
+    const onLeave = () => setVisible(false)
+    const onEnter = () => setVisible(true)
+
+    window.addEventListener("mousemove", onMouseMove)
+    document.addEventListener("mouseleave", onLeave)
+    document.addEventListener("mouseenter", onEnter)
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mousemove", onMouseMove)
+      document.removeEventListener("mouseleave", onLeave)
+      document.removeEventListener("mouseenter", onEnter)
     }
-  }, [handleMouseMove])
+  }, [isMobile, onMouseMove])
 
-  // Smooth follower animation
+  // Detect hover targets via event delegation
   useEffect(() => {
-    const animate = () => {
-      setFollowerPosition((prev) => ({
-        x: prev.x + (position.x - prev.x) * 0.1,
-        y: prev.y + (position.y - prev.y) * 0.1,
-      }))
-      requestAnimationFrame(animate)
-    }
-    const id = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(id)
-  }, [position])
+    if (isMobile) return
 
-  // Detect hoverable elements
-  useEffect(() => {
-    const handleHoverables = () => {
-      const hoverables = document.querySelectorAll(
-        'a, button, [data-cursor="hover"], input, textarea'
-      )
-      hoverables.forEach((el) => {
-        el.addEventListener("mouseenter", () => setIsHovering(true))
-        el.addEventListener("mouseleave", () => setIsHovering(false))
-      })
+    const interactiveSelector = 'button, a, [role="button"]'
+    const textSelector = "h1, h2, h3, p"
+
+    const onOver = (e: MouseEvent) => {
+      const target = e.target as Element | null
+      if (!target) return
+      if (target.closest(interactiveSelector)) {
+        setMode("interactive")
+      } else if (target.closest(textSelector)) {
+        setMode("text")
+      } else {
+        setMode("default")
+      }
     }
 
-    handleHoverables()
-    const observer = new MutationObserver(handleHoverables)
-    observer.observe(document.body, { childList: true, subtree: true })
+    document.addEventListener("mouseover", onOver)
+    return () => document.removeEventListener("mouseover", onOver)
+  }, [isMobile])
 
-    return () => observer.disconnect()
-  }, [])
+  if (isMobile) return null
 
-  if (typeof window === "undefined") return null
+  const circleSize =
+    mode === "interactive" ? 60 : mode === "text" ? 30 : 40
+  const circleOpacity =
+    mode === "interactive" ? 0.5 : 1
 
   return (
     <>
-      {/* Main cursor dot */}
+      {/* Dot - follows mouse exactly */}
       <div
-        className="fixed pointer-events-none z-[99999] mix-blend-difference"
+        ref={dotRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
-          left: position.x,
-          top: position.y,
-          transform: "translate(-50%, -50%)",
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.3s",
+          width: 8,
+          height: 8,
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.3s ease",
+          willChange: "transform",
         }}
       >
         <div
-          className="rounded-full bg-white"
-          style={{
-            width: isClicking ? 6 : 8,
-            height: isClicking ? 6 : 8,
-            transition: "width 0.2s, height 0.2s",
-          }}
+          className="w-full h-full rounded-full bg-primary"
         />
       </div>
 
-      {/* Follower circle */}
+      {/* Outer ring - follows with lerp delay */}
       <div
-        className="fixed pointer-events-none z-[99998]"
+        ref={circleRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
-          left: followerPosition.x,
-          top: followerPosition.y,
-          transform: "translate(-50%, -50%)",
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.3s",
+          width: circleSize,
+          height: circleSize,
+          opacity: visible ? circleOpacity : 0,
+          transition:
+            "width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease",
+          willChange: "transform",
+          mixBlendMode: "difference",
         }}
       >
         <div
-          className="rounded-full border border-white/50"
+          className="w-full h-full rounded-full border border-primary"
           style={{
-            width: isHovering ? 60 : 40,
-            height: isHovering ? 60 : 40,
-            transition: "width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-            backgroundColor: isHovering ? "rgba(139, 92, 246, 0.1)" : "transparent",
+            transform:
+              mode === "interactive" ? "scale(1.5)" : "scale(1)",
+            transition: "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           }}
         />
       </div>

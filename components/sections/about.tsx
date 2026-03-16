@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
+import { ThemeLogo } from "@/components/theme-logo"
 
 const team = [
   { role: "Product Lead", initials: "AL", color: "#8B5CF6" },
@@ -36,11 +37,9 @@ export function About() {
 
   return (
     <section id="about" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
-      {/* Giant background number */}
+      {/* Giant background logo */}
       <Parallax speed={-0.2} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-        <div className="text-[50vw] font-bold text-foreground/[0.04] leading-none">
-          13
-        </div>
+        <ThemeLogo size={600} ghost className="select-none" />
       </Parallax>
 
       {/* Floating gradient orbs */}
@@ -95,9 +94,7 @@ export function About() {
                 <div className="h-full flex flex-col justify-between">
                   {/* Logo */}
                   <div>
-                    <span className="text-6xl md:text-8xl font-bold">
-                      V<span className="text-primary">13</span>
-                    </span>
+                    <ThemeLogo size={120} />
                     <p className="text-xs tracking-[0.3em] text-muted-foreground mt-2 font-mono">STUDIO</p>
                   </div>
 

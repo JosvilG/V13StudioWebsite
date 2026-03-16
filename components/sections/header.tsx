@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { navigateToSection } from "@/lib/navigate-stack"
+import { ThemeLogo } from "@/components/theme-logo"
 
 const navItems = [
   { label: "Home", href: "#hero" },
@@ -136,10 +137,8 @@ export function Header() {
       >
         {/* Logo area */}
         <div className="px-8 pt-8 pb-4 border-b border-border">
-          <span className="text-2xl font-bold">
-            V<span className="text-primary">13</span>
-          </span>
-          <p className="text-xs text-muted-foreground font-mono mt-1 tracking-wider">STUDIO</p>
+          <ThemeLogo size={64} />
+          <p className="text-xs text-muted-foreground font-mono mt-2 tracking-[0.3em]">STUDIO</p>
         </div>
 
         {/* Nav links */}
