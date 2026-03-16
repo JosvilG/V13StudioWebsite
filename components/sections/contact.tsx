@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
 import { cn } from "@/lib/utils"
-import Magnetic from "@/components/magnetic"
 
 export function Contact() {
   const [formState, setFormState] = useState({
@@ -274,8 +273,7 @@ export function Contact() {
                   />
                 </div>
 
-                <Magnetic strength={0.15}>
-                  <button
+                <button
                     type="submit"
                     className="group relative w-full px-8 py-4 font-medium text-primary-foreground overflow-hidden transition-all hover:shadow-xl hover:shadow-primary/20"
                     style={{
@@ -290,7 +288,6 @@ export function Contact() {
                       </svg>
                     </span>
                   </button>
-                </Magnetic>
               </form>
             )}
           </ScrollReveal>
