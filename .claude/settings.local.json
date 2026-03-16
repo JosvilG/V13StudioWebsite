@@ -4,7 +4,11 @@
       "Bash(npx next:*)",
       "mcp__Claude_Preview__preview_start",
       "Bash(find E:ReposV13StudioWebnode_modules -name tailwind.css -path */shadcn*)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(dir \"C:\\\\Users\\\\josvi\\\\Desktop\\\\_JVG Proyectos\\\\V13 Studio\\\\Logos\")",
+      "Bash(dir \"E:\\\\Repos\\\\V13StudioWeb\\\\public\")",
+      "Bash(cp \"C:\\\\Users\\\\josvi\\\\Desktop\\\\_JVG Proyectos\\\\V13 Studio\\\\Logos\\\\v13_dark_1c1e40_512.png\" \"E:\\\\Repos\\\\V13StudioWeb\\\\public\\\\logo-dark.png\")",
+      "Bash(cp \"C:\\\\Users\\\\josvi\\\\Desktop\\\\_JVG Proyectos\\\\V13 Studio\\\\Logos\\\\v13_light_efebee_512.png\" \"E:\\\\Repos\\\\V13StudioWeb\\\\public\\\\logo-light.png\")"
     ]
   }
 }

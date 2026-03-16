@@ -62,7 +62,7 @@ export function Process() {
   }, [])
 
   return (
-    <section id="process" ref={sectionRef} className="relative min-h-screen py-32 bg-card overflow-hidden">
+    <section id="process" ref={sectionRef} className="relative min-h-screen py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Background pattern */}
       <Parallax speed={-0.1} className="absolute inset-0 pointer-events-none">
         <div
@@ -82,7 +82,7 @@ export function Process() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="mb-24">
+        <div className="mb-12 sm:mb-16 md:mb-24">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>
               <ScrollReveal>
@@ -92,7 +92,7 @@ export function Process() {
               </ScrollReveal>
 
               <ScrollReveal delay={100}>
-                <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+                <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight">
                   Our
                   <br />
                   <span
@@ -119,7 +119,7 @@ export function Process() {
             <ScrollReveal key={step.number} delay={index * 100}>
               <div
                 className={cn(
-                  "flex gap-6 md:gap-10 py-12 transition-all duration-500",
+                  "flex gap-4 sm:gap-6 md:gap-10 py-6 sm:py-8 md:py-12 transition-all duration-500",
                   index !== steps.length - 1 && "border-b border-border"
                 )}
               >
@@ -162,7 +162,7 @@ export function Process() {
                         {step.number}
                       </span>
                       <h3 className={cn(
-                        "text-3xl md:text-4xl font-bold tracking-tight transition-all duration-500",
+                        "text-xl sm:text-3xl md:text-4xl font-bold tracking-tight transition-all duration-500",
                         activeStep === index && "translate-x-2"
                       )}>
                         {step.title}
@@ -199,21 +199,25 @@ export function Process() {
 
         {/* CTA */}
         <ScrollReveal delay={400}>
-          <div className="mt-24 p-12 border border-border text-center relative overflow-hidden">
+          <div className="mt-12 sm:mt-16 md:mt-24 p-6 sm:p-8 md:p-12 border border-border text-center relative overflow-hidden">
             <div className="relative z-10">
               <p className="text-2xl font-medium mb-4">Ready to start your project?</p>
               <p className="text-muted-foreground mb-8">
                 {"Let's discuss how we can help bring your vision to life."}
               </p>
               <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-              >
-                Get in touch
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
+                  href="#contact"
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 font-medium text-primary-foreground overflow-hidden"
+                  style={{
+                    background: `linear-gradient(135deg, var(--gradient-accent-1), var(--gradient-accent-3))`,
+                  }}
+                >
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <span className="relative z-10">Get in touch</span>
+                  <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
             </div>
           </div>
         </ScrollReveal>

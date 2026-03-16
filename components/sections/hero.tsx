@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react"
 import { Parallax, FloatingElement } from "@/components/parallax"
 import { navigateToSection } from "@/lib/navigate-stack"
+import { ThemeLogo } from "@/components/theme-logo"
+import { TextScramble } from "@/components/text-scramble"
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -19,7 +21,7 @@ export function Hero() {
   const opacity = Math.max(0, 1 - scrollY / 800)
 
   return (
-    <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section id="hero" ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden px-2 sm:px-0">
       {/* Layer 1 - Far background grid */}
       <Parallax speed={-0.3} className="absolute inset-0">
         <div
@@ -31,10 +33,10 @@ export function Hero() {
       </Parallax>
 
       {/* Layer 2 - Floating orbs */}
-      <Parallax speed={-0.2} className="absolute inset-0 pointer-events-none">
+      <Parallax speed={-0.2} className="absolute inset-0 pointer-events-none hidden sm:block">
         <FloatingElement amplitude={30} frequency={0.3} className="absolute top-[10%] left-[10%]">
           <div
-            className="w-[500px] h-[500px] rounded-full opacity-40"
+            className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full opacity-40"
             style={{
               background: "radial-gradient(circle, var(--glow-purple-strong) 0%, transparent 70%)",
               filter: "blur(80px)",
@@ -43,10 +45,10 @@ export function Hero() {
         </FloatingElement>
       </Parallax>
 
-      <Parallax speed={-0.15} className="absolute inset-0 pointer-events-none">
+      <Parallax speed={-0.15} className="absolute inset-0 pointer-events-none hidden sm:block">
         <FloatingElement amplitude={20} frequency={0.5} className="absolute bottom-[20%] right-[5%]">
           <div
-            className="w-[400px] h-[400px] rounded-full opacity-30"
+            className="w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full opacity-30"
             style={{
               background: "radial-gradient(circle, var(--glow-cyan-strong) 0%, transparent 70%)",
               filter: "blur(60px)",
@@ -55,11 +57,9 @@ export function Hero() {
         </FloatingElement>
       </Parallax>
 
-      {/* Layer 3 - Big background text */}
-      <Parallax speed={0.3} className="absolute inset-0 pointer-events-none flex items-end justify-center pb-32">
-        <div className="text-[25vw] font-bold text-foreground/[0.04] tracking-tighter whitespace-nowrap">
-          V13
-        </div>
+      {/* Layer 3 - Big background logo */}
+      <Parallax speed={0.3} className="absolute inset-0 pointer-events-none flex items-end justify-center pb-32 hidden md:flex">
+        <ThemeLogo size={500} ghost className="select-none" />
       </Parallax>
 
       {/* Layer 4 - Main content */}
@@ -96,7 +96,7 @@ export function Hero() {
                 transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
               }}
             >
-              WE BUILD
+              <TextScramble text="WE BUILD" trigger={loaded} speed={120} />
             </span>
           </span>
 
@@ -110,7 +110,7 @@ export function Hero() {
                 transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
               }}
             >
-              PRODUCTS
+              <TextScramble text="PRODUCTS" trigger={loaded} speed={130} />
             </span>
           </span>
 
@@ -123,14 +123,14 @@ export function Hero() {
                 transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s",
               }}
             >
-              THAT MATTER
+              <TextScramble text="THAT MATTER" trigger={loaded} speed={100} />
             </span>
           </span>
         </h1>
 
         {/* Subtitle */}
         <p
-          className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-12"
+          className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-8 sm:mb-12 px-2"
           style={{
             transform: `translateY(${loaded ? 0 : 40}px)`,
             opacity: loaded ? 0.8 : 0,
@@ -150,24 +150,44 @@ export function Hero() {
           }}
         >
           <button
-            onClick={() => navigateToSection("#work")}
-            className="group relative px-8 py-4 bg-primary text-primary-foreground font-medium overflow-hidden"
-          >
-            <span className="relative z-10">View Our Work</span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </button>
+              onClick={() => navigateToSection("#work")}
+              className="group relative px-8 sm:px-10 py-3 sm:py-4 font-medium overflow-hidden text-primary-foreground text-sm sm:text-base"
+              style={{
+                background: `linear-gradient(135deg, var(--gradient-accent-1), var(--gradient-accent-3))`,
+              }}
+            >
+              {/* Shimmer sweep */}
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <span className="relative z-10 flex items-center gap-3">
+                View Our Work
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </button>
           <button
-            onClick={() => navigateToSection("#contact")}
-            className="group relative px-8 py-4 border border-border font-medium overflow-hidden hover:border-primary transition-colors"
-          >
-            <span className="relative z-10">Start a Project</span>
-          </button>
+              onClick={() => navigateToSection("#contact")}
+              className="group relative px-8 sm:px-10 py-3 sm:py-4 font-medium overflow-hidden bg-transparent text-sm sm:text-base"
+            >
+              {/* Animated border */}
+              <span
+                className="absolute inset-0 border border-border group-hover:border-primary/60 transition-colors duration-500"
+              />
+              {/* Fill on hover */}
+              <span className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
+              <span className="relative z-10 flex items-center gap-3">
+                Start a Project
+                <svg className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </button>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - desktop only */}
       <div
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center"
         style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
       >
         <span className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase mb-4 font-mono">

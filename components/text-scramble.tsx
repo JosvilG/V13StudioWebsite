@@ -1,71 +1,70 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
-import { cn } from "@/lib/utils"
 
 interface TextScrambleProps {
   text: string
   className?: string
-  delay?: number
+  trigger?: boolean
+  speed?: number
 }
 
-export function TextScramble({ text, className, delay = 0 }: TextScrambleProps) {
-  const [displayText, setDisplayText] = useState("")
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLSpanElement>(null)
-  const chars = "!<>-_\\/[]{}=+*^?#_abcdefghijklmnopqrstuvwxyz"
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+function randomChar() {
+  return chars[Math.floor(Math.random() * chars.length)]
+}
+
+export function TextScramble({ text, className, trigger, speed = 40 }: TextScrambleProps) {
+  const [display, setDisplay] = useState(text)
+  const resolvedRef = useRef(0)
+  const rafRef = useRef<number>(0)
+  const lastTickRef = useRef(0)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
+    if (!trigger) {
+      setDisplay(text)
+      resolvedRef.current = 0
+      return
     }
 
-    return () => observer.disconnect()
-  }, [])
+    resolvedRef.current = 0
+    lastTickRef.current = performance.now()
 
-  useEffect(() => {
-    if (!isVisible) return
+    const animate = (now: number) => {
+      const elapsed = now - lastTickRef.current
 
-    const timeout = setTimeout(() => {
-      let iteration = 0
-      const interval = setInterval(() => {
-        setDisplayText(
-          text
-            .split("")
-            .map((char, index) => {
-              if (char === " ") return " "
-              if (index < iteration) return text[index]
-              return chars[Math.floor(Math.random() * chars.length)]
-            })
-            .join("")
-        )
+      // Advance one character per `speed` ms
+      if (elapsed >= speed) {
+        resolvedRef.current = Math.min(resolvedRef.current + 1, text.length)
+        lastTickRef.current = now
+      }
 
-        if (iteration >= text.length) {
-          clearInterval(interval)
-        }
+      const resolved = resolvedRef.current
 
-        iteration += 1 / 3
-      }, 30)
+      // Build display string
+      const result = text
+        .split("")
+        .map((char, i) => {
+          if (i < resolved) return char
+          if (char === " ") return " "
+          return randomChar()
+        })
+        .join("")
 
-      return () => clearInterval(interval)
-    }, delay)
+      setDisplay(result)
 
-    return () => clearTimeout(timeout)
-  }, [isVisible, text, delay])
+      if (resolved < text.length) {
+        rafRef.current = requestAnimationFrame(animate)
+      } else {
+        // Ensure final text is exact
+        setDisplay(text)
+      }
+    }
 
-  return (
-    <span ref={ref} className={cn("font-mono", className)}>
-      {displayText || text.split("").map(() => " ").join("")}
-    </span>
-  )
+    rafRef.current = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [trigger, text, speed])
+
+  return <span className={className}>{display}</span>
 }

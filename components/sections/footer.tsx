@@ -2,6 +2,13 @@
 
 import { useEffect, useState, useRef } from "react"
 import { Parallax, ScrollReveal } from "@/components/parallax"
+import { ThemeLogo } from "@/components/theme-logo"
+import { Marquee } from "@/components/marquee"
+
+const techStack = [
+  "React Native", "Next.js", "TypeScript", "NestJS", "PostgreSQL",
+  "AWS", "OpenAI", "Figma", "React", "Node.js", "GraphQL", "Supabase",
+]
 
 export function Footer() {
   const [time, setTime] = useState("")
@@ -40,25 +47,26 @@ export function Footer() {
   }, [])
 
   return (
-    <footer ref={sectionRef} className="relative py-24 bg-card border-t border-border overflow-hidden">
+    <footer ref={sectionRef} className="relative border-t border-border overflow-hidden">
+      {/* Tech stack marquee */}
+      <Marquee items={techStack} speed={25} />
+
       {/* Giant background text */}
       <Parallax speed={-0.15} className="absolute bottom-0 left-0 right-0 pointer-events-none">
         <div
           className="text-[18vw] font-bold text-foreground/[0.04] tracking-tighter whitespace-nowrap"
           style={{ transform: `translateX(${sectionScrollY * 0.1}px)` }}
         >
-          V13 STUDIO BARCELONA
+          V13 STUDIO
         </div>
       </Parallax>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-12 pb-12 sm:pt-16 sm:pb-16 md:pt-24 md:pb-24">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 sm:gap-12">
           {/* Left */}
           <ScrollReveal>
             <div>
-              <span className="text-5xl md:text-7xl font-bold">
-                V<span className="text-primary">13</span>
-              </span>
+              <ThemeLogo size={80} />
               <p className="text-muted-foreground mt-4 max-w-sm">
                 Software product studio crafting exceptional digital experiences for everyone and everywhere.
               </p>
@@ -77,7 +85,7 @@ export function Footer() {
               </div>
 
               {/* Links */}
-              <div className="flex gap-8">
+              <div className="flex flex-wrap gap-4 sm:gap-8">
                 {["Twitter", "LinkedIn", "GitHub", "Dribbble"].map((link) => (
                   <a
                     key={link}
@@ -94,7 +102,7 @@ export function Footer() {
 
         {/* Bottom */}
         <ScrollReveal delay={200}>
-          <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="mt-8 sm:mt-16 pt-6 sm:pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
               {new Date().getFullYear()} V13 Studio. All rights reserved.
             </p>

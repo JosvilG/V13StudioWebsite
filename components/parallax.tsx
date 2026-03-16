@@ -10,16 +10,31 @@ interface ParallaxProps {
   direction?: 'vertical' | 'horizontal'
 }
 
-export function Parallax({ 
-  children, 
-  speed = 0.5, 
+// Detect mobile once (< 768px)
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check, { passive: true })
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
+
+export function Parallax({
+  children,
+  speed = 0.5,
   className,
   direction = 'vertical'
 }: ParallaxProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [transform, setTransform] = useState(0)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
+    if (isMobile) return // Skip parallax on mobile
+
     const handleScroll = () => {
       if (!ref.current) return
       const rect = ref.current.getBoundingClientRect()
@@ -32,16 +47,18 @@ export function Parallax({
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [speed])
+  }, [speed, isMobile])
 
   return (
     <div
       ref={ref}
       className={cn('will-change-transform', className)}
       style={{
-        transform: direction === 'vertical' 
-          ? `translateY(${transform}px)` 
-          : `translateX(${transform}px)`
+        transform: isMobile ? 'none' : (
+          direction === 'vertical'
+            ? `translateY(${transform}px)`
+            : `translateX(${transform}px)`
+        )
       }}
     >
       {children}
@@ -58,21 +75,24 @@ interface ParallaxLayerProps {
 export function ParallaxLayer({ children, depth = 1, className }: ParallaxLayerProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
+    if (isMobile) return
+
     const handleScroll = () => {
       setScrollY(window.scrollY)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isMobile])
 
   return (
     <div
       ref={ref}
       className={cn('will-change-transform', className)}
       style={{
-        transform: `translateY(${scrollY * (depth - 1) * 0.1}px)`
+        transform: isMobile ? 'none' : `translateY(${scrollY * (depth - 1) * 0.1}px)`
       }}
     >
       {children}
@@ -195,16 +215,19 @@ interface FloatingElementProps {
   frequency?: number
 }
 
-export function FloatingElement({ 
-  children, 
+export function FloatingElement({
+  children,
   className,
   amplitude = 20,
   frequency = 0.5
 }: FloatingElementProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [offset, setOffset] = useState(0)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
+    if (isMobile) return // Skip floating on mobile
+
     const handleScroll = () => {
       const scrollY = window.scrollY
       const oscillation = Math.sin(scrollY * frequency * 0.01) * amplitude
@@ -213,13 +236,13 @@ export function FloatingElement({
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [amplitude, frequency])
+  }, [amplitude, frequency, isMobile])
 
   return (
     <div
       ref={ref}
       className={cn('will-change-transform', className)}
-      style={{ transform: `translateY(${offset}px)` }}
+      style={{ transform: isMobile ? 'none' : `translateY(${offset}px)` }}
     >
       {children}
     </div>
