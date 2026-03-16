@@ -19,7 +19,7 @@ export function Hero() {
   const opacity = Math.max(0, 1 - scrollY / 800)
 
   return (
-    <section id="hero" ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section id="hero" ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Layer 1 - Far background grid */}
       <Parallax speed={-0.3} className="absolute inset-0">
         <div

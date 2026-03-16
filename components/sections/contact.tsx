@@ -34,7 +34,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="relative min-h-screen py-32 bg-background overflow-hidden">
+    <section id="contact" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
       {/* Background gradient */}
       <Parallax speed={-0.2} className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none">
         <div

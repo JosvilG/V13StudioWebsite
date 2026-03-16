@@ -7,10 +7,12 @@ import { About } from "@/components/sections/about"
 import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
 import { SectionStack } from "@/components/section-stack"
+import { AnimatedBackground } from "@/components/animated-background"
 
 export default function Home() {
   return (
     <>
+      <AnimatedBackground />
       <Header />
       <main>
         <SectionStack>

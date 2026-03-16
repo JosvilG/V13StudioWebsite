@@ -35,7 +35,7 @@ export function About() {
   }, [])
 
   return (
-    <section id="about" ref={sectionRef} className="relative min-h-screen py-32 bg-background overflow-hidden">
+    <section id="about" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
       {/* Giant background number */}
       <Parallax speed={-0.2} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <div className="text-[50vw] font-bold text-foreground/[0.04] leading-none">

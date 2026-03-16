@@ -62,7 +62,7 @@ export function Portfolio() {
   }, [])
 
   return (
-    <section id="work" ref={sectionRef} className="relative min-h-screen py-32 bg-card overflow-hidden">
+    <section id="work" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
       {/* Background decorative layers */}
       <Parallax speed={-0.1} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-full h-full">

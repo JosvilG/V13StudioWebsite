@@ -40,7 +40,7 @@ export function Footer() {
   }, [])
 
   return (
-    <footer ref={sectionRef} className="relative py-24 bg-card border-t border-border overflow-hidden">
+    <footer ref={sectionRef} className="relative py-24 border-t border-border overflow-hidden">
       {/* Giant background text */}
       <Parallax speed={-0.15} className="absolute bottom-0 left-0 right-0 pointer-events-none">
         <div

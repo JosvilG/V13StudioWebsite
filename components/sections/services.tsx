@@ -62,7 +62,7 @@ export function Services() {
   }, [])
 
   return (
-    <section id="services" ref={sectionRef} className="relative min-h-screen py-32 bg-background overflow-hidden">
+    <section id="services" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
       {/* Background text with parallax */}
       <Parallax speed={-0.2} className="absolute top-0 left-0 right-0 pointer-events-none">
         <div

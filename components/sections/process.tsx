@@ -62,7 +62,7 @@ export function Process() {
   }, [])
 
   return (
-    <section id="process" ref={sectionRef} className="relative min-h-screen py-32 bg-card overflow-hidden">
+    <section id="process" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
       {/* Background pattern */}
       <Parallax speed={-0.1} className="absolute inset-0 pointer-events-none">
         <div
