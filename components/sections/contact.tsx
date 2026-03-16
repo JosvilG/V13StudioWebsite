@@ -34,7 +34,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
+    <section id="contact" ref={sectionRef} className="relative min-h-screen py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Background gradient */}
       <Parallax speed={-0.2} className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none">
         <div
@@ -71,7 +71,7 @@ export function Contact() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-24">
+        <div className="text-center mb-12 sm:mb-16 md:mb-24">
           <ScrollReveal>
             <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
               Contact
@@ -79,7 +79,7 @@ export function Contact() {
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tight">
               {"Let's build"}
               <br />
               <span
@@ -92,11 +92,11 @@ export function Contact() {
           </ScrollReveal>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16">
           {/* Left - Info */}
           <ScrollReveal>
             <div className="space-y-12">
-              <p className="text-xl text-muted-foreground">
+              <p className="text-base sm:text-xl text-muted-foreground">
                 Have a project in mind? We would love to hear about it.
                 Drop us a line and we will get back to you within 24 hours.
               </p>
@@ -105,7 +105,7 @@ export function Contact() {
               <div className="space-y-6">
                 <a
                   href="mailto:hello@v13studio.com"
-                  className="group flex items-center gap-4 text-2xl font-medium hover:text-primary transition-colors"
+                  className="group flex items-center gap-3 sm:gap-4 text-lg sm:text-2xl font-medium hover:text-primary transition-colors"
                 >
                   <span className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-primary group-hover:bg-primary/10 transition-all">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -185,7 +185,7 @@ export function Contact() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                 {/* Name field */}
                 <div className="relative">
                   <label

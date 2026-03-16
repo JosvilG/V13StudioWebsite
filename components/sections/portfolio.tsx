@@ -62,7 +62,7 @@ export function Portfolio() {
   }, [])
 
   return (
-    <section id="work" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
+    <section id="work" ref={sectionRef} className="relative min-h-screen py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Background decorative layers */}
       <Parallax speed={-0.1} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-full h-full">
@@ -100,7 +100,7 @@ export function Portfolio() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-24">
+        <div className="text-center mb-12 sm:mb-16 md:mb-24">
           <ScrollReveal>
             <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
               Selected Work
@@ -108,7 +108,7 @@ export function Portfolio() {
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tight">
+            <h2 className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tight">
               Projects that
               <br />
               <span
@@ -130,13 +130,14 @@ export function Portfolio() {
                   "group relative border-b border-border cursor-pointer transition-all duration-500",
                   activeIndex !== null && activeIndex !== index && "opacity-30"
                 )}
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                 onMouseEnter={() => setActiveIndex(index)}
                 onMouseLeave={() => setActiveIndex(null)}
               >
-                <div className="py-10 flex flex-col lg:flex-row lg:items-center gap-8">
+                <div className="py-6 sm:py-10 flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-8">
                   {/* Number */}
                   <span
-                    className="text-6xl md:text-8xl font-bold transition-all duration-500"
+                    className="text-4xl sm:text-6xl md:text-8xl font-bold transition-all duration-500"
                     style={{
                       color: activeIndex === index ? project.color : "transparent",
                       WebkitTextStroke: activeIndex === index ? "none" : `1px var(--stroke-muted)`,
@@ -147,7 +148,7 @@ export function Portfolio() {
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-3xl md:text-5xl font-bold tracking-tight transition-transform duration-500 group-hover:translate-x-4">
+                    <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight transition-transform duration-500 group-hover:translate-x-4">
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-4 mt-2">
@@ -181,7 +182,7 @@ export function Portfolio() {
                   {/* Preview box */}
                   <div
                     className={cn(
-                      "relative w-28 h-28 flex items-center justify-center border transition-all duration-500",
+                      "relative w-20 h-20 sm:w-28 sm:h-28 flex items-center justify-center border transition-all duration-500 hidden sm:flex",
                       activeIndex === index ? "border-border" : "border-border"
                     )}
                     style={{

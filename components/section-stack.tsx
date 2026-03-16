@@ -7,16 +7,10 @@ interface SectionStackProps {
 }
 
 /**
- * Full-screen parallax stack with fade transitions.
+ * Full-screen parallax stack with fade transitions (desktop only).
  *
- * All sections are stacked in the same position. A tall scroll container
- * creates scroll space. Each section stays fully visible for a "hold" period,
- * then cross-fades to the next one.
- *
- * CSS `transition: opacity` on each slot ensures smooth visual results even
- * during fast scrolling — the browser animates between opacity values instead
- * of snapping.  During very fast scroll only the nearest section is targeted,
- * and the CSS transition smooths out the switch.
+ * On mobile (< 768px) renders children in normal document flow — standard scroll.
+ * On desktop, all sections are stacked in the same position with fade transitions.
  */
 export function SectionStack({ children }: SectionStackProps) {
   const items = Children.toArray(children)
@@ -24,8 +18,18 @@ export function SectionStack({ children }: SectionStackProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
   const smoothVelocityRef = useRef(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener("resize", check, { passive: true })
+    return () => window.removeEventListener("resize", check)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) return // No stack logic on mobile
+
     let prevProgress = 0
     let prevTime = performance.now()
 
@@ -56,8 +60,20 @@ export function SectionStack({ children }: SectionStackProps) {
     window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [total])
+  }, [total, isMobile])
 
+  // ── Mobile: normal flow, no stack ──
+  if (isMobile) {
+    return (
+      <div data-section-stack data-section-count={total}>
+        {items.map((child, index) => (
+          <div key={index}>{child}</div>
+        ))}
+      </div>
+    )
+  }
+
+  // ── Desktop: stacked with fade transitions ──
   const velocity = smoothVelocityRef.current
 
   return (

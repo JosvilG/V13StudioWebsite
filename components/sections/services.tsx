@@ -62,7 +62,7 @@ export function Services() {
   }, [])
 
   return (
-    <section id="services" ref={sectionRef} className="relative min-h-screen py-32 overflow-hidden">
+    <section id="services" ref={sectionRef} className="relative min-h-screen py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Background text with parallax */}
       <Parallax speed={-0.2} className="absolute top-0 left-0 right-0 pointer-events-none">
         <div
@@ -86,7 +86,7 @@ export function Services() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="mb-24">
+        <div className="mb-12 sm:mb-16 md:mb-24">
           <ScrollReveal>
             <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
               What we do
@@ -95,7 +95,7 @@ export function Services() {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <ScrollReveal delay={100}>
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+              <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight">
                 Full-stack
                 <br />
                 <span
@@ -121,19 +121,20 @@ export function Services() {
             <ScrollReveal key={service.number} delay={index * 80}>
               <div
                 className={cn(
-                  "group relative py-8 border-t border-border transition-all duration-500 cursor-pointer",
+                  "group relative py-6 sm:py-8 border-t border-border transition-all duration-500 cursor-pointer",
                   hoveredIndex !== null && hoveredIndex !== index && "opacity-30"
                 )}
+                onClick={() => setHoveredIndex(hoveredIndex === index ? null : index)}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className="flex items-start justify-between gap-8">
-                  <span className="text-sm font-mono text-primary/60 w-12 pt-2">
+                <div className="flex items-start justify-between gap-4 sm:gap-8">
+                  <span className="text-xs sm:text-sm font-mono text-primary/60 w-8 sm:w-12 pt-2">
                     {service.number}
                   </span>
 
                   <div className="flex-1">
-                    <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-2 transition-transform duration-500 group-hover:translate-x-4">
+                    <h3 className="text-xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-2 transition-transform duration-500 group-hover:translate-x-4">
                       {service.title}
                     </h3>
 

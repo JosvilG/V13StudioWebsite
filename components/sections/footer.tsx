@@ -61,8 +61,8 @@ export function Footer() {
         </div>
       </Parallax>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-24 pb-24">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-12 pb-12 sm:pt-16 sm:pb-16 md:pt-24 md:pb-24">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 sm:gap-12">
           {/* Left */}
           <ScrollReveal>
             <div>
@@ -85,7 +85,7 @@ export function Footer() {
               </div>
 
               {/* Links */}
-              <div className="flex gap-8">
+              <div className="flex flex-wrap gap-4 sm:gap-8">
                 {["Twitter", "LinkedIn", "GitHub", "Dribbble"].map((link) => (
                   <a
                     key={link}
@@ -102,7 +102,7 @@ export function Footer() {
 
         {/* Bottom */}
         <ScrollReveal delay={200}>
-          <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="mt-8 sm:mt-16 pt-6 sm:pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
               {new Date().getFullYear()} V13 Studio. All rights reserved.
             </p>

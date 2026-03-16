@@ -21,7 +21,7 @@ export function Hero() {
   const opacity = Math.max(0, 1 - scrollY / 800)
 
   return (
-    <section id="hero" ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden px-2 sm:px-0">
       {/* Layer 1 - Far background grid */}
       <Parallax speed={-0.3} className="absolute inset-0">
         <div
@@ -33,10 +33,10 @@ export function Hero() {
       </Parallax>
 
       {/* Layer 2 - Floating orbs */}
-      <Parallax speed={-0.2} className="absolute inset-0 pointer-events-none">
+      <Parallax speed={-0.2} className="absolute inset-0 pointer-events-none hidden sm:block">
         <FloatingElement amplitude={30} frequency={0.3} className="absolute top-[10%] left-[10%]">
           <div
-            className="w-[500px] h-[500px] rounded-full opacity-40"
+            className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full opacity-40"
             style={{
               background: "radial-gradient(circle, var(--glow-purple-strong) 0%, transparent 70%)",
               filter: "blur(80px)",
@@ -45,10 +45,10 @@ export function Hero() {
         </FloatingElement>
       </Parallax>
 
-      <Parallax speed={-0.15} className="absolute inset-0 pointer-events-none">
+      <Parallax speed={-0.15} className="absolute inset-0 pointer-events-none hidden sm:block">
         <FloatingElement amplitude={20} frequency={0.5} className="absolute bottom-[20%] right-[5%]">
           <div
-            className="w-[400px] h-[400px] rounded-full opacity-30"
+            className="w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full opacity-30"
             style={{
               background: "radial-gradient(circle, var(--glow-cyan-strong) 0%, transparent 70%)",
               filter: "blur(60px)",
@@ -58,7 +58,7 @@ export function Hero() {
       </Parallax>
 
       {/* Layer 3 - Big background logo */}
-      <Parallax speed={0.3} className="absolute inset-0 pointer-events-none flex items-end justify-center pb-32">
+      <Parallax speed={0.3} className="absolute inset-0 pointer-events-none flex items-end justify-center pb-32 hidden md:flex">
         <ThemeLogo size={500} ghost className="select-none" />
       </Parallax>
 
@@ -130,7 +130,7 @@ export function Hero() {
 
         {/* Subtitle */}
         <p
-          className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-12"
+          className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-8 sm:mb-12 px-2"
           style={{
             transform: `translateY(${loaded ? 0 : 40}px)`,
             opacity: loaded ? 0.8 : 0,
@@ -151,7 +151,7 @@ export function Hero() {
         >
           <button
               onClick={() => navigateToSection("#work")}
-              className="group relative px-10 py-4 font-medium overflow-hidden text-primary-foreground"
+              className="group relative px-8 sm:px-10 py-3 sm:py-4 font-medium overflow-hidden text-primary-foreground text-sm sm:text-base"
               style={{
                 background: `linear-gradient(135deg, var(--gradient-accent-1), var(--gradient-accent-3))`,
               }}
@@ -167,7 +167,7 @@ export function Hero() {
             </button>
           <button
               onClick={() => navigateToSection("#contact")}
-              className="group relative px-10 py-4 font-medium overflow-hidden bg-transparent"
+              className="group relative px-8 sm:px-10 py-3 sm:py-4 font-medium overflow-hidden bg-transparent text-sm sm:text-base"
             >
               {/* Animated border */}
               <span
@@ -185,9 +185,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - desktop only */}
       <div
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center"
         style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
       >
         <span className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase mb-4 font-mono">
