@@ -104,7 +104,7 @@ export function Contact() {
               {/* Contact info */}
               <div className="space-y-6">
                 <a
-                  href="mailto:hello@v13.studio"
+                  href="mailto:hello@v13studio.com"
                   className="group flex items-center gap-4 text-2xl font-medium hover:text-primary transition-colors"
                 >
                   <span className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-primary group-hover:bg-primary/10 transition-all">

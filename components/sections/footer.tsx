@@ -57,7 +57,7 @@ export function Footer() {
           className="text-[18vw] font-bold text-foreground/[0.04] tracking-tighter whitespace-nowrap"
           style={{ transform: `translateX(${sectionScrollY * 0.1}px)` }}
         >
-          V13 STUDIO BARCELONA
+          V13 STUDIO
         </div>
       </Parallax>
 
