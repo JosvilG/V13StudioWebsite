@@ -29,6 +29,10 @@ export const metadata: Metadata = {
   description: 'A 4-person digital product studio crafting software from strategy to deployment. Mobile, web, and backend engineering based in Catalonia, Spain.',
   keywords: ['product studio', 'software development', 'mobile development', 'web development', 'UX/UI design', 'React Native', 'NestJS', 'Catalonia'],
   authors: [{ name: 'V13 Studio' }],
+  icons: {
+    icon: '/icon.svg',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: 'V13 Studio | Software Studio',
     description: 'A 4-person digital product studio crafting software from strategy to deployment.',
