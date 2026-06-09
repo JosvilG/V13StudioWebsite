@@ -13,6 +13,7 @@ const navItems = [
   { label: "Process", href: "#process" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
+  { label: "Tools", href: "https://tools.v13studio.com" },
 ]
 
 export function Header() {
@@ -53,6 +54,10 @@ export function Header() {
   }, [isOpen])
 
   const handleNav = useCallback((href: string) => {
+    if (href.startsWith("http")) {
+      window.open(href, "_blank", "noopener,noreferrer")
+      return
+    }
     setIsOpen(false)
     // Small delay so menu closing animation starts before scroll
     setTimeout(() => {
@@ -154,30 +159,39 @@ export function Header() {
         {/* Nav links */}
         <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-6">
           <ul className="space-y-1">
-            {navItems.map((item, i) => (
-              <li key={item.href}>
-                <button
-                  onClick={() => handleNav(item.href)}
-                  className={cn(
-                    "w-full text-left py-3 flex items-center gap-4 group transition-all duration-300",
-                    "hover:translate-x-2"
-                  )}
-                  style={{
-                    transitionDelay: isOpen ? `${i * 50 + 100}ms` : "0ms",
-                    opacity: isOpen ? 1 : 0,
-                    transform: isOpen ? undefined : "translateX(20px)",
-                  }}
-                >
-                  <span className="text-xs font-mono text-primary/60 w-5">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-lg font-medium text-foreground group-hover:text-primary transition-colors">
-                    {item.label}
-                  </span>
-                  <span className="ml-auto w-0 group-hover:w-6 h-px bg-primary transition-all duration-300" />
-                </button>
-              </li>
-            ))}
+            {navItems.map((item, i) => {
+              const isExternal = item.href.startsWith("http")
+              return (
+                <li key={item.href}>
+                  <button
+                    onClick={() => handleNav(item.href)}
+                    className={cn(
+                      "w-full text-left py-3 flex items-center gap-4 group transition-all duration-300",
+                      "hover:translate-x-2"
+                    )}
+                    style={{
+                      transitionDelay: isOpen ? `${i * 50 + 100}ms` : "0ms",
+                      opacity: isOpen ? 1 : 0,
+                      transform: isOpen ? undefined : "translateX(20px)",
+                    }}
+                  >
+                    <span className="text-xs font-mono text-primary/60 w-5">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-lg font-medium text-foreground group-hover:text-primary transition-colors">
+                      {item.label}
+                    </span>
+                    {isExternal ? (
+                      <svg className="ml-auto w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    ) : (
+                      <span className="ml-auto w-0 group-hover:w-6 h-px bg-primary transition-all duration-300" />
+                    )}
+                  </button>
+                </li>
+              )
+            })}
           </ul>
         </div>
 
