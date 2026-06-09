@@ -30,10 +30,7 @@ export const metadata: Metadata = {
   keywords: ['product studio', 'software development', 'mobile development', 'web development', 'UX/UI design', 'React Native', 'NestJS', 'Catalonia'],
   authors: [{ name: 'V13 Studio' }],
   icons: {
-    icon: [
-      { url: '/logo-dark.png', media: '(prefers-color-scheme: light)' },
-      { url: '/logo-light.png', media: '(prefers-color-scheme: dark)' },
-    ],
+    icon: '/icon.svg',
     apple: '/logo-dark.png',
   },
   openGraph: {
