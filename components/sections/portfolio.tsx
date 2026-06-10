@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
 import { cn } from "@/lib/utils"
+import { useT } from "@/components/i18n-provider"
 
 const projects = [
   {
@@ -44,6 +45,7 @@ const projects = [
 ]
 
 export function Portfolio() {
+  const t = useT()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionScrollY, setSectionScrollY] = useState(0)
@@ -103,19 +105,19 @@ export function Portfolio() {
         <div className="text-center mb-12 sm:mb-16 md:mb-24">
           <ScrollReveal>
             <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
-              Selected Work
+              {t.portfolio.eyebrow}
             </span>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <h2 className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tight">
-              Projects that
+              {t.portfolio.headingTop}
               <br />
               <span
                 className="text-transparent bg-clip-text"
                 style={{ backgroundImage: `linear-gradient(to right, var(--gradient-accent-1), var(--gradient-accent-2), var(--gradient-accent-3))` }}
               >
-                push boundaries
+                {t.portfolio.headingAccent}
               </span>
             </h2>
           </ScrollReveal>
@@ -217,9 +219,9 @@ export function Portfolio() {
           <div className="mt-24 text-center">
             <a href="#contact" className="inline-flex items-center gap-4 text-lg group">
               <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-                Want to see more?
+                {t.portfolio.ctaText}
               </span>
-              <span className="text-primary group-hover:underline">{"Let's talk"}</span>
+              <span className="text-primary group-hover:underline">{t.portfolio.ctaLink}</span>
               <svg
                 className="w-5 h-5 text-primary transition-transform duration-300 group-hover:translate-x-2"
                 fill="none"

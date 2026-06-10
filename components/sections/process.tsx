@@ -3,39 +3,23 @@
 import { useRef, useState, useEffect } from "react"
 import { Parallax, ScrollReveal } from "@/components/parallax"
 import { cn } from "@/lib/utils"
+import { useT } from "@/components/i18n-provider"
 
-const steps = [
-  {
-    number: "01",
-    title: "Discovery",
-    description: "We dive deep into your vision, users, and market. Research, interviews, and strategic planning.",
-    duration: "1-2 weeks",
-    icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
-  },
-  {
-    number: "02",
-    title: "Design",
-    description: "From wireframes to high-fidelity prototypes. Interfaces that are intuitive and beautiful.",
-    duration: "2-4 weeks",
-    icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z",
-  },
-  {
-    number: "03",
-    title: "Development",
-    description: "Clean, scalable code across web, mobile, and backend. Continuous delivery in sprints.",
-    duration: "6-12 weeks",
-    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-  },
-  {
-    number: "04",
-    title: "Launch",
-    description: "Deployment, monitoring, and iteration. We ensure your product succeeds post-launch.",
-    duration: "Ongoing",
-    icon: "M13 10V3L4 14h7v7l9-11h-7z",
-  },
+const stepMeta = [
+  { number: "01", icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" },
+  { number: "02", icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z" },
+  { number: "03", icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
+  { number: "04", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
 ]
 
 export function Process() {
+  const t = useT()
+  const steps = stepMeta.map((meta, i) => ({
+    ...meta,
+    title: t.process.steps[i].title,
+    description: t.process.steps[i].description,
+    duration: t.process.steps[i].duration,
+  }))
   const sectionRef = useRef<HTMLDivElement>(null)
   const [activeStep, setActiveStep] = useState(0)
   const [lineHeight, setLineHeight] = useState(0)
@@ -87,19 +71,19 @@ export function Process() {
             <div>
               <ScrollReveal>
                 <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
-                  How we work
+                  {t.process.eyebrow}
                 </span>
               </ScrollReveal>
 
               <ScrollReveal delay={100}>
                 <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight">
-                  Our
+                  {t.process.headingTop}
                   <br />
                   <span
                     className="text-transparent bg-clip-text"
                     style={{ backgroundImage: `linear-gradient(to right, var(--gradient-accent-1), var(--gradient-accent-3))` }}
                   >
-                    process
+                    {t.process.headingAccent}
                   </span>
                 </h2>
               </ScrollReveal>
@@ -107,7 +91,7 @@ export function Process() {
 
             <ScrollReveal delay={200}>
               <p className="text-muted-foreground max-w-md md:text-right">
-                A proven methodology honed over years of building successful products.
+                {t.process.intro}
               </p>
             </ScrollReveal>
           </div>
@@ -187,7 +171,7 @@ export function Process() {
                     )}
                   >
                     <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase block mb-1">
-                      Duration
+                      {t.process.durationLabel}
                     </span>
                     <span className="font-mono font-medium">{step.duration}</span>
                   </div>
@@ -201,9 +185,9 @@ export function Process() {
         <ScrollReveal delay={400}>
           <div className="mt-12 sm:mt-16 md:mt-24 p-6 sm:p-8 md:p-12 border border-border text-center relative overflow-hidden">
             <div className="relative z-10">
-              <p className="text-2xl font-medium mb-4">Ready to start your project?</p>
+              <p className="text-2xl font-medium mb-4">{t.process.ctaTitle}</p>
               <p className="text-muted-foreground mb-8">
-                {"Let's discuss how we can help bring your vision to life."}
+                {t.process.ctaText}
               </p>
               <a
                   href="#contact"
@@ -213,7 +197,7 @@ export function Process() {
                   }}
                 >
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  <span className="relative z-10">Get in touch</span>
+                  <span className="relative z-10">{t.process.ctaButton}</span>
                   <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
