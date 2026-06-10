@@ -15,7 +15,8 @@ export function Contact() {
   })
   const [focused, setFocused] = useState<string | null>(null)
   const [consent, setConsent] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [honeypot, setHoneypot] = useState("")
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionScrollY, setSectionScrollY] = useState(0)
 
@@ -32,9 +33,20 @@ export function Contact() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    if (status === "sending") return
+    setStatus("sending")
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formState, consent, website: honeypot }),
+      })
+      setStatus(res.ok ? "success" : "error")
+    } catch {
+      setStatus("error")
+    }
   }
 
   return (
@@ -173,7 +185,7 @@ export function Contact() {
 
           {/* Right - Form */}
           <ScrollReveal delay={200}>
-            {submitted ? (
+            {status === "success" ? (
               <div className="h-full flex items-center justify-center p-12 border border-primary/30 bg-primary/5">
                 <div className="text-center">
                   <div className="w-20 h-20 mx-auto mb-6 border-2 border-primary rounded-full flex items-center justify-center">
@@ -188,7 +200,20 @@ export function Contact() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              <form onSubmit={handleSubmit} className="relative space-y-6 sm:space-y-8">
+                {/* Honeypot — hidden from humans */}
+                <div className="absolute -left-[9999px] top-auto" aria-hidden="true">
+                  <label>
+                    Website
+                    <input
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </label>
+                </div>
                 {/* Name field */}
                 <div className="relative">
                   <label
@@ -298,16 +323,28 @@ export function Contact() {
                   </span>
                 </label>
 
+                {status === "error" && (
+                  <div className="border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm" role="alert">
+                    <p className="font-medium">{t.contact.errorTitle}</p>
+                    <p className="text-muted-foreground">
+                      {t.contact.errorText}{" "}
+                      <a href={`mailto:${t.contact.errorMailto}`} className="text-primary underline underline-offset-2">
+                        {t.contact.errorMailto}
+                      </a>
+                    </p>
+                  </div>
+                )}
                 <button
                     type="submit"
-                    className="group relative w-full px-8 py-4 font-medium text-primary-foreground overflow-hidden transition-all hover:shadow-xl hover:shadow-primary/20"
+                    disabled={status === "sending"}
+                    className="group relative w-full px-8 py-4 font-medium text-primary-foreground overflow-hidden transition-all hover:shadow-xl hover:shadow-primary/20 disabled:opacity-60 disabled:cursor-not-allowed"
                     style={{
                       background: `linear-gradient(135deg, var(--gradient-accent-1), var(--gradient-accent-3))`,
                     }}
                   >
                     <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                     <span className="relative z-10 flex items-center justify-center gap-3">
-                      {t.contact.send}
+                      {status === "sending" ? t.contact.sending : t.contact.send}
                       <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
