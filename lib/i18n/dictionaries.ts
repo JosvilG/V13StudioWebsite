@@ -68,6 +68,10 @@ export interface Dictionary {
     emailLabel: string
     messageLabel: string
     send: string
+    sending: string
+    errorTitle: string
+    errorText: string
+    errorMailto: string
     successTitle: string
     successText: string
     consentText: string
@@ -234,6 +238,10 @@ const en: Dictionary = {
     emailLabel: 'Your email',
     messageLabel: 'Tell us about your project',
     send: 'Send Message',
+    sending: 'Sending…',
+    errorTitle: 'Something went wrong',
+    errorText: 'Your message could not be sent. Please try again, or email us directly at',
+    errorMailto: 'v13studio@v13studio.com',
     successTitle: 'Message sent!',
     successText: "We'll get back to you within 24 hours.",
     consentText: 'I have read and accept the',
@@ -407,6 +415,10 @@ const es: Dictionary = {
     emailLabel: 'Tu email',
     messageLabel: 'Cuéntanos sobre tu proyecto',
     send: 'Enviar Mensaje',
+    sending: 'Enviando…',
+    errorTitle: 'Algo ha fallado',
+    errorText: 'No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos directamente a',
+    errorMailto: 'v13studio@v13studio.com',
     successTitle: '¡Mensaje enviado!',
     successText: 'Te responderemos en 24 horas.',
     consentText: 'He leído y acepto la',
@@ -580,6 +592,10 @@ const ca: Dictionary = {
     emailLabel: 'El teu correu',
     messageLabel: 'Explica’ns el teu projecte',
     send: 'Envia el Missatge',
+    sending: 'Enviant…',
+    errorTitle: 'Alguna cosa ha fallat',
+    errorText: "No s'ha pogut enviar el missatge. Torna-ho a provar o escriu-nos directament a",
+    errorMailto: 'v13studio@v13studio.com',
     successTitle: 'Missatge enviat!',
     successText: 'Et respondrem en 24 hores.',
     consentText: 'He llegit i accepto la',
