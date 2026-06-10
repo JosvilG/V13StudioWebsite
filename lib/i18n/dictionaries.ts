@@ -36,9 +36,6 @@ export interface Dictionary {
     intro: string
     durationLabel: string
     steps: { title: string; description: string; duration: string }[]
-    ctaTitle: string
-    ctaText: string
-    ctaButton: string
   }
   portfolio: {
     eyebrow: string
@@ -198,9 +195,6 @@ const en: Dictionary = {
         duration: 'Ongoing',
       },
     ],
-    ctaTitle: 'Ready to start your project?',
-    ctaText: "Let's discuss how we can help bring your vision to life.",
-    ctaButton: 'Get in touch',
   },
   portfolio: {
     eyebrow: 'Selected Work',
@@ -363,9 +357,6 @@ const es: Dictionary = {
         duration: 'Continuo',
       },
     ],
-    ctaTitle: '¿Listo para empezar tu proyecto?',
-    ctaText: 'Hablemos de cómo podemos ayudarte a hacer realidad tu visión.',
-    ctaButton: 'Contacta',
   },
   portfolio: {
     eyebrow: 'Trabajo Seleccionado',
@@ -528,9 +519,6 @@ const ca: Dictionary = {
         duration: 'Continu',
       },
     ],
-    ctaTitle: 'A punt per començar el teu projecte?',
-    ctaText: 'Parlem de com podem ajudar-te a fer realitat la teva visió.',
-    ctaButton: 'Contacta',
   },
   portfolio: {
     eyebrow: 'Treball Seleccionat',

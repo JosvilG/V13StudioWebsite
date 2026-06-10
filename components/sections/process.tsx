@@ -181,30 +181,6 @@ export function Process() {
           ))}
         </div>
 
-        {/* CTA */}
-        <ScrollReveal delay={400}>
-          <div className="mt-12 sm:mt-16 md:mt-24 p-6 sm:p-8 md:p-12 border border-border text-center relative overflow-hidden">
-            <div className="relative z-10">
-              <p className="text-2xl font-medium mb-4">{t.process.ctaTitle}</p>
-              <p className="text-muted-foreground mb-8">
-                {t.process.ctaText}
-              </p>
-              <a
-                  href="#contact"
-                  className="group relative inline-flex items-center gap-3 px-8 py-4 font-medium text-primary-foreground overflow-hidden"
-                  style={{
-                    background: `linear-gradient(135deg, var(--gradient-accent-1), var(--gradient-accent-3))`,
-                  }}
-                >
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  <span className="relative z-10">{t.process.ctaButton}</span>
-                  <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-            </div>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   )
