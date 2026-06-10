@@ -114,7 +114,13 @@ export function Portfolio({ projects }: { projects: SheetProject[] }) {
                   <div className="flex-1">
                     <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight transition-transform duration-500 group-hover:translate-x-4">
                       {project.url ? (
-                        <a href={project.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
                           {project.title}
                         </a>
                       ) : (
