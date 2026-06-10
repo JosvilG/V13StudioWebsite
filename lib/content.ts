@@ -23,6 +23,7 @@ export interface SheetStat {
 }
 
 const REVALIDATE_SECONDS = 600
+const DEFAULT_COLOR = '#8B5CF6'
 
 /**
  * Minimal CSV parser handling quoted fields, escaped quotes ("") and
@@ -92,7 +93,10 @@ async function fetchSheet(url: string | undefined): Promise<Record<string, strin
   }
 }
 
-/** Read `<base>_<locale>` column, falling back to English. */
+/**
+ * Read `<base>_<locale>` column, falling back to English.
+ * An empty cell is treated as missing — it falls through to the `_en` column.
+ */
 function localized(row: Record<string, string>, base: string, locale: Locale): string {
   return row[`${base}_${locale}`] || row[`${base}_en`] || ''
 }
@@ -105,11 +109,12 @@ export async function getProjects(locale: Locale): Promise<SheetProject[]> {
       id: row.id,
       title: row.title,
       year: row.year || '',
-      color: row.color || '#8B5CF6',
+      color: row.color || DEFAULT_COLOR,
       tags: (row.tags || '')
         .split(',')
         .map((t) => t.trim())
         .filter(Boolean),
+      // Rendered as <a href>; safe only because the sheet is owner-controlled.
       url: row.url || undefined,
       category: localized(row, 'category', locale),
       description: localized(row, 'description', locale),
@@ -122,7 +127,7 @@ export async function getTeam(locale: Locale): Promise<SheetTeamMember[]> {
     .filter((row) => row.initials)
     .map((row) => ({
       initials: row.initials,
-      color: row.color || '#8B5CF6',
+      color: row.color || DEFAULT_COLOR,
       role: localized(row, 'role', locale),
     }))
 }
