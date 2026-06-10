@@ -4,47 +4,9 @@ import { useRef, useState, useEffect } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
 import { cn } from "@/lib/utils"
 import { useT } from "@/components/i18n-provider"
+import type { SheetProject } from "@/lib/content"
 
-const projects = [
-  {
-    id: 1,
-    title: "FinanceFlow",
-    category: "Fintech App",
-    year: "2024",
-    description: "A modern banking experience for the digital generation. Complete redesign of mobile banking with AI-powered insights.",
-    tags: ["React Native", "Node.js", "PostgreSQL"],
-    color: "#8B5CF6",
-  },
-  {
-    id: 2,
-    title: "HealthPulse",
-    category: "Healthcare Platform",
-    year: "2024",
-    description: "AI-powered health monitoring and telemedicine platform connecting patients with healthcare providers.",
-    tags: ["Next.js", "OpenAI", "AWS"],
-    color: "#06B6D4",
-  },
-  {
-    id: 3,
-    title: "EcoTrack",
-    category: "Sustainability",
-    year: "2023",
-    description: "Carbon footprint tracking and sustainability reporting for enterprise businesses.",
-    tags: ["React", "NestJS", "GraphQL"],
-    color: "#10B981",
-  },
-  {
-    id: 4,
-    title: "CreatorHub",
-    category: "Creator Economy",
-    year: "2023",
-    description: "All-in-one platform for content creators to manage their business, audience, and monetization.",
-    tags: ["Next.js", "Stripe", "Supabase"],
-    color: "#F59E0B",
-  },
-]
-
-export function Portfolio() {
+export function Portfolio({ projects }: { projects: SheetProject[] }) {
   const t = useT()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -151,7 +113,13 @@ export function Portfolio() {
                   {/* Content */}
                   <div className="flex-1">
                     <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight transition-transform duration-500 group-hover:translate-x-4">
-                      {project.title}
+                      {project.url ? (
+                        <a href={project.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                          {project.title}
+                        </a>
+                      ) : (
+                        project.title
+                      )}
                     </h3>
                     <div className="flex items-center gap-4 mt-2">
                       <span className="text-muted-foreground">{project.category}</span>
