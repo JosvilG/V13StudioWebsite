@@ -70,6 +70,8 @@ export interface Dictionary {
     send: string
     successTitle: string
     successText: string
+    consentText: string
+    consentLink: string
   }
   footer: {
     tagline: string
@@ -77,6 +79,8 @@ export interface Dictionary {
     rights: string
     privacy: string
     terms: string
+    legalNotice: string
+    cookies: string
   }
   blog: {
     backHome: string
@@ -85,6 +89,11 @@ export interface Dictionary {
     comingSoon: string
     backToBlog: string
     cta: string
+  }
+  legal: {
+    backHome: string
+    lastUpdated: string
+    moreDocuments: string
   }
 }
 
@@ -227,6 +236,8 @@ const en: Dictionary = {
     send: 'Send Message',
     successTitle: 'Message sent!',
     successText: "We'll get back to you within 24 hours.",
+    consentText: 'I have read and accept the',
+    consentLink: 'Privacy Policy',
   },
   footer: {
     tagline:
@@ -235,6 +246,8 @@ const en: Dictionary = {
     rights: 'V13 Studio. All rights reserved.',
     privacy: 'Privacy',
     terms: 'Terms',
+    legalNotice: 'Legal Notice',
+    cookies: 'Cookies',
   },
   blog: {
     backHome: '← V13 STUDIO',
@@ -244,6 +257,11 @@ const en: Dictionary = {
     comingSoon: 'New articles coming soon.',
     backToBlog: '← BLOG',
     cta: 'Start a project with V13 Studio →',
+  },
+  legal: {
+    backHome: '← V13 STUDIO',
+    lastUpdated: 'Last updated',
+    moreDocuments: 'More documents',
   },
 }
 
@@ -391,6 +409,8 @@ const es: Dictionary = {
     send: 'Enviar Mensaje',
     successTitle: '¡Mensaje enviado!',
     successText: 'Te responderemos en 24 horas.',
+    consentText: 'He leído y acepto la',
+    consentLink: 'Política de Privacidad',
   },
   footer: {
     tagline:
@@ -399,6 +419,8 @@ const es: Dictionary = {
     rights: 'V13 Studio. Todos los derechos reservados.',
     privacy: 'Privacidad',
     terms: 'Términos',
+    legalNotice: 'Aviso Legal',
+    cookies: 'Cookies',
   },
   blog: {
     backHome: '← V13 STUDIO',
@@ -408,6 +430,11 @@ const es: Dictionary = {
     comingSoon: 'Próximamente nuevos artículos.',
     backToBlog: '← BLOG',
     cta: 'Inicia un proyecto con V13 Studio →',
+  },
+  legal: {
+    backHome: '← V13 STUDIO',
+    lastUpdated: 'Última actualización',
+    moreDocuments: 'Más documentos',
   },
 }
 
@@ -555,6 +582,8 @@ const ca: Dictionary = {
     send: 'Envia el Missatge',
     successTitle: 'Missatge enviat!',
     successText: 'Et respondrem en 24 hores.',
+    consentText: 'He llegit i accepto la',
+    consentLink: 'Política de Privacitat',
   },
   footer: {
     tagline:
@@ -563,6 +592,8 @@ const ca: Dictionary = {
     rights: 'V13 Studio. Tots els drets reservats.',
     privacy: 'Privacitat',
     terms: 'Termes',
+    legalNotice: 'Avís Legal',
+    cookies: 'Cookies',
   },
   blog: {
     backHome: '← V13 STUDIO',
@@ -572,6 +603,11 @@ const ca: Dictionary = {
     comingSoon: 'Nous articles ben aviat.',
     backToBlog: '← BLOG',
     cta: 'Inicia un projecte amb V13 Studio →',
+  },
+  legal: {
+    backHome: '← V13 STUDIO',
+    lastUpdated: 'Última actualització',
+    moreDocuments: 'Més documents',
   },
 }
 

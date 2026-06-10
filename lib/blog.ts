@@ -75,7 +75,7 @@ const localizedPosts: LocalizedPost[] = [
         { type: 'h2', text: 'AI where it actually helps' },
         {
           type: 'p',
-          text: 'We integrate intelligent features powered by modern AI — not as a buzzword, but where it removes real friction for your users. Want to build something together? Get in touch at hello@v13studio.com.',
+          text: 'We integrate intelligent features powered by modern AI — not as a buzzword, but where it removes real friction for your users. Want to build something together? Get in touch at v13studio@v13studio.com.',
         },
       ],
       es: [
@@ -101,7 +101,7 @@ const localizedPosts: LocalizedPost[] = [
         { type: 'h2', text: 'IA donde realmente ayuda' },
         {
           type: 'p',
-          text: 'Integramos funciones inteligentes impulsadas por IA moderna — no como reclamo, sino donde elimina fricción real para tus usuarios. ¿Quieres construir algo juntos? Escríbenos a hello@v13studio.com.',
+          text: 'Integramos funciones inteligentes impulsadas por IA moderna — no como reclamo, sino donde elimina fricción real para tus usuarios. ¿Quieres construir algo juntos? Escríbenos a v13studio@v13studio.com.',
         },
       ],
       ca: [
@@ -127,7 +127,7 @@ const localizedPosts: LocalizedPost[] = [
         { type: 'h2', text: 'IA on realment ajuda' },
         {
           type: 'p',
-          text: 'Integrem funcions intel·ligents impulsades per IA moderna — no com a reclam, sinó on elimina fricció real per als teus usuaris. Vols construir alguna cosa junts? Escriu-nos a hello@v13studio.com.',
+          text: 'Integrem funcions intel·ligents impulsades per IA moderna — no com a reclam, sinó on elimina fricció real per als teus usuaris. Vols construir alguna cosa junts? Escriu-nos a v13studio@v13studio.com.',
         },
       ],
     },

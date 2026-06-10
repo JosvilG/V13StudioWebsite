@@ -3,16 +3,18 @@
 import { useState, useRef, useEffect } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
 import { cn } from "@/lib/utils"
-import { useT } from "@/components/i18n-provider"
+import { useT, useLocale } from "@/components/i18n-provider"
 
 export function Contact() {
   const t = useT()
+  const locale = useLocale()
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     message: "",
   })
   const [focused, setFocused] = useState<string | null>(null)
+  const [consent, setConsent] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionScrollY, setSectionScrollY] = useState(0)
@@ -105,7 +107,7 @@ export function Contact() {
               {/* Contact info */}
               <div className="space-y-6">
                 <a
-                  href="mailto:hello@v13studio.com"
+                  href="mailto:v13studio@v13studio.com"
                   className="group flex items-center gap-3 sm:gap-4 text-lg sm:text-2xl font-medium hover:text-primary transition-colors"
                 >
                   <span className="w-12 h-12 flex items-center justify-center border border-border group-hover:border-primary group-hover:bg-primary/10 transition-all">
@@ -113,7 +115,7 @@ export function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </span>
-                  hello@v13studio.com
+                  v13studio@v13studio.com
                 </a>
 
                 <div className="flex items-center gap-4 text-muted-foreground">
@@ -273,6 +275,28 @@ export function Contact() {
                     )}
                   />
                 </div>
+
+                {/* GDPR consent */}
+                <label className="flex items-start gap-3 text-sm text-muted-foreground cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    required
+                    className="mt-1 h-4 w-4 shrink-0 accent-primary"
+                  />
+                  <span>
+                    {t.contact.consentText}{" "}
+                    <a
+                      href={`/${locale}/legal/privacy`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline underline-offset-2 hover:opacity-80"
+                    >
+                      {t.contact.consentLink}
+                    </a>
+                  </span>
+                </label>
 
                 <button
                     type="submit"

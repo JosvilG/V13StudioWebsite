@@ -126,11 +126,17 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               {new Date().getFullYear()} {t.footer.rights}
             </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center">
+              <a href={`/${locale}/legal/legal-notice`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {t.footer.legalNotice}
+              </a>
+              <a href={`/${locale}/legal/privacy`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {t.footer.privacy}
               </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href={`/${locale}/legal/cookies`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {t.footer.cookies}
+              </a>
+              <a href={`/${locale}/legal/terms`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {t.footer.terms}
               </a>
             </div>

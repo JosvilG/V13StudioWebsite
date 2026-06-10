@@ -131,7 +131,7 @@ export default async function LocaleLayout({
         name: 'V13 Studio',
         url: siteUrl,
         logo: `${siteUrl}/logo-light.png`,
-        email: 'hello@v13studio.com',
+        email: 'v13studio@v13studio.com',
         description: dict.meta.description,
         address: {
           '@type': 'PostalAddress',
@@ -162,7 +162,7 @@ export default async function LocaleLayout({
         name: 'V13 Studio',
         url: siteUrl,
         image: `${siteUrl}/logo-light.png`,
-        email: 'hello@v13studio.com',
+        email: 'v13studio@v13studio.com',
         priceRange: '$$',
         parentOrganization: { '@id': `${siteUrl}/#organization` },
         address: {

@@ -260,10 +260,10 @@ export function Header() {
 
           {/* Contact info */}
           <a
-            href="mailto:hello@v13studio.com"
+            href="mailto:v13studio@v13studio.com"
             className="block text-xs text-muted-foreground hover:text-primary transition-colors font-mono"
           >
-            hello@v13studio.com
+            v13studio@v13studio.com
           </a>
         </div>
       </nav>
