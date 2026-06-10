@@ -3,22 +3,22 @@
 import { useRef, useEffect, useState } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
 import { ThemeLogo } from "@/components/theme-logo"
+import { useT } from "@/components/i18n-provider"
 
-const team = [
-  { role: "Product Lead", initials: "AL", color: "#8B5CF6" },
-  { role: "Lead Engineer", initials: "MR", color: "#06B6D4" },
-  { role: "Full-Stack Dev", initials: "JS", color: "#10B981" },
-  { role: "UX Designer", initials: "ER", color: "#F59E0B" },
-]
-
-const stats = [
-  { value: "100%", label: "Senior Engineers" },
-  { value: "0", label: "Account Managers" },
-  { value: "2wk", label: "Sprint Cycles" },
-  { value: "24h", label: "Response Time" },
+const teamMeta = [
+  { initials: "AL", color: "#8B5CF6" },
+  { initials: "MR", color: "#06B6D4" },
+  { initials: "JS", color: "#10B981" },
+  { initials: "ER", color: "#F59E0B" },
 ]
 
 export function About() {
+  const t = useT()
+  const team = teamMeta.map((meta, i) => ({
+    ...meta,
+    role: t.about.teamRoles[i],
+  }))
+  const stats = t.about.stats
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionScrollY, setSectionScrollY] = useState(0)
 
@@ -120,7 +120,7 @@ export function About() {
                   <div className="flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     <span className="text-xs tracking-[0.2em] text-muted-foreground font-mono">
-                      CATALONIA, SPAIN
+                      {t.about.location}
                     </span>
                   </div>
                 </div>
@@ -130,7 +130,7 @@ export function About() {
               <ScrollReveal delay={400}>
                 <div className="absolute -bottom-4 -right-4 sm:-bottom-8 sm:-right-8 px-4 py-3 sm:px-6 sm:py-4 bg-background border border-border">
                   <div className="text-3xl font-bold text-primary">2026</div>
-                  <div className="text-xs text-muted-foreground">Founded</div>
+                  <div className="text-xs text-muted-foreground">{t.about.founded}</div>
                 </div>
               </ScrollReveal>
             </div>
@@ -140,31 +140,27 @@ export function About() {
           <div className="lg:pl-8">
             <ScrollReveal>
               <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
-                About us
+                {t.about.eyebrow}
               </span>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
               <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 sm:mb-8">
-                Small team.
+                {t.about.headingTop}
                 <br />
                 <span
                   className="text-transparent bg-clip-text"
                   style={{ backgroundImage: `linear-gradient(to right, var(--gradient-accent-1), var(--gradient-accent-3))` }}
                 >
-                  Big impact.
+                  {t.about.headingAccent}
                 </span>
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
               <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-muted-foreground">
-                <p>
-                  {"We're a 4-person studio based in Catalonia, Spain. We build digital products with the precision of an agency and the soul of a startup."}
-                </p>
-                <p>
-                  {"No bloated teams. No endless meetings. Just focused execution from people who genuinely care about the outcome."}
-                </p>
+                <p>{t.about.p1}</p>
+                <p>{t.about.p2}</p>
               </div>
             </ScrollReveal>
 

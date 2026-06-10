@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { Parallax, ScrollReveal } from "@/components/parallax"
 import { ThemeLogo } from "@/components/theme-logo"
 import { Marquee } from "@/components/marquee"
+import { useT, useLocale } from "@/components/i18n-provider"
 
 const techStack = [
   "React Native", "Next.js", "TypeScript", "NestJS", "PostgreSQL",
@@ -11,6 +12,8 @@ const techStack = [
 ]
 
 export function Footer() {
+  const t = useT()
+  const locale = useLocale()
   const [time, setTime] = useState("")
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionScrollY, setSectionScrollY] = useState(0)
@@ -68,7 +71,7 @@ export function Footer() {
             <div>
               <ThemeLogo size={80} />
               <p className="text-muted-foreground mt-4 max-w-sm">
-                Software product studio crafting exceptional digital experiences for everyone and everywhere.
+                {t.footer.tagline}
               </p>
             </div>
           </ScrollReveal>
@@ -79,7 +82,7 @@ export function Footer() {
               {/* Time */}
               <div className="text-right">
                 <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase block mb-1 font-mono">
-                  Barcelona Time
+                  {t.footer.barcelonaTime}
                 </span>
                 <span className="font-mono text-2xl tabular-nums">{time}</span>
               </div>
@@ -95,6 +98,12 @@ export function Footer() {
                     {link}
                   </a>
                 ))}
+                <a
+                  href={`/${locale}/blog`}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t.nav.blog}
+                </a>
                 <a
                   href="https://tools.v13studio.com"
                   target="_blank"
@@ -115,14 +124,14 @@ export function Footer() {
         <ScrollReveal delay={200}>
           <div className="mt-8 sm:mt-16 pt-6 sm:pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              {new Date().getFullYear()} V13 Studio. All rights reserved.
+              {new Date().getFullYear()} {t.footer.rights}
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Privacy
+                {t.footer.privacy}
               </a>
               <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Terms
+                {t.footer.terms}
               </a>
             </div>
           </div>

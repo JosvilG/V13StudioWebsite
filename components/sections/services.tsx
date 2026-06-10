@@ -3,47 +3,24 @@
 import { useState, useRef, useEffect } from "react"
 import { Parallax, ScrollReveal } from "@/components/parallax"
 import { cn } from "@/lib/utils"
+import { useT } from "@/components/i18n-provider"
 
-const services = [
-  {
-    number: "01",
-    title: "Product Strategy",
-    description: "We dive deep into your vision, market, and users to craft a roadmap that makes sense.",
-    tags: ["Research", "Roadmapping", "Validation"],
-  },
-  {
-    number: "02",
-    title: "UX/UI Design",
-    description: "Interfaces that feel intuitive and look stunning. Every pixel serves a purpose.",
-    tags: ["Figma", "Prototyping", "Design Systems"],
-  },
-  {
-    number: "03",
-    title: "Mobile Development",
-    description: "Native-feeling apps built with React Native. One codebase, all platforms.",
-    tags: ["React Native", "iOS", "Android"],
-  },
-  {
-    number: "04",
-    title: "Web Development",
-    description: "Fast, accessible, and beautiful web experiences with modern frameworks.",
-    tags: ["Next.js", "React", "TypeScript"],
-  },
-  {
-    number: "05",
-    title: "Backend Engineering",
-    description: "Scalable APIs and infrastructure that grow with your business.",
-    tags: ["NestJS", "PostgreSQL", "AWS"],
-  },
-  {
-    number: "06",
-    title: "AI Integration",
-    description: "Intelligent features powered by cutting-edge AI and machine learning.",
-    tags: ["OpenAI", "LangChain", "RAG"],
-  },
+const serviceMeta = [
+  { number: "01", tags: ["Research", "Roadmapping", "Validation"] },
+  { number: "02", tags: ["Figma", "Prototyping", "Design Systems"] },
+  { number: "03", tags: ["React Native", "iOS", "Android"] },
+  { number: "04", tags: ["Next.js", "React", "TypeScript"] },
+  { number: "05", tags: ["NestJS", "PostgreSQL", "AWS"] },
+  { number: "06", tags: ["OpenAI", "LangChain", "RAG"] },
 ]
 
 export function Services() {
+  const t = useT()
+  const services = serviceMeta.map((meta, i) => ({
+    ...meta,
+    title: t.services.items[i].title,
+    description: t.services.items[i].description,
+  }))
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionScrollY, setSectionScrollY] = useState(0)
@@ -89,27 +66,27 @@ export function Services() {
         <div className="mb-12 sm:mb-16 md:mb-24">
           <ScrollReveal>
             <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
-              What we do
+              {t.services.eyebrow}
             </span>
           </ScrollReveal>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <ScrollReveal delay={100}>
               <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight">
-                Full-stack
+                {t.services.headingTop}
                 <br />
                 <span
                   className="text-transparent bg-clip-text"
                   style={{ backgroundImage: `linear-gradient(to right, var(--gradient-accent-1), var(--gradient-accent-3))` }}
                 >
-                  capabilities
+                  {t.services.headingAccent}
                 </span>
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
               <p className="text-muted-foreground max-w-sm md:text-right">
-                From concept to launch, we handle every aspect of your digital product.
+                {t.services.intro}
               </p>
             </ScrollReveal>
           </div>

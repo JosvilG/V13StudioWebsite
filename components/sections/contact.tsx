@@ -3,8 +3,10 @@
 import { useState, useRef, useEffect } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
 import { cn } from "@/lib/utils"
+import { useT } from "@/components/i18n-provider"
 
 export function Contact() {
+  const t = useT()
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -74,19 +76,19 @@ export function Contact() {
         <div className="text-center mb-12 sm:mb-16 md:mb-24">
           <ScrollReveal>
             <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
-              Contact
+              {t.contact.eyebrow}
             </span>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
             <h2 className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tight">
-              {"Let's build"}
+              {t.contact.headingTop}
               <br />
               <span
                 className="text-transparent bg-clip-text"
                 style={{ backgroundImage: `linear-gradient(to right, var(--gradient-accent-1), var(--gradient-accent-2), var(--gradient-accent-3))` }}
               >
-                something great
+                {t.contact.headingAccent}
               </span>
             </h2>
           </ScrollReveal>
@@ -97,8 +99,7 @@ export function Contact() {
           <ScrollReveal>
             <div className="space-y-12">
               <p className="text-base sm:text-xl text-muted-foreground">
-                Have a project in mind? We would love to hear about it.
-                Drop us a line and we will get back to you within 24 hours.
+                {t.contact.intro}
               </p>
 
               {/* Contact info */}
@@ -122,7 +123,7 @@ export function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </span>
-                  <span className="text-lg">Catalonia, Spain</span>
+                  <span className="text-lg">{t.contact.location}</span>
                 </div>
               </div>
 
@@ -178,9 +179,9 @@ export function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Message sent!</h3>
+                  <h3 className="text-2xl font-bold mb-2">{t.contact.successTitle}</h3>
                   <p className="text-muted-foreground">
-                    {"We'll get back to you within 24 hours."}
+                    {t.contact.successText}
                   </p>
                 </div>
               </div>
@@ -196,7 +197,7 @@ export function Contact() {
                         : "text-muted-foreground top-4"
                     )}
                   >
-                    Your name
+                    {t.contact.nameLabel}
                   </label>
                   <input
                     type="text"
@@ -225,7 +226,7 @@ export function Contact() {
                         : "text-muted-foreground top-4"
                     )}
                   >
-                    Your email
+                    {t.contact.emailLabel}
                   </label>
                   <input
                     type="email"
@@ -254,7 +255,7 @@ export function Contact() {
                         : "text-muted-foreground top-4"
                     )}
                   >
-                    Tell us about your project
+                    {t.contact.messageLabel}
                   </label>
                   <textarea
                     value={formState.message}
@@ -282,7 +283,7 @@ export function Contact() {
                   >
                     <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                     <span className="relative z-10 flex items-center justify-center gap-3">
-                      Send Message
+                      {t.contact.send}
                       <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>

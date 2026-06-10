@@ -5,8 +5,10 @@ import { Parallax, FloatingElement } from "@/components/parallax"
 import { navigateToSection } from "@/lib/navigate-stack"
 import { ThemeLogo } from "@/components/theme-logo"
 import { TextScramble } from "@/components/text-scramble"
+import { useT } from "@/components/i18n-provider"
 
 export function Hero() {
+  const t = useT()
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
   const [loaded, setLoaded] = useState(false)
@@ -79,7 +81,7 @@ export function Hero() {
           <div className="flex items-center justify-center gap-4">
             <div className="w-16 h-px bg-gradient-to-r from-transparent to-primary" />
             <span className="text-xs tracking-[0.4em] text-primary/80 uppercase font-mono">
-              Software Product Studio
+              {t.hero.eyebrow}
             </span>
             <div className="w-16 h-px bg-gradient-to-l from-transparent to-primary" />
           </div>
@@ -96,7 +98,7 @@ export function Hero() {
                 transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
               }}
             >
-              <TextScramble text="WE BUILD" trigger={loaded} speed={120} />
+              <TextScramble text={t.hero.line1} trigger={loaded} speed={120} />
             </span>
           </span>
 
@@ -110,7 +112,7 @@ export function Hero() {
                 transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
               }}
             >
-              <TextScramble text="PRODUCTS" trigger={loaded} speed={130} />
+              <TextScramble text={t.hero.line2} trigger={loaded} speed={130} />
             </span>
           </span>
 
@@ -123,7 +125,7 @@ export function Hero() {
                 transition: "all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s",
               }}
             >
-              <TextScramble text="THAT MATTER" trigger={loaded} speed={100} />
+              <TextScramble text={t.hero.line3} trigger={loaded} speed={100} />
             </span>
           </span>
         </h1>
@@ -137,7 +139,7 @@ export function Hero() {
             transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s",
           }}
         >
-          Software product studio crafting exceptional digital experiences for everyone and everywhere.
+          {t.hero.subtitle}
         </p>
 
         {/* CTA Buttons */}
@@ -159,7 +161,7 @@ export function Hero() {
               {/* Shimmer sweep */}
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               <span className="relative z-10 flex items-center gap-3">
-                View Our Work
+                {t.hero.ctaWork}
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -176,7 +178,7 @@ export function Hero() {
               {/* Fill on hover */}
               <span className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
               <span className="relative z-10 flex items-center gap-3">
-                Start a Project
+                {t.hero.ctaContact}
                 <svg className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -191,7 +193,7 @@ export function Hero() {
         style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
       >
         <span className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase mb-4 font-mono">
-          Scroll
+          {t.hero.scroll}
         </span>
         <div className="w-6 h-10 border border-border rounded-full flex justify-center">
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-bounce" />

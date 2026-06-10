@@ -2,21 +2,27 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { useTheme } from "next-themes"
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { navigateToSection } from "@/lib/navigate-stack"
 import { ThemeLogo } from "@/components/theme-logo"
-
-const navItems = [
-  { label: "Home", href: "#hero" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-  { label: "Tools", href: "https://tools.v13studio.com" },
-]
+import { useT, useLocale } from "@/components/i18n-provider"
+import { locales, localeNames } from "@/lib/i18n/config"
 
 export function Header() {
+  const t = useT()
+  const locale = useLocale()
+  const pathname = usePathname()
+  const navItems = [
+    { label: t.nav.home, href: "#hero" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.work, href: "#work" },
+    { label: t.nav.process, href: "#process" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.blog, href: `/${locale}/blog` },
+    { label: t.nav.tools, href: "https://tools.v13studio.com" },
+  ]
   const [isOpen, setIsOpen] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -56,6 +62,11 @@ export function Header() {
   const handleNav = useCallback((href: string) => {
     if (href.startsWith("http")) {
       window.open(href, "_blank", "noopener,noreferrer")
+      return
+    }
+    // Internal route (e.g. /blog) — full navigation, not in-page anchor
+    if (href.startsWith("/")) {
+      window.location.href = href
       return
     }
     setIsOpen(false)
@@ -195,8 +206,33 @@ export function Header() {
           </ul>
         </div>
 
-        {/* Bottom section — theme toggle + info */}
+        {/* Bottom section — language + theme toggle + info */}
         <div className="px-6 sm:px-8 py-6 border-t border-border space-y-4">
+          {/* Language switcher */}
+          <div className="flex gap-2" role="group" aria-label="Language">
+            {locales.map((lng) => {
+              const segments = pathname.split("/")
+              segments[1] = lng
+              const href = segments.join("/") || `/${lng}`
+              return (
+                <a
+                  key={lng}
+                  href={href}
+                  hrefLang={lng}
+                  aria-current={lng === locale ? "true" : undefined}
+                  className={cn(
+                    "flex-1 text-center py-2 text-xs font-mono tracking-[0.2em] border transition-all duration-300",
+                    lng === locale
+                      ? "border-primary text-primary bg-primary/5"
+                      : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground"
+                  )}
+                >
+                  {localeNames[lng]}
+                </a>
+              )
+            })}
+          </div>
+
           {/* Theme toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
