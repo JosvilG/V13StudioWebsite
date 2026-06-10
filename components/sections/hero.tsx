@@ -7,7 +7,7 @@ import { ThemeLogo } from "@/components/theme-logo"
 import { TextScramble } from "@/components/text-scramble"
 import { useT } from "@/components/i18n-provider"
 
-export function Hero() {
+export function Hero({ hasProjects }: { hasProjects: boolean }) {
   const t = useT()
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
@@ -151,7 +151,8 @@ export function Hero() {
             transition: "all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s",
           }}
         >
-          <button
+          {hasProjects && (
+            <button
               onClick={() => navigateToSection("#work")}
               className="group relative px-8 sm:px-10 py-3 sm:py-4 font-medium overflow-hidden text-primary-foreground text-sm sm:text-base"
               style={{
@@ -167,6 +168,7 @@ export function Hero() {
                 </svg>
               </span>
             </button>
+          )}
           <button
               onClick={() => navigateToSection("#contact")}
               className="group relative px-8 sm:px-10 py-3 sm:py-4 font-medium overflow-hidden bg-transparent text-sm sm:text-base"

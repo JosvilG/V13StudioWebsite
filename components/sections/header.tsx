@@ -9,7 +9,7 @@ import { ThemeLogo } from "@/components/theme-logo"
 import { useT, useLocale } from "@/components/i18n-provider"
 import { locales, localeNames } from "@/lib/i18n/config"
 
-export function Header() {
+export function Header({ hasProjects }: { hasProjects: boolean }) {
   const t = useT()
   const locale = useLocale()
   const pathname = usePathname()
@@ -22,7 +22,7 @@ export function Header() {
     { label: t.nav.contact, href: "#contact" },
     { label: t.nav.blog, href: `/${locale}/blog` },
     { label: t.nav.tools, href: "https://tools.v13studio.com" },
-  ]
+  ].filter((item) => hasProjects || item.href !== "#work")
   const [isOpen, setIsOpen] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const { theme, setTheme } = useTheme()
