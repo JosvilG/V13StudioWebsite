@@ -4,21 +4,10 @@ import { useRef, useEffect, useState } from "react"
 import { Parallax, ScrollReveal, FloatingElement } from "@/components/parallax"
 import { ThemeLogo } from "@/components/theme-logo"
 import { useT } from "@/components/i18n-provider"
+import type { SheetTeamMember, SheetStat } from "@/lib/content"
 
-const teamMeta = [
-  { initials: "AL", color: "#8B5CF6" },
-  { initials: "MR", color: "#06B6D4" },
-  { initials: "JS", color: "#10B981" },
-  { initials: "ER", color: "#F59E0B" },
-]
-
-export function About() {
+export function About({ team, stats }: { team: SheetTeamMember[]; stats: SheetStat[] }) {
   const t = useT()
-  const team = teamMeta.map((meta, i) => ({
-    ...meta,
-    role: t.about.teamRoles[i],
-  }))
-  const stats = t.about.stats
   const sectionRef = useRef<HTMLDivElement>(null)
   const [sectionScrollY, setSectionScrollY] = useState(0)
 
@@ -100,9 +89,10 @@ export function About() {
                   </div>
 
                   {/* Team grid */}
+                  {team.length > 0 && (
                   <div className="grid grid-cols-2 gap-2 sm:gap-4">
                     {team.map((member, i) => (
-                      <ScrollReveal key={member.role} delay={i * 100 + 200}>
+                      <ScrollReveal key={member.initials} delay={i * 100 + 200}>
                         <div className="group p-2 sm:p-4 border border-border hover:border-primary/50 transition-all duration-500 cursor-pointer">
                           <div
                             className="text-lg sm:text-2xl font-bold mb-1 transition-all duration-300"
@@ -115,6 +105,7 @@ export function About() {
                       </ScrollReveal>
                     ))}
                   </div>
+                  )}
 
                   {/* Location */}
                   <div className="flex items-center gap-4">
@@ -166,6 +157,7 @@ export function About() {
 
             {/* Stats */}
             <ScrollReveal delay={300}>
+              {stats.length > 0 && (
               <div className="mt-8 sm:mt-12 grid grid-cols-2 gap-4 sm:gap-8">
                 {stats.map((stat) => (
                   <div key={stat.label} className="border-l-2 border-border pl-4 hover:border-primary transition-colors duration-300">
@@ -174,6 +166,7 @@ export function About() {
                   </div>
                 ))}
               </div>
+              )}
             </ScrollReveal>
           </div>
         </div>

@@ -55,8 +55,6 @@ export interface Dictionary {
     p2: string
     location: string
     founded: string
-    stats: { value: string; label: string }[]
-    teamRoles: string[]
   }
   contact: {
     eyebrow: string
@@ -219,13 +217,6 @@ const en: Dictionary = {
     p2: 'No bloated teams. No endless meetings. Just focused execution from people who genuinely care about the outcome.',
     location: 'CATALONIA, SPAIN',
     founded: 'Founded',
-    stats: [
-      { value: '100%', label: 'Senior Engineers' },
-      { value: '0', label: 'Account Managers' },
-      { value: '2wk', label: 'Sprint Cycles' },
-      { value: '24h', label: 'Response Time' },
-    ],
-    teamRoles: ['Product Lead', 'Lead Engineer', 'Full-Stack Dev', 'UX Designer'],
   },
   contact: {
     eyebrow: 'Contact',
@@ -391,18 +382,6 @@ const es: Dictionary = {
     p2: 'Sin equipos inflados. Sin reuniones interminables. Solo ejecución enfocada de gente que se preocupa de verdad por el resultado.',
     location: 'CATALUÑA, ESPAÑA',
     founded: 'Fundado',
-    stats: [
-      { value: '100%', label: 'Ingenieros Senior' },
-      { value: '0', label: 'Gestores de Cuenta' },
-      { value: '2sem', label: 'Ciclos de Sprint' },
-      { value: '24h', label: 'Tiempo de Respuesta' },
-    ],
-    teamRoles: [
-      'Líder de Producto',
-      'Ingeniero Principal',
-      'Dev Full-Stack',
-      'Diseñador UX',
-    ],
   },
   contact: {
     eyebrow: 'Contacto',
@@ -568,18 +547,6 @@ const ca: Dictionary = {
     p2: 'Sense equips inflats. Sense reunions interminables. Només execució enfocada de gent que es preocupa de debò pel resultat.',
     location: 'CATALUNYA, ESPANYA',
     founded: 'Fundat',
-    stats: [
-      { value: '100%', label: 'Enginyers Sènior' },
-      { value: '0', label: 'Gestors de Compte' },
-      { value: '2set', label: 'Cicles de Sprint' },
-      { value: '24h', label: 'Temps de Resposta' },
-    ],
-    teamRoles: [
-      'Líder de Producte',
-      'Enginyer Principal',
-      'Dev Full-Stack',
-      'Dissenyador UX',
-    ],
   },
   contact: {
     eyebrow: 'Contacte',
