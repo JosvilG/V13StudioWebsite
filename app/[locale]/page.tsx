@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation"
 import { Header } from "@/components/sections/header"
 import { Hero } from "@/components/sections/hero"
 import { Services } from "@/components/sections/services"
@@ -11,22 +12,38 @@ import { AnimatedBackground } from "@/components/animated-background"
 import { CustomCursor } from "@/components/custom-cursor"
 import { Preloader } from "@/components/preloader"
 import { ScrollProgress } from "@/components/scroll-progress"
+import { getProjects, getTeam, getStats } from "@/lib/content"
+import { isLocale } from "@/lib/i18n/config"
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  if (!isLocale(locale)) notFound()
+
+  const [projects, team, stats] = await Promise.all([
+    getProjects(locale),
+    getTeam(locale),
+    getStats(locale),
+  ])
+  const hasProjects = projects.length > 0
+
   return (
     <>
       <Preloader />
       <CustomCursor />
       <AnimatedBackground />
       <ScrollProgress />
-      <Header />
+      <Header hasProjects={hasProjects} />
       <main>
         <SectionStack>
-          <Hero />
+          <Hero hasProjects={hasProjects} />
           <Services />
-          <Portfolio />
+          {hasProjects && <Portfolio projects={projects} />}
           <Process />
-          <About />
+          <About team={team} stats={stats} />
           <Contact />
         </SectionStack>
       </main>
