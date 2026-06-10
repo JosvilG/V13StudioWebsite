@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer'
 export const runtime = 'nodejs'
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1).max(200),
+  name: z.string().trim().min(1).max(200).regex(/^[^\r\n]*$/),
   email: z.string().trim().email().max(320),
   message: z.string().trim().min(1).max(5000),
   consent: z.literal(true),
@@ -39,10 +39,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false }, { status: 500 })
   }
 
+  const smtpPort = Number(SMTP_PORT ?? 587)
+  if (!Number.isInteger(smtpPort) || smtpPort < 1 || smtpPort > 65535) {
+    console.error('[contact] SMTP_PORT is not a valid port number')
+    return NextResponse.json({ ok: false }, { status: 500 })
+  }
+
   const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
-    port: Number(SMTP_PORT ?? 587),
-    secure: Number(SMTP_PORT ?? 587) === 465,
+    port: smtpPort,
+    secure: smtpPort === 465,
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   })
 
