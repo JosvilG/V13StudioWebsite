@@ -13,9 +13,11 @@ function languagesFor(path: string): Record<string, string> {
   return langs
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
   const entries: MetadataRoute.Sitemap = []
+
+  const slugs = await getPostSlugs()
 
   for (const locale of locales) {
     entries.push({
@@ -32,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       alternates: { languages: languagesFor('/blog') },
     })
-    for (const slug of getPostSlugs()) {
+    for (const slug of slugs) {
       entries.push({
         url: `${baseUrl}/${locale}/blog/${slug}`,
         lastModified: now,

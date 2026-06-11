@@ -5,7 +5,7 @@ Editas la hoja → la web se actualiza sola en ≤10 minutos. Sin deploys.
 
 ## Crear la hoja (una sola vez)
 
-1. Crea un documento en Google Sheets con tres pestañas: `projects`, `team`, `stats`.
+1. Crea un documento en Google Sheets con cuatro pestañas: `projects`, `team`, `stats`, `posts`.
 2. Primera fila de cada pestaña = cabeceras EXACTAS (en minúsculas):
 
    **projects**: `id`, `title`, `year`, `color`, `tags`, `url`, `category_en`, `category_es`, `category_ca`, `description_en`, `description_es`, `description_ca`
@@ -17,6 +17,12 @@ Editas la hoja → la web se actualiza sola en ≤10 minutos. Sin deploys.
    **team**: `initials`, `color`, `role_en`, `role_es`, `role_ca`
 
    **stats**: `value`, `label_en`, `label_es`, `label_ca`
+
+   **posts**: `slug`, `date`, `author`, `tags`, `readingTime`, `status`, `title_en`, `title_es`, `title_ca`, `description_en`, `description_es`, `description_ca`, `body_en`, `body_es`, `body_ca`, `sources`, `created_at`
+   - `status`: solo se muestra si `status=published`. Las filas con `status=draft` se ignoran.
+   - `tags`: separadas por comas (`AI, Next.js`).
+   - `body_*`: texto Markdown básico (`## Heading` → h2, párrafos separados por línea en blanco → párrafos).
+   - `localized` lee `<campo>_<locale>` con fallback a `<campo>_en` si la celda está vacía.
 
 3. Para CADA pestaña: Archivo → Compartir → Publicar en la web → selecciona la pestaña →
    formato "Valores separados por comas (.csv)" → Publicar. Copia la URL resultante
@@ -30,6 +36,7 @@ Settings → Environment Variables):
 - `SHEETS_PROJECTS_CSV_URL`
 - `SHEETS_TEAM_CSV_URL`
 - `SHEETS_STATS_CSV_URL`
+- `SHEETS_POSTS_CSV_URL`
 
 Tras añadirlas en Vercel hace falta UN deploy (solo esta vez). Después, editar la hoja
 nunca requiere deploy.

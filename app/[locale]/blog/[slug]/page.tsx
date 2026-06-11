@@ -7,10 +7,11 @@ import { getDictionary } from '@/lib/i18n/dictionaries'
 
 const siteUrl = 'https://v13studio.com'
 
-export function generateStaticParams() {
-  return locales.flatMap((locale) =>
-    getPostSlugs().map((slug) => ({ locale, slug })),
-  )
+export const dynamicParams = true
+
+export async function generateStaticParams() {
+  const slugs = await getPostSlugs()
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })))
 }
 
 export async function generateMetadata({
@@ -20,7 +21,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params
   if (!isLocale(locale)) return {}
-  const post = getPostBySlug(locale, slug)
+  const post = await getPostBySlug(locale, slug)
   if (!post) return {}
 
   const url = `${siteUrl}/${locale}/blog/${post.slug}`
@@ -67,7 +68,7 @@ export default async function BlogPostPage({
 }) {
   const { locale, slug } = await params
   if (!isLocale(locale)) notFound()
-  const post = getPostBySlug(locale, slug)
+  const post = await getPostBySlug(locale, slug)
   if (!post) notFound()
   const dict = getDictionary(locale)
 

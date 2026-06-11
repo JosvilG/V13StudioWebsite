@@ -78,7 +78,7 @@ export function parseCsv(text: string): Record<string, string>[] {
     )
 }
 
-async function fetchSheet(url: string | undefined): Promise<Record<string, string>[]> {
+export async function fetchSheet(url: string | undefined): Promise<Record<string, string>[]> {
   if (!url) return []
   try {
     const res = await fetch(url, { next: { revalidate: REVALIDATE_SECONDS } })
@@ -97,7 +97,7 @@ async function fetchSheet(url: string | undefined): Promise<Record<string, strin
  * Read `<base>_<locale>` column, falling back to English.
  * An empty cell is treated as missing — it falls through to the `_en` column.
  */
-function localized(row: Record<string, string>, base: string, locale: Locale): string {
+export function localized(row: Record<string, string>, base: string, locale: Locale): string {
   return row[`${base}_${locale}`] || row[`${base}_en`] || ''
 }
 

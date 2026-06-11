@@ -5,6 +5,8 @@ import { getAllPosts } from '@/lib/blog'
 import { isLocale, localeHtmlLang } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 
+export const dynamicParams = true
+
 const siteUrl = 'https://v13studio.com'
 
 export async function generateMetadata({
@@ -54,7 +56,7 @@ export default async function BlogIndex({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const dict = getDictionary(locale)
-  const posts = getAllPosts(locale)
+  const posts = await getAllPosts(locale)
 
   return (
     <main className="min-h-screen bg-background text-foreground px-6 py-24 sm:py-32">
