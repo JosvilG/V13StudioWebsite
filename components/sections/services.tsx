@@ -1,172 +1,147 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Parallax, ScrollReveal } from "@/components/parallax"
-import { cn } from "@/lib/utils"
+import dynamic from "next/dynamic"
 import { useT } from "@/components/i18n-provider"
+import { can3D } from "@/lib/can-3d"
+import { ServicesBackdrop } from "./services-backdrop"
 
-const serviceMeta = [
-  { number: "01", tags: ["Research", "Roadmapping", "Validation"] },
-  { number: "02", tags: ["Figma", "Prototyping", "Design Systems"] },
-  { number: "03", tags: ["React Native", "iOS", "Android"] },
-  { number: "04", tags: ["Next.js", "React", "TypeScript"] },
-  { number: "05", tags: ["NestJS", "PostgreSQL", "AWS"] },
-  { number: "06", tags: ["OpenAI", "LangChain", "RAG"] },
-]
+const V13Feature = dynamic(() => import("@/components/hero-3d/v13-feature"), {
+  ssr: false,
+})
+
+const clamp = (x: number) => Math.max(0, Math.min(1, x))
 
 export function Services() {
   const t = useT()
-  const services = serviceMeta.map((meta, i) => ({
-    ...meta,
-    title: t.services.items[i].title,
-    description: t.services.items[i].description,
-  }))
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
-  const [sectionScrollY, setSectionScrollY] = useState(0)
+  const stmtRef = useRef<HTMLDivElement>(null)
+  const capRef = useRef<HTMLDivElement>(null)
+  const [use3D, setUse3D] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      const windowHeight = window.innerHeight
-      const scrolled = windowHeight - rect.top
-      setSectionScrollY(Math.max(0, scrolled))
+    setUse3D(can3D())
+    const id = requestAnimationFrame(() => setMounted(true))
+
+    // Drive the statement -> capabilities text crossfade from scroll WITHIN this
+    // section (the V13 + backdrop stay constant; only the text swaps).
+    const el = sectionRef.current
+    const slot = el?.closest("[data-stack-index]") as HTMLElement | null
+    const container = el?.closest("[data-section-stack]") as HTMLElement | null
+    let raf = 0
+
+    if (slot && container) {
+      const spanStart = parseFloat(slot.dataset.spanStart || "1")
+      const span = parseFloat(slot.dataset.span || "2")
+      const tick = () => {
+        // position in viewport units, then 0..1 across this (2-viewport) section
+        const p = (window.scrollY - container.offsetTop) / window.innerHeight
+        const local = Math.min(1, Math.max(0, (p - spanStart) / span))
+        // sequential swap with dwell: statement (held) -> gap -> capabilities (held)
+        const out = clamp((local - 0.4) / 0.13) // statement leaves 0.40..0.53
+        const inn = clamp((local - 0.58) / 0.13) // capabilities arrives 0.58..0.71
+        if (stmtRef.current) {
+          stmtRef.current.style.opacity = String(1 - out)
+          stmtRef.current.style.transform = `translateY(${out * -28}px)`
+        }
+        if (capRef.current) {
+          capRef.current.style.opacity = String(inn)
+          capRef.current.style.transform = `translateY(${(1 - inn) * 28}px)`
+        }
+        raf = requestAnimationFrame(tick)
+      }
+      raf = requestAnimationFrame(tick)
     }
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      cancelAnimationFrame(id)
+      if (raf) cancelAnimationFrame(raf)
+    }
   }, [])
 
-  return (
-    <section id="services" ref={sectionRef} className="relative min-h-screen py-16 sm:py-24 md:py-32 overflow-hidden">
-      {/* Background text with parallax */}
-      <Parallax speed={-0.2} className="absolute top-0 left-0 right-0 pointer-events-none">
-        <div
-          className="text-[18vw] font-bold text-foreground/[0.04] tracking-tighter whitespace-nowrap"
-          style={{ transform: `translateX(${-sectionScrollY * 0.1}px)` }}
+  const stackList = (
+    <ul className="mt-8 space-y-1.5">
+      {t.services.stack.map((tech) => (
+        <li
+          key={tech}
+          className="font-mono text-xs uppercase tracking-[0.15em] text-gray-500 transition-colors hover:text-primary"
         >
-          SERVICES & CAPABILITIES
-        </div>
-      </Parallax>
+          {tech}
+        </li>
+      ))}
+    </ul>
+  )
 
-      {/* Decorative gradient orb */}
-      <Parallax speed={-0.15} className="absolute top-1/4 right-0 pointer-events-none">
+  return (
+    <section
+      id="services"
+      ref={sectionRef}
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#070a0e]/80 py-20"
+    >
+      <ServicesBackdrop />
+
+      {/* Constant chrome V13 — full-screen canvas, never fades during the swap */}
+      {use3D && (
         <div
-          className="w-[600px] h-[600px] rounded-full opacity-20"
+          className="pointer-events-none absolute inset-0 z-[2] hidden lg:block"
           style={{
-            background: "radial-gradient(circle, var(--glow-purple) 0%, transparent 70%)",
-            filter: "blur(100px)",
+            opacity: mounted ? 1 : 0,
+            transition: "opacity 2.4s cubic-bezier(0.16,1,0.3,1)",
           }}
-        />
-      </Parallax>
+        >
+          <V13Feature />
+        </div>
+      )}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className="mb-12 sm:mb-16 md:mb-24">
-          <ScrollReveal>
-            <span className="text-xs tracking-[0.3em] text-primary uppercase mb-4 block font-mono">
-              {t.services.eyebrow}
-            </span>
-          </ScrollReveal>
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center px-4">
+        <div className="relative w-full max-w-md lg:h-[64vh]">
+          {/* Statement */}
+          <div
+            ref={stmtRef}
+            className="lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center"
+            style={{ willChange: "opacity, transform" }}
+          >
+            <h2 className="text-4xl font-bold uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
+              {t.services.statementHeading}
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {t.services.statementBody}
+            </p>
+            {stackList}
+          </div>
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight">
-                {t.services.headingTop}
-                <br />
-                <span
-                  className="text-transparent bg-clip-text"
-                  style={{ backgroundImage: `linear-gradient(to right, var(--gradient-accent-1), var(--gradient-accent-3))` }}
+          {/* Capabilities (crossfades in on scroll) */}
+          <div
+            ref={capRef}
+            className="mt-16 opacity-100 lg:absolute lg:inset-0 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:opacity-0"
+            style={{ willChange: "opacity, transform" }}
+          >
+            <h2 className="text-4xl font-bold uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
+              {t.services.headingTop} {t.services.headingAccent}
+            </h2>
+            <ul className="mt-8 space-y-4">
+              {t.services.items.map((item, i) => (
+                <li
+                  key={item.title}
+                  className="group border-l-2 border-white/10 pl-4 transition-colors duration-300 hover:border-[#22d3ee]"
                 >
-                  {t.services.headingAccent}
-                </span>
-              </h2>
-            </ScrollReveal>
-
-            <ScrollReveal delay={200}>
-              <p className="text-muted-foreground max-w-sm md:text-right">
-                {t.services.intro}
-              </p>
-            </ScrollReveal>
-          </div>
-        </div>
-
-        {/* Services list - no per-item parallax to prevent overlap */}
-        <div className="relative">
-          {services.map((service, index) => (
-            <ScrollReveal key={service.number} delay={index * 80}>
-              <div
-                className={cn(
-                  "group relative py-6 sm:py-8 border-t border-border transition-all duration-500 cursor-pointer",
-                  hoveredIndex !== null && hoveredIndex !== index && "opacity-30"
-                )}
-                onClick={() => setHoveredIndex(hoveredIndex === index ? null : index)}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <div className="flex items-start justify-between gap-4 sm:gap-8">
-                  <span className="text-xs sm:text-sm font-mono text-primary/60 w-8 sm:w-12 pt-2">
-                    {service.number}
-                  </span>
-
-                  <div className="flex-1">
-                    <h3 className="text-xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-2 transition-transform duration-500 group-hover:translate-x-4">
-                      {service.title}
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[11px] text-[#7c9fd6]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-white sm:text-base">
+                      {item.title}
                     </h3>
-
-                    <div
-                      className={cn(
-                        "overflow-hidden transition-all duration-500",
-                        hoveredIndex === index ? "max-h-40 opacity-100 mt-4" : "max-h-0 opacity-0"
-                      )}
-                    >
-                      <p className="text-muted-foreground mb-4 max-w-xl">
-                        {service.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {service.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 text-xs font-mono bg-primary/10 border border-primary/20 text-primary"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
                   </div>
-
-                  <div className="hidden md:flex items-center justify-center w-16 h-16 border border-border transition-all duration-300 group-hover:border-primary group-hover:bg-primary/10">
-                    <svg
-                      className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 17L17 7M17 7H7M17 7v10" />
-                    </svg>
-                  </div>
-                </div>
-
-                <div
-                  className={cn(
-                    "absolute left-0 bottom-0 h-px transition-all duration-500",
-                    hoveredIndex === index ? "w-full" : "w-0"
-                  )}
-                  style={{ backgroundImage: `linear-gradient(to right, var(--gradient-accent-1), var(--gradient-accent-3))` }}
-                />
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        {/* Floating number */}
-        <Parallax speed={-0.3} className="absolute bottom-0 right-8 pointer-events-none hidden lg:block">
-          <div className="text-[20vw] font-bold text-foreground/[0.04] leading-none">
-            06
+                  <p className="mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
-        </Parallax>
+        </div>
       </div>
     </section>
   )

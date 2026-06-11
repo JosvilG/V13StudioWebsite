@@ -164,7 +164,7 @@ function makeEnvTexture() {
   return tex
 }
 
-function StudioEnv() {
+export function StudioEnv() {
   const envMap = useMemo(makeEnvTexture, [])
   return <Environment map={envMap} />
 }

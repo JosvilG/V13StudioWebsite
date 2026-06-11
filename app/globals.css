@@ -406,7 +406,6 @@
   animation: hero-fog-drift-2 17s ease-in-out infinite;
 }
 
-
 /* Border animation */
 @keyframes border-dance {
   0%, 100% { border-color: transparent; border-top-color: var(--primary); }

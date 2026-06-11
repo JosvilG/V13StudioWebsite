@@ -3,25 +3,11 @@
 import { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import { useT } from "@/components/i18n-provider"
+import { can3D } from "@/lib/can-3d"
 
 const LogoCanvas = dynamic(() => import("@/components/hero-3d/logo-canvas"), {
   ssr: false,
 })
-
-/** Desktop + WebGL + motion-allowed gate for the heavier 3D hero. */
-function can3D(): boolean {
-  if (typeof window === "undefined") return false
-  if (window.innerWidth < 1024) return false
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false
-  try {
-    const canvas = document.createElement("canvas")
-    return !!(
-      canvas.getContext("webgl2") || canvas.getContext("webgl")
-    )
-  } catch {
-    return false
-  }
-}
 
 export function Hero({ hasProjects: _hasProjects }: { hasProjects: boolean }) {
   const t = useT()

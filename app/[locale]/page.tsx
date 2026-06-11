@@ -38,7 +38,7 @@ export default async function Home({
       <ScrollProgress />
       <Header hasProjects={hasProjects} />
       <main>
-        <SectionStack>
+        <SectionStack spans={[1, 2]}>
           <Hero hasProjects={hasProjects} />
           <Services />
           {hasProjects && <Portfolio projects={projects} />}

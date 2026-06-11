@@ -14,7 +14,12 @@ import * as THREE from "three"
  * trace (not a bitmap staircase), so curves stay smooth and diagonals stay
  * straight with no per-segment faceting. viewBox is 0 0 1024 1024.
  */
-export function V13Model(props: ThreeElements["mesh"]) {
+type V13ModelProps = ThreeElements["mesh"] & {
+  /** Extra props spread onto the meshStandardMaterial (override the chrome defaults). */
+  materialProps?: ThreeElements["meshStandardMaterial"]
+}
+
+export function V13Model({ materialProps, ...props }: V13ModelProps) {
   const data = useLoader(SVGLoader, "/logo-3d.svg") as { paths: unknown[] }
 
   const geometry = useMemo(() => {
@@ -46,6 +51,7 @@ export function V13Model(props: ThreeElements["mesh"]) {
         metalness={1}
         roughness={0.16}
         envMapIntensity={1.4}
+        {...materialProps}
       />
     </mesh>
   )

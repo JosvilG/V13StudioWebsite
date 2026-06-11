@@ -23,6 +23,9 @@ export interface Dictionary {
     scroll: string
   }
   services: {
+    statementHeading: string
+    statementBody: string
+    stack: string[]
     eyebrow: string
     headingTop: string
     headingAccent: string
@@ -123,7 +126,11 @@ const en: Dictionary = {
     scroll: 'Scroll to Explore',
   },
   services: {
-    eyebrow: 'What we do',
+    statementHeading: 'What we do.',
+    statementBody:
+      'Full-stack software development. Capabilities: Frontend, Backend, Cloud, DevOps. Robust architecture and cutting-edge digital products.',
+    stack: ['React', 'Node.js', 'Python', 'AWS', 'Azure', 'Docker', 'Kubernetes'],
+    eyebrow: 'Capabilities',
     headingTop: 'Full-stack',
     headingAccent: 'capabilities',
     intro:
@@ -284,7 +291,11 @@ const es: Dictionary = {
     scroll: 'Desliza para Explorar',
   },
   services: {
-    eyebrow: 'Qué hacemos',
+    statementHeading: 'Qué hacemos.',
+    statementBody:
+      'Desarrollo de Software Full-Stack. Capacidades: Frontend, Backend, Cloud, DevOps. Arquitectura robusta y productos digitales de vanguardia.',
+    stack: ['React', 'Node.js', 'Python', 'AWS', 'Azure', 'Docker', 'Kubernetes'],
+    eyebrow: 'Capacidades',
     headingTop: 'Capacidades',
     headingAccent: 'full-stack',
     intro:
@@ -445,7 +456,11 @@ const ca: Dictionary = {
     scroll: 'Desplaça per Explorar',
   },
   services: {
-    eyebrow: 'Què fem',
+    statementHeading: 'Què fem.',
+    statementBody:
+      'Desenvolupament de Software Full-Stack. Capacitats: Frontend, Backend, Cloud, DevOps. Arquitectura robusta i productes digitals d’avantguarda.',
+    stack: ['React', 'Node.js', 'Python', 'AWS', 'Azure', 'Docker', 'Kubernetes'],
+    eyebrow: 'Capacitats',
     headingTop: 'Capacitats',
     headingAccent: 'full-stack',
     intro:

@@ -4,21 +4,35 @@ import React, { ReactNode, Children, useEffect, useState, useRef } from "react"
 
 interface SectionStackProps {
   children: ReactNode
+  /** Per-section scroll weight in viewports (default 1). A section with span 2
+   *  stays pinned for two viewports of scroll, useful for in-section transitions. */
+  spans?: number[]
 }
 
 /**
- * Full-screen parallax stack with fade transitions (desktop only).
+ * Full-screen crossfade stack (desktop). Each section occupies `span` viewports
+ * of scroll; adjacent sections crossfade at their shared boundary, while a single
+ * section holds (no fade) across its whole span — so a section can drive its own
+ * scroll-linked content (e.g. a text swap) with the scene staying constant.
  *
- * On mobile (< 768px) renders children in normal document flow — standard scroll.
- * On desktop, all sections are stacked in the same position with fade transitions.
+ * On mobile (< 768px) renders children in normal document flow.
  */
-export function SectionStack({ children }: SectionStackProps) {
+export function SectionStack({ children, spans }: SectionStackProps) {
   const items = Children.toArray(children)
   const total = items.length
   const containerRef = useRef<HTMLDivElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const smoothVelocityRef = useRef(0)
+  const [pos, setPos] = useState(0) // scroll position in viewport units
   const [isMobile, setIsMobile] = useState(false)
+
+  // span layout
+  const spanArr = items.map((_, i) => spans?.[i] ?? 1)
+  const starts: number[] = []
+  let acc = 0
+  for (const s of spanArr) {
+    starts.push(acc)
+    acc += s
+  }
+  const totalSpan = acc
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768)
@@ -28,44 +42,25 @@ export function SectionStack({ children }: SectionStackProps) {
   }, [])
 
   useEffect(() => {
-    if (isMobile) return // No stack logic on mobile
-
-    let prevProgress = 0
-    let prevTime = performance.now()
-
+    if (isMobile) return
     const handleScroll = () => {
       if (!containerRef.current) return
       const rect = containerRef.current.getBoundingClientRect()
-      const containerHeight = containerRef.current.offsetHeight
-      const scrollableDistance = containerHeight - window.innerHeight
-
-      if (scrollableDistance <= 0) return
-
+      const scrollable = containerRef.current.offsetHeight - window.innerHeight
+      if (scrollable <= 0) return
       const scrolled = -rect.top
-      const progress = Math.max(0, Math.min(total - 1, (scrolled / scrollableDistance) * (total - 1)))
-
-      // Smoothed velocity (exponential moving average)
-      const now = performance.now()
-      const dt = now - prevTime
-      if (dt > 0) {
-        const instantVelocity = Math.abs(progress - prevProgress) / (dt / 1000)
-        smoothVelocityRef.current = smoothVelocityRef.current * 0.7 + instantVelocity * 0.3
-      }
-      prevProgress = progress
-      prevTime = now
-
-      setScrollProgress(progress)
+      // position in viewport units (0 .. totalSpan-1)
+      const p = Math.max(0, Math.min(totalSpan - 1, (scrolled / scrollable) * (totalSpan - 1)))
+      setPos(p)
     }
-
     window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [total, isMobile])
+  }, [isMobile, totalSpan])
 
-  // ── Mobile: normal flow, no stack ──
   if (isMobile) {
     return (
-      <div data-section-stack data-section-count={total}>
+      <div data-section-stack data-section-count={total} data-total-span={totalSpan}>
         {items.map((child, index) => (
           <div key={index}>{child}</div>
         ))}
@@ -73,38 +68,40 @@ export function SectionStack({ children }: SectionStackProps) {
     )
   }
 
-  // ── Desktop: stacked with fade transitions ──
-  const velocity = smoothVelocityRef.current
+  const H = 0.42 // crossfade half-width (viewport units)
 
   return (
     <div
       ref={containerRef}
       data-section-stack
       data-section-count={total}
-      style={{ height: `${total * 100}vh` }}
+      data-total-span={totalSpan}
+      style={{ height: `${totalSpan * 100}vh` }}
       className="relative"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {items.map((child, index) => {
-          const opacity = getSectionOpacity(scrollProgress, index, total, velocity)
+          const start = starts[index]
+          const end = start + spanArr[index]
+          // fade in at the left boundary (from previous), fade out at the right (to next)
+          const fadeIn = index === 0 ? 1 : clamp01((pos - (start - H)) / (2 * H))
+          const fadeOut = index === total - 1 ? 1 : 1 - clamp01((pos - (end - H)) / (2 * H))
+          const opacity = Math.max(0, Math.min(fadeIn, fadeOut))
           const isVisible = opacity > 0.005
-
-          // Faster CSS transition when scrolling fast → snappier switch
-          // Slower CSS transition on slow scroll → imperceptible (scroll drives it)
-          const isFast = velocity > 1.5
-          const transitionMs = isFast ? 350 : 150
 
           return (
             <div
               key={index}
               data-stack-index={index}
-              className="absolute inset-0 will-change-[opacity] overflow-y-auto"
+              data-span-start={start}
+              data-span={spanArr[index]}
+              className="absolute inset-0 overflow-y-auto will-change-[opacity]"
               style={{
                 zIndex: index + 1,
                 opacity: isVisible ? opacity : 0,
                 visibility: isVisible ? "visible" : "hidden",
                 pointerEvents: opacity > 0.5 ? "auto" : "none",
-                transition: `opacity ${transitionMs}ms ease-out, visibility 0ms ${isVisible ? "0ms" : `${transitionMs}ms`}`,
+                transition: "opacity 120ms ease-out",
               }}
             >
               {child}
@@ -116,62 +113,6 @@ export function SectionStack({ children }: SectionStackProps) {
   )
 }
 
-/**
- * Compute per-section opacity based on scroll progress.
- *
- * Slow scroll  → smooth crossfade (hold 55%, fade 45%)
- * Fast scroll  → only show nearest section (CSS transition smooths the switch)
- * Medium speed → blend between both modes for a seamless feel
- */
-function getSectionOpacity(
-  progress: number,
-  index: number,
-  total: number,
-  velocity: number
-): number {
-  // --- Crossfade opacity (normal slow scroll) ---
-  const crossfade = getCrossfadeOpacity(progress, index, total)
-
-  // --- Snap opacity (fast scroll — only nearest section) ---
-  const nearest = Math.round(progress)
-  const snap = index === nearest ? 1 : 0
-
-  // --- Blend between crossfade and snap based on speed ---
-  // Below 1.0 s/s → pure crossfade
-  // Above 3.0 s/s → pure snap
-  const blendFactor = Math.min(1, Math.max(0, (velocity - 1.0) / 2.0))
-
-  return crossfade * (1 - blendFactor) + snap * blendFactor
-}
-
-/** Standard crossfade: hold for 55% of each slot, then fade over 45%. */
-function getCrossfadeOpacity(progress: number, index: number, total: number): number {
-  const local = progress - index
-  const holdEnd = 0.55
-  const fadeRange = 1 - holdEnd
-
-  // Fade OUT
-  let fadeOut = 1
-  if (index < total - 1) {
-    if (local > holdEnd) {
-      fadeOut = 1 - Math.min(1, (local - holdEnd) / fadeRange)
-    } else if (local < 0) {
-      fadeOut = 0
-    }
-  }
-
-  // Fade IN
-  let fadeIn = 1
-  if (index > 0) {
-    const prevLocal = progress - (index - 1)
-    if (prevLocal < holdEnd) {
-      fadeIn = 0
-    } else if (prevLocal < 1) {
-      fadeIn = Math.min(1, (prevLocal - holdEnd) / fadeRange)
-    } else {
-      fadeIn = 1
-    }
-  }
-
-  return Math.max(0, Math.min(1, fadeOut * fadeIn))
+function clamp01(x: number) {
+  return Math.max(0, Math.min(1, x))
 }
