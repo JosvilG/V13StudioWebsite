@@ -8,6 +8,7 @@ import { About } from "@/components/sections/about"
 import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
 import { SectionStack } from "@/components/section-stack"
+import { TransitionFlash } from "@/components/transition-flash"
 import { AnimatedBackground } from "@/components/animated-background"
 import { CustomCursor } from "@/components/custom-cursor"
 import { Preloader } from "@/components/preloader"
@@ -38,7 +39,7 @@ export default async function Home({
       <ScrollProgress />
       <Header hasProjects={hasProjects} />
       <main>
-        <SectionStack spans={[1, 2]}>
+        <SectionStack spans={[1, 2, 1.5]}>
           <Hero hasProjects={hasProjects} />
           <Services />
           {hasProjects && <Portfolio projects={projects} />}
@@ -48,6 +49,7 @@ export default async function Home({
         </SectionStack>
       </main>
       <Footer />
+      <TransitionFlash />
     </>
   )
 }

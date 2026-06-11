@@ -5,6 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber"
 import { Environment } from "@react-three/drei"
 import type { Group } from "three"
 import { V13Model } from "./v13-model"
+import { transition } from "@/lib/transition-store"
 
 const FEATURE_SCALE = 0.0132
 
@@ -15,19 +16,23 @@ function easeOutCubic(x: number) {
 /** Chrome V13: eases in very gently on mount, then an almost-imperceptible float. */
 function FeatureLogo() {
   const ref = useRef<Group>(null)
-  const reveal = useRef(0)
+  const startRef = useRef<number | null>(null)
 
-  useFrame((_, delta) => {
+  useFrame(() => {
     const g = ref.current
     if (!g) return
-    reveal.current = Math.min(1, reveal.current + delta * 0.4)
-    const e = easeOutCubic(reveal.current)
-    // global time so two instances (statement + capabilities slides) stay in sync
-    // and the crossfade between them only swaps the text, never the V13
-    const t = performance.now() / 1000
+    // global time → both instances stay in sync; time-based reveal is jump-free
+    // even if frames are dropped while the section is hidden/scrolled
+    const now = performance.now()
+    if (startRef.current === null) startRef.current = now
+    const e = easeOutCubic(Math.min(1, (now - startRef.current) / 1600))
+    const t = now / 1000
+    // big-bang collapse driven by Services scroll (scale the 3D group to a point)
+    const c = Math.min(1, transition.collapse)
+    const k = 1 - c
 
-    g.scale.setScalar(FEATURE_SCALE * (0.94 + 0.06 * e))
-    g.position.set(0.4, Math.sin(t * 0.35) * 0.12 - (1 - e) * 0.4, 0)
+    g.scale.setScalar(FEATURE_SCALE * (0.94 + 0.06 * e) * (1 - Math.min(1, c * 1.05)))
+    g.position.set(0.4 * k, (Math.sin(t * 0.35) * 0.12 - (1 - e) * 0.4) * k, 0)
     g.rotation.set(0.05, -0.26 + Math.sin(t * 0.22) * 0.035, 0)
   })
 

@@ -46,6 +46,9 @@ export interface Dictionary {
     headingAccent: string
     ctaText: string
     ctaLink: string
+    viewProject: string
+    scroll: string
+    all: string
   }
   about: {
     eyebrow: string
@@ -204,10 +207,13 @@ const en: Dictionary = {
   },
   portfolio: {
     eyebrow: 'Selected Work',
-    headingTop: 'Projects that',
+    headingTop: 'Projects',
     headingAccent: 'push boundaries',
     ctaText: 'Want to see more?',
     ctaLink: "Let's talk",
+    viewProject: 'View Project',
+    scroll: 'Scroll to Explore',
+    all: 'All',
   },
   about: {
     eyebrow: 'About us',
@@ -369,10 +375,13 @@ const es: Dictionary = {
   },
   portfolio: {
     eyebrow: 'Trabajo Seleccionado',
-    headingTop: 'Proyectos que',
+    headingTop: 'Proyectos',
     headingAccent: 'rompen límites',
     ctaText: '¿Quieres ver más?',
     ctaLink: 'Hablemos',
+    viewProject: 'Ver Proyecto',
+    scroll: 'Desliza para Explorar',
+    all: 'Todo',
   },
   about: {
     eyebrow: 'Sobre nosotros',
@@ -534,10 +543,13 @@ const ca: Dictionary = {
   },
   portfolio: {
     eyebrow: 'Treball Seleccionat',
-    headingTop: 'Projectes que',
+    headingTop: 'Projectes',
     headingAccent: 'trenquen límits',
     ctaText: 'Vols veure’n més?',
     ctaLink: 'Parlem-ne',
+    viewProject: 'Veure Projecte',
+    scroll: 'Desplaça per Explorar',
+    all: 'Tot',
   },
   about: {
     eyebrow: 'Sobre nosaltres',

@@ -406,6 +406,18 @@
   animation: hero-fog-drift-2 17s ease-in-out infinite;
 }
 
+/* Big-bang particle burst (Services -> Projects transition) */
+.bigbang-particle {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  border-radius: 9999px;
+  background: #eaf1ff;
+  box-shadow: 0 0 8px 2px rgba(190, 215, 255, 0.85);
+  transform: translate(-50%, -50%) rotate(var(--a, 0deg))
+    translateX(calc(var(--d, 0px) * var(--burst, 0)));
+}
+
 /* Border animation */
 @keyframes border-dance {
   0%, 100% { border-color: transparent; border-top-color: var(--primary); }
