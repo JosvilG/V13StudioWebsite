@@ -310,6 +310,103 @@
   text-shadow: 0 0 20px var(--glow-purple-strong), 0 0 40px var(--glow-purple);
 }
 
+/* Cinematic hero - metallic V13 logo */
+.hero-logo-wrap {
+  position: relative;
+  width: clamp(190px, 30vw, 430px);
+  aspect-ratio: 1.9 / 1;
+}
+/* 3D canvas fills the whole hero so the logo can fly in / through with no box edges */
+.hero-3d-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-3d-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.hero-metallic-depth,
+.hero-metallic-face {
+  position: absolute;
+  inset: 0;
+  -webkit-mask: url('/logo-light.png') center / 180% auto no-repeat;
+  mask: url('/logo-light.png') center / 180% auto no-repeat;
+}
+/* Extruded thickness + contact shadow (separate layer so it isn't clipped by the face) */
+.hero-metallic-depth {
+  background: linear-gradient(180deg, #3a3f48 0%, #14171c 60%, #07090c 100%);
+  transform: translateY(9px);
+  filter: blur(1px) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+}
+/* Chrome face: sharp light/dark "horizon" at mid-height = classic polished metal */
+.hero-metallic-face {
+  background: linear-gradient(
+    180deg,
+    #9aa3af 0%,
+    #c2c9d2 14%,
+    #e4e8ee 40%,
+    #767e8a 49.4%,
+    #2c313a 50%,
+    #4e555f 57%,
+    #aab1bc 66%,
+    #828a96 84%,
+    #565d68 100%
+  );
+  filter:
+    drop-shadow(0 -1px 0 rgba(220, 230, 245, 0.4))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 70px rgba(120, 150, 200, 0.3));
+}
+/* Moving specular sheen sweeping across the chrome */
+.hero-metallic-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(235, 242, 255, 0.55) 49%,
+    rgba(255, 255, 255, 0) 58%
+  );
+  background-size: 250% 100%;
+  mix-blend-mode: screen;
+  animation: hero-chrome-sheen 6.5s ease-in-out infinite;
+}
+@keyframes hero-chrome-sheen {
+  0% { background-position: 175% 0; }
+  55%, 100% { background-position: -75% 0; }
+}
+
+/* Hero smoke / fog drift */
+@keyframes hero-fog-drift-1 {
+  0% { transform: translate3d(-7%, -2%, 0) scale(1.08); }
+  50% { transform: translate3d(7%, -4%, 0) scale(1.28); }
+  100% { transform: translate3d(-7%, -2%, 0) scale(1.08); }
+}
+@keyframes hero-fog-drift-2 {
+  0% { transform: translate3d(8%, 3%, 0) scale(1.22); }
+  50% { transform: translate3d(-8%, -1%, 0) scale(1.04); }
+  100% { transform: translate3d(8%, 3%, 0) scale(1.22); }
+}
+.hero-smoke-1 {
+  background:
+    radial-gradient(40% 36% at 38% 42%, rgba(165, 182, 212, 0.16) 0%, transparent 62%),
+    radial-gradient(30% 28% at 52% 52%, rgba(140, 158, 190, 0.12) 0%, transparent 66%);
+  filter: blur(52px);
+  animation: hero-fog-drift-1 13s ease-in-out infinite;
+}
+.hero-smoke-2 {
+  background:
+    radial-gradient(42% 38% at 64% 50%, rgba(150, 168, 200, 0.14) 0%, transparent 64%),
+    radial-gradient(28% 26% at 72% 42%, rgba(110, 126, 158, 0.10) 0%, transparent 68%);
+  filter: blur(64px);
+  animation: hero-fog-drift-2 17s ease-in-out infinite;
+}
+
+
 /* Border animation */
 @keyframes border-dance {
   0%, 100% { border-color: transparent; border-top-color: var(--primary); }
