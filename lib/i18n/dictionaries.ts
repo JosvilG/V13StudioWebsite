@@ -54,6 +54,11 @@ export interface Dictionary {
     viewProject: string
     scroll: string
     all: string
+    detailHeading: string
+    clientLabel: string
+    roleLabel: string
+    challengeLabel: string
+    resultLabel: string
   }
   about: {
     eyebrow: string
@@ -268,6 +273,11 @@ const en: Dictionary = {
     viewProject: 'View Project',
     scroll: 'Scroll to Explore',
     all: 'All',
+    detailHeading: 'Project details',
+    clientLabel: 'Client',
+    roleLabel: 'Role',
+    challengeLabel: 'Challenge',
+    resultLabel: 'Result',
   },
   about: {
     eyebrow: 'About us',
@@ -503,6 +513,11 @@ const es: Dictionary = {
     viewProject: 'Ver Proyecto',
     scroll: 'Desliza para Explorar',
     all: 'Todo',
+    detailHeading: 'Detalle de proyectos',
+    clientLabel: 'Cliente',
+    roleLabel: 'Rol',
+    challengeLabel: 'Reto',
+    resultLabel: 'Resultado',
   },
   about: {
     eyebrow: 'Sobre nosotros',
@@ -738,6 +753,11 @@ const ca: Dictionary = {
     viewProject: 'Veure Projecte',
     scroll: 'Desplaça per Explorar',
     all: 'Tot',
+    detailHeading: 'Detall de projectes',
+    clientLabel: 'Client',
+    roleLabel: 'Rol',
+    challengeLabel: 'Repte',
+    resultLabel: 'Resultat',
   },
   about: {
     eyebrow: 'Sobre nosaltres',

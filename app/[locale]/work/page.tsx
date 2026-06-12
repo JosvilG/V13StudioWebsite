@@ -7,6 +7,7 @@ import { getProjects, getStats } from '@/lib/content'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { ProjectsCarousel } from '@/components/subpage/projects-carousel'
+import { ProjectDetailList } from '@/components/subpage/project-detail-list'
 import { Reveal } from '@/components/subpage/reveal'
 import { WorkBackdrop } from '@/components/subpage/backdrops'
 import { Footer } from '@/components/sections/footer'
@@ -74,6 +75,23 @@ export default async function WorkPage({
             <p className="mt-20 font-mono text-sm uppercase tracking-[0.2em] text-white/45">
               {dict.portfolio.ctaText}
             </p>
+          )}
+
+          {/* Detailed breakdown of every project */}
+          {projects.length > 0 && (
+            <Reveal className="mt-24">
+              <SectionHeading eyebrow={dict.portfolio.eyebrow} title={dict.portfolio.detailHeading} />
+              <ProjectDetailList
+                projects={projects}
+                labels={{
+                  client: dict.portfolio.clientLabel,
+                  role: dict.portfolio.roleLabel,
+                  challenge: dict.portfolio.challengeLabel,
+                  result: dict.portfolio.resultLabel,
+                  viewProject: dict.portfolio.viewProject,
+                }}
+              />
+            </Reveal>
           )}
 
           {stats.length > 0 && (
