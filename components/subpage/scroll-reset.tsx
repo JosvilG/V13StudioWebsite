@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 
 type LenisLike = {
   scrollTo: (t: number, o?: { immediate?: boolean; force?: boolean }) => void
   resize?: () => void
+  stop?: () => void
+  start?: () => void
 }
 
 // Runs before paint on the client; falls back to useEffect during SSR.
@@ -13,26 +15,34 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 /**
  * Forces the viewport to the top when a subpage mounts. Lenis persists across
  * navigation and keeps the (often huge) scroll target from the homepage section
- * the user came from; without this it clamps to the shorter subpage's height and
- * opens scrolled to the bottom. We reset before paint and re-assert for a few
- * frames so Lenis can't win the race — short enough not to fight the user.
+ * the user came from; if the browser resets window.scrollY a beat later than Lenis
+ * re-syncs, Lenis clamps that stale target to the shorter subpage and opens it
+ * scrolled to the bottom. We stop Lenis, hard-reset to the top, then restart it
+ * from 0 — taking Lenis out of the race entirely.
  */
 export function ScrollReset() {
-  const rafRef = useRef(0)
-
   useIsoLayoutEffect(() => {
     const lenis = (window as unknown as Record<string, unknown>).__lenis as LenisLike | undefined
-    let frame = 0
 
-    const reset = () => {
+    const hardTop = () => {
       window.scrollTo(0, 0)
+      document.documentElement.scrollTop = 0
       lenis?.resize?.()
       lenis?.scrollTo(0, { immediate: true, force: true })
-      if (frame++ < 6) rafRef.current = requestAnimationFrame(reset)
     }
 
-    reset()
-    return () => cancelAnimationFrame(rafRef.current)
+    lenis?.stop?.()
+    hardTop()
+
+    // Restart Lenis on the next frame, once it's settled at the top.
+    const raf = requestAnimationFrame(() => {
+      hardTop()
+      lenis?.start?.()
+    })
+    return () => {
+      cancelAnimationFrame(raf)
+      lenis?.start?.() // never leave Lenis stopped if we unmount mid-reset
+    }
   }, [])
 
   return null
