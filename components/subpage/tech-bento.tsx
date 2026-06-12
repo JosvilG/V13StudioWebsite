@@ -1,10 +1,47 @@
-/**
- * Bento grid of the studio's tech stack, grouped by class (Frontend, Backend,
- * Cloud, DevOps…). Cells vary in size for the bento look; each cell lists its
- * technologies as chips. Static markup — no carousel.
- */
+import type { ComponentType, SVGProps } from 'react'
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiNestjs,
+  SiPython,
+  SiPostgresql,
+  SiVercel,
+  SiDocker,
+  SiKubernetes,
+  SiGithubactions,
+} from 'react-icons/si'
+import { Cloud } from 'lucide-react'
 
-// Per-index span overrides give the asymmetric bento rhythm on large screens.
+type Icon = ComponentType<SVGProps<SVGSVGElement>>
+
+/**
+ * Tech → logo. Brand glyphs come from simple-icons (react-icons/si). AWS, Azure
+ * and React Native have no simple-icons brand mark (trademark removal / none), so
+ * they fall back to a neutral cloud / the React mark. Anything unmapped uses Cloud.
+ */
+const ICONS: Record<string, Icon> = {
+  React: SiReact,
+  'React Native': SiReact,
+  'Next.js': SiNextdotjs,
+  TypeScript: SiTypescript,
+  'Tailwind CSS': SiTailwindcss,
+  'Node.js': SiNodedotjs,
+  NestJS: SiNestjs,
+  Python: SiPython,
+  PostgreSQL: SiPostgresql,
+  AWS: Cloud,
+  Azure: Cloud,
+  Vercel: SiVercel,
+  Docker: SiDocker,
+  Kubernetes: SiKubernetes,
+  'CI/CD': SiGithubactions,
+}
+
+// Per-index spans: a 4×2 bento — Frontend fills the tall-wide block, Backend a
+// wide tile, Cloud + DevOps the two remaining cells.
 const SPANS = [
   'lg:col-span-2 lg:row-span-2',
   'lg:col-span-2',
@@ -18,7 +55,7 @@ export function TechBento({
   groups: { category: string; items: string[] }[]
 }) {
   return (
-    <div className="grid auto-rows-[minmax(150px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid auto-rows-[minmax(150px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {groups.map((group, i) => (
         <div
           key={group.category}
@@ -30,15 +67,19 @@ export function TechBento({
               {group.category}
             </h3>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {group.items.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-md border border-white/12 bg-white/[0.04] px-3 py-1.5 font-mono text-xs uppercase tracking-[0.1em] text-white/70"
-              >
-                {tech}
-              </span>
-            ))}
+          <div className="mt-6 flex flex-wrap gap-3">
+            {group.items.map((tech) => {
+              const TechIcon = ICONS[tech] ?? Cloud
+              return (
+                <span
+                  key={tech}
+                  className="inline-flex items-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-3 py-2 text-sm text-white/80 transition-colors hover:border-[#9268f6]/50 hover:text-white"
+                >
+                  <TechIcon className="h-4 w-4 shrink-0" aria-hidden />
+                  <span className="font-mono text-xs uppercase tracking-[0.08em]">{tech}</span>
+                </span>
+              )
+            })}
           </div>
         </div>
       ))}

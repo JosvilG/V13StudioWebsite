@@ -82,10 +82,12 @@ export default async function ServicesPage({
             </div>
           </Reveal>
 
-          {/* Tech stack bento */}
-          <Reveal className="mt-24">
-            <SectionHeading title={s.techHeading} />
-            <TechBento groups={s.techGroups} />
+          {/* Tech stack bento — full bleed */}
+          <Reveal className="mt-24 mx-[calc(50%-50vw)] w-screen px-6 sm:px-12">
+            <div className="mx-auto max-w-[1800px]">
+              <SectionHeading title={s.techHeading} />
+              <TechBento groups={s.techGroups} />
+            </div>
           </Reveal>
 
           {/* How we work */}
