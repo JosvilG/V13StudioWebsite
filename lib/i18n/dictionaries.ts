@@ -105,6 +105,8 @@ export interface Dictionary {
     comingSoon: string
     backToBlog: string
     cta: string
+    featured: string
+    readArticle: string
   }
   legal: {
     backHome: string
@@ -295,13 +297,15 @@ const en: Dictionary = {
     legalHeading: 'Legal',
   },
   blog: {
-    backHome: '← V13 STUDIO',
+    backHome: 'V13 Studio',
     intro:
       'Notes on product strategy, design, and software engineering from our studio in Catalonia.',
     minRead: 'min read',
     comingSoon: 'New articles coming soon.',
-    backToBlog: '← BLOG',
-    cta: 'Start a project with V13 Studio →',
+    backToBlog: 'Blog',
+    cta: 'Start a project with V13 Studio',
+    featured: 'Featured',
+    readArticle: 'Read article',
   },
   legal: {
     backHome: '← V13 STUDIO',
@@ -492,13 +496,15 @@ const es: Dictionary = {
     legalHeading: 'Legal',
   },
   blog: {
-    backHome: '← V13 STUDIO',
+    backHome: 'V13 Studio',
     intro:
       'Notas sobre estrategia de producto, diseño e ingeniería de software desde nuestro estudio en Cataluña.',
     minRead: 'min de lectura',
     comingSoon: 'Próximamente nuevos artículos.',
-    backToBlog: '← BLOG',
-    cta: 'Inicia un proyecto con V13 Studio →',
+    backToBlog: 'Blog',
+    cta: 'Inicia un proyecto con V13 Studio',
+    featured: 'Destacado',
+    readArticle: 'Leer artículo',
   },
   legal: {
     backHome: '← V13 STUDIO',
@@ -689,13 +695,15 @@ const ca: Dictionary = {
     legalHeading: 'Legal',
   },
   blog: {
-    backHome: '← V13 STUDIO',
+    backHome: 'V13 Studio',
     intro:
       'Notes sobre estratègia de producte, disseny i enginyeria de programari des del nostre estudi a Catalunya.',
     minRead: 'min de lectura',
     comingSoon: 'Nous articles ben aviat.',
-    backToBlog: '← BLOG',
-    cta: 'Inicia un projecte amb V13 Studio →',
+    backToBlog: 'Blog',
+    cta: 'Inicia un projecte amb V13 Studio',
+    featured: 'Destacat',
+    readArticle: 'Llegir article',
   },
   legal: {
     backHome: '← V13 STUDIO',

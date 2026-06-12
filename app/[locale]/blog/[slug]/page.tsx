@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { getPostBySlug, getPostSlugs } from '@/lib/blog'
 import { locales, isLocale, localeHtmlLang } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
+import { Footer } from '@/components/sections/footer'
 
 const siteUrl = 'https://v13studio.com'
 
@@ -91,68 +92,83 @@ export default async function BlogPostPage({
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground px-6 py-24 sm:py-32">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
-      />
-      <article className="max-w-3xl mx-auto">
-        <Link
-          href={`/${locale}/blog`}
-          className="text-xs font-mono tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors"
-        >
-          {dict.blog.backToBlog}
-        </Link>
-
-        <div className="mt-8 flex items-center gap-3 text-xs font-mono text-muted-foreground">
-          <time dateTime={post.date}>{formatDate(post.date, locale)}</time>
-          <span className="w-1 h-1 rounded-full bg-muted-foreground" />
-          <span>
-            {post.readingTime} {dict.blog.minRead}
-          </span>
-        </div>
-
-        <h1 className="mt-4 text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
-          {post.title}
-        </h1>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-3 py-1 text-xs font-mono border border-border"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-12 space-y-6">
-          {post.body.map((block, i) =>
-            block.type === 'h2' ? (
-              <h2
-                key={i}
-                className="text-2xl sm:text-3xl font-bold tracking-tight pt-4"
-              >
-                {block.text}
-              </h2>
-            ) : (
-              <p key={i} className="text-lg leading-relaxed text-muted-foreground">
-                {block.text}
-              </p>
-            ),
-          )}
-        </div>
-
-        <div className="mt-16 pt-8 border-t border-border">
+    <>
+      <main className="min-h-screen bg-black text-white">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        />
+        <article className="mx-auto max-w-3xl px-6 py-24 sm:py-28">
           <Link
-            href={`/${locale}#contact`}
-            className="inline-flex items-center gap-3 text-primary hover:underline"
+            href={`/${locale}/blog`}
+            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#7ca8ff]"
           >
-            {dict.blog.cta}
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            {dict.blog.backToBlog}
           </Link>
-        </div>
-      </article>
-    </main>
+
+          <div className="mt-10 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
+            <time dateTime={post.date}>{formatDate(post.date, locale)}</time>
+            <span className="h-1 w-1 rounded-full bg-white/30" />
+            <span>
+              {post.readingTime} {dict.blog.minRead}
+            </span>
+          </div>
+
+          <h1
+            className="mt-5 text-4xl font-medium leading-tight tracking-tight text-white sm:text-5xl"
+            style={{ fontFamily: 'var(--font-serif)' }}
+          >
+            {post.title}
+          </h1>
+
+          {post.tags.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="border border-white/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/45"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-12 space-y-6 border-t border-white/10 pt-12">
+            {post.body.map((block, i) =>
+              block.type === 'h2' ? (
+                <h2
+                  key={i}
+                  className="pt-4 text-2xl font-semibold tracking-tight text-white sm:text-3xl"
+                  style={{ fontFamily: 'var(--font-serif)' }}
+                >
+                  {block.text}
+                </h2>
+              ) : (
+                <p key={i} className="text-lg leading-relaxed text-white/70">
+                  {block.text}
+                </p>
+              ),
+            )}
+          </div>
+
+          <div className="mt-16 border-t border-white/10 pt-8">
+            <Link
+              href={`/${locale}#contact`}
+              className="group inline-flex items-center gap-3 font-mono text-sm uppercase tracking-[0.15em] text-[#7ca8ff] transition-opacity hover:opacity-80"
+            >
+              {dict.blog.cta}
+              <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </div>
+        </article>
+      </main>
+      <Footer />
+    </>
   )
 }
