@@ -6,6 +6,7 @@ import { useT } from "@/components/i18n-provider"
 import { can3D } from "@/lib/can-3d"
 import { transition } from "@/lib/transition-store"
 import { ServicesBackdrop } from "./services-backdrop"
+import { SectionMoreLink } from "@/components/section-more-link"
 
 const V13Feature = dynamic(() => import("@/components/hero-3d/v13-feature"), {
   ssr: false,
@@ -228,6 +229,9 @@ export function Services() {
                 </li>
               ))}
             </ul>
+            <div className="mt-10">
+              <SectionMoreLink to="services" />
+            </div>
           </div>
         </div>
       </div>

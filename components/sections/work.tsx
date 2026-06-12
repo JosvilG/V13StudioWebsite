@@ -4,6 +4,7 @@ import { useMemo, useState, useEffect, useRef, type CSSProperties } from "react"
 import { useT } from "@/components/i18n-provider"
 import type { SheetProject } from "@/lib/content"
 import { WorkMobile } from "./work-mobile"
+import { SectionMoreLink } from "@/components/section-more-link"
 
 const isYear = (s: string) => /^\d{4}$/.test(s)
 const clamp = (x: number) => Math.max(0, Math.min(1, x))
@@ -467,11 +468,14 @@ export function Work({ projects }: { projects: SheetProject[] }) {
           </div>
         )}
 
-        <div className="relative z-10 mt-8 flex flex-col items-center gap-2">
-          <svg className="h-4 w-4 animate-bounce text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-          <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/45">{t.portfolio.scroll}</span>
+        <div className="relative z-10 mt-8 flex flex-col items-center gap-4">
+          <SectionMoreLink to="work" />
+          <div className="flex flex-col items-center gap-2">
+            <svg className="h-4 w-4 animate-bounce text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/45">{t.portfolio.scroll}</span>
+          </div>
         </div>
       </div>
 
@@ -603,6 +607,10 @@ export function Work({ projects }: { projects: SheetProject[] }) {
                 <p className="mt-2 max-w-[17rem] text-sm leading-relaxed text-white/60">{pillar.description}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12">
+            <SectionMoreLink to="about" />
           </div>
 
           <p className="mt-14 font-mono text-[10px] uppercase tracking-[0.32em] text-white/40 sm:text-[11px]">

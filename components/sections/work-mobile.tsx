@@ -2,6 +2,7 @@
 
 import { useT } from "@/components/i18n-provider"
 import type { SheetProject } from "@/lib/content"
+import { SectionMoreLink } from "@/components/section-more-link"
 
 /**
  * Static, stacked mobile layout for the Work section. The desktop version is a
@@ -83,6 +84,10 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
             </a>
           </div>
         )}
+
+        <div className="mt-8">
+          <SectionMoreLink to="work" />
+        </div>
       </div>
 
       {/* ── PROCESO ── */}
@@ -157,6 +162,10 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
                 <p className="mt-2 text-sm leading-relaxed text-white/60">{pillar.description}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-10">
+            <SectionMoreLink to="about" />
           </div>
         </div>
       </div>
