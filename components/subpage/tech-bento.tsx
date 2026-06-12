@@ -67,17 +67,22 @@ export function TechBento({
               {group.category}
             </h3>
           </div>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-7">
             {group.items.map((tech) => {
               const TechIcon = ICONS[tech] ?? Cloud
               return (
-                <span
+                <div
                   key={tech}
-                  className="inline-flex items-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-3 py-2 text-sm text-white/80 transition-colors hover:border-[#9268f6]/50 hover:text-white"
+                  className="group/tech flex w-16 flex-col items-center gap-2.5 text-center"
                 >
-                  <TechIcon className="h-4 w-4 shrink-0" aria-hidden />
-                  <span className="font-mono text-xs uppercase tracking-[0.08em]">{tech}</span>
-                </span>
+                  <TechIcon
+                    className="h-9 w-9 text-white/85 transition-colors group-hover/tech:text-[#9268f6]"
+                    aria-hidden
+                  />
+                  <span className="font-mono text-[10px] uppercase leading-tight tracking-[0.08em] text-white/60">
+                    {tech}
+                  </span>
+                </div>
               )
             })}
           </div>
