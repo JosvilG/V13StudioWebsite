@@ -34,6 +34,8 @@ export interface Dictionary {
     howWeWorkHeading: string
     faqHeading: string
     faq: { q: string; a: string }[]
+    techHeading: string
+    techGroups: { category: string; items: string[] }[]
   }
   process: {
     eyebrow: string
@@ -210,6 +212,13 @@ const en: Dictionary = {
         q: 'What happens after launch?',
         a: 'We stay on for monitoring, iteration, and growth work. A launch is a starting point, not a hand-off.',
       },
+    ],
+    techHeading: 'Technologies we use',
+    techGroups: [
+      { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind CSS'] },
+      { category: 'Backend', items: ['Node.js', 'NestJS', 'Python', 'PostgreSQL'] },
+      { category: 'Cloud', items: ['AWS', 'Azure', 'Vercel'] },
+      { category: 'DevOps', items: ['Docker', 'Kubernetes', 'CI/CD'] },
     ],
   },
   process: {
@@ -439,6 +448,13 @@ const es: Dictionary = {
         a: 'Seguimos con monitorización, iteración y crecimiento. Un lanzamiento es un punto de partida, no una despedida.',
       },
     ],
+    techHeading: 'Tecnologías que usamos',
+    techGroups: [
+      { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind CSS'] },
+      { category: 'Backend', items: ['Node.js', 'NestJS', 'Python', 'PostgreSQL'] },
+      { category: 'Cloud', items: ['AWS', 'Azure', 'Vercel'] },
+      { category: 'DevOps', items: ['Docker', 'Kubernetes', 'CI/CD'] },
+    ],
   },
   process: {
     eyebrow: 'Cómo trabajamos',
@@ -666,6 +682,13 @@ const ca: Dictionary = {
         q: 'Què passa després del llançament?',
         a: 'Continuem amb monitoratge, iteració i creixement. Un llançament és un punt de partida, no un comiat.',
       },
+    ],
+    techHeading: 'Tecnologies que fem servir',
+    techGroups: [
+      { category: 'Frontend', items: ['React', 'React Native', 'Next.js', 'TypeScript', 'Tailwind CSS'] },
+      { category: 'Backend', items: ['Node.js', 'NestJS', 'Python', 'PostgreSQL'] },
+      { category: 'Cloud', items: ['AWS', 'Azure', 'Vercel'] },
+      { category: 'DevOps', items: ['Docker', 'Kubernetes', 'CI/CD'] },
     ],
   },
   process: {

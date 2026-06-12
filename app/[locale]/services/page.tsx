@@ -6,7 +6,7 @@ import { PageHero } from '@/components/subpage/page-hero'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { Reveal } from '@/components/subpage/reveal'
-import { Marquee } from '@/components/marquee'
+import { TechBento } from '@/components/subpage/tech-bento'
 import { ServicesBackdrop } from '@/components/sections/services-backdrop'
 import { Footer } from '@/components/sections/footer'
 
@@ -82,9 +82,10 @@ export default async function ServicesPage({
             </div>
           </Reveal>
 
-          {/* Stack marquee */}
+          {/* Tech stack bento */}
           <Reveal className="mt-24">
-            <Marquee items={s.stack} />
+            <SectionHeading title={s.techHeading} />
+            <TechBento groups={s.techGroups} />
           </Reveal>
 
           {/* How we work */}
