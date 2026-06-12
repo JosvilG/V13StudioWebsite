@@ -16,10 +16,6 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
 
   return (
     <section id="work" className="relative overflow-hidden bg-[#04060a] px-6 py-20">
-      {/* in-page anchors used by the menu */}
-      <div id="process" aria-hidden className="pointer-events-none absolute" />
-      <div id="about" aria-hidden className="pointer-events-none absolute" />
-
       {/* ── PROYECTOS ── */}
       <div>
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#7ca8ff]">
@@ -90,7 +86,7 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
       </div>
 
       {/* ── PROCESO ── */}
-      <div className="mt-24">
+      <div id="process" className="mt-24 scroll-mt-24">
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#7ca8ff]">
           {t.process.eyebrow}
         </p>
@@ -122,7 +118,7 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
       </div>
 
       {/* ── NOSOTROS (over a full-bleed static frame of the background video) ── */}
-      <div className="relative mt-24 -mx-6 overflow-hidden">
+      <div id="about" className="relative mt-24 -mx-6 scroll-mt-20 overflow-hidden">
         {/* static video frame — not animated, just a poster frame */}
         <video
           className="absolute inset-0 h-full w-full object-cover"
