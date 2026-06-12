@@ -18,7 +18,6 @@ import {
   SiMobx,
   SiReactquery,
   SiZod,
-  SiReacthookform,
   SiTailwindcss,
   SiMui,
   SiAstro,
@@ -32,30 +31,19 @@ import {
   SiPino,
   SiJest,
   SiVitest,
-  SiTestinglibrary,
   SiFramer,
   SiReactrouter,
   SiSwagger,
   SiEslint,
   SiPrettier,
   SiGithubactions,
-  SiTwilio,
   SiResend,
-  SiGoogleadmob,
   SiRedis,
   SiAnthropic,
   SiClaude,
+  SiOpenai,
 } from 'react-icons/si'
-import {
-  Box,
-  Database,
-  FlaskConical,
-  Sparkles,
-  Languages,
-  Compass,
-  Palette,
-  ShieldCheck,
-} from 'lucide-react'
+import { Box, Database, FlaskConical, Languages } from 'lucide-react'
 
 type Icon = ComponentType<SVGProps<SVGSVGElement>>
 
@@ -79,14 +67,13 @@ const ICONS: Record<string, Icon> = {
   PostgreSQL: SiPostgresql,
   Firebase: SiFirebase,
   Supabase: SiSupabase,
-  // Key architecture
+  // Frontend / architecture
   Prisma: SiPrisma,
   'Drizzle ORM': SiDrizzle,
   Zustand: Box,
   MobX: SiMobx,
   'TanStack Query': SiReactquery,
   Zod: SiZod,
-  'React Hook Form': SiReacthookform,
   'Tailwind CSS': SiTailwindcss,
   'Material UI': SiMui,
   Astro: SiAstro,
@@ -94,7 +81,6 @@ const ICONS: Record<string, Icon> = {
   Vercel: SiVercel,
   'AWS S3': Database,
   'Cloudflare DNS': SiCloudflare,
-  // Support
   Express: SiExpress,
   Sentry: SiSentry,
   PostHog: SiPosthog,
@@ -103,30 +89,19 @@ const ICONS: Record<string, Icon> = {
   Jest: SiJest,
   Vitest: SiVitest,
   Playwright: FlaskConical,
-  Detox: FlaskConical,
-  'Testing Library': SiTestinglibrary,
-  Supertest: FlaskConical,
   'Framer Motion': SiFramer,
-  Reanimated: Sparkles,
   i18next: Languages,
-  'next-intl': Languages,
-  'React Navigation': Compass,
   'react-router-dom': SiReactrouter,
-  NativeWind: Palette,
-  Emotion: Palette,
-  MMKV: Database,
-  AsyncStorage: Database,
   Swagger: SiSwagger,
-  'class-validator': ShieldCheck,
   ESLint: SiEslint,
   Prettier: SiPrettier,
   'GitHub Actions': SiGithubactions,
-  Twilio: SiTwilio,
   Resend: SiResend,
-  AdMob: SiGoogleadmob,
   Redis: SiRedis,
+  // AI
   'Anthropic API': SiAnthropic,
   'Claude Agent SDK': SiClaude,
+  'OpenAI API': SiOpenai,
 }
 
 export function TechBento({
