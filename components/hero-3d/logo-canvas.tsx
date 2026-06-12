@@ -98,7 +98,7 @@ function Particles() {
   )
 }
 
-const BASE_SCALE = 0.016
+const BASE_SCALE = 0.021
 
 function SpinningLogo() {
   const ref = useRef<Group>(null)

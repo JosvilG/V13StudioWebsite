@@ -313,7 +313,7 @@
 /* Cinematic hero - metallic V13 logo */
 .hero-logo-wrap {
   position: relative;
-  width: clamp(190px, 30vw, 430px);
+  width: clamp(240px, 40vw, 560px);
   aspect-ratio: 1.9 / 1;
 }
 /* 3D canvas fills the whole hero so the logo can fly in / through with no box edges */
