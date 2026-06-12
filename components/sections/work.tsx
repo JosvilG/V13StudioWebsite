@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect, useRef, type CSSProperties } from "react"
 import { useT } from "@/components/i18n-provider"
 import type { SheetProject } from "@/lib/content"
+import { WorkMobile } from "./work-mobile"
 
 const isYear = (s: string) => /^\d{4}$/.test(s)
 const clamp = (x: number) => Math.max(0, Math.min(1, x))
@@ -45,6 +46,14 @@ export function Work({ projects }: { projects: SheetProject[] }) {
   }, [projects, allLabel])
 
   const [activeTab, setActiveTab] = useState(allLabel)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener("resize", check, { passive: true })
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
   const filtered = useMemo(() => {
     if (activeTab === allLabel) return projects
@@ -223,6 +232,8 @@ export function Work({ projects }: { projects: SheetProject[] }) {
       if (raf) cancelAnimationFrame(raf)
     }
   }, [])
+
+  if (isMobile) return <WorkMobile projects={projects} />
 
   return (
     <section
