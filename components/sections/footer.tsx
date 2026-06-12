@@ -126,8 +126,8 @@ export function Footer() {
           </ScrollReveal>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 flex flex-col items-start gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        {/* Bottom bar — extra right padding clears the fixed scroll-to-top button */}
+        <div className="mt-14 flex flex-col items-start gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between sm:pr-16">
           <p className="text-xs text-white/45">
             © {new Date().getFullYear()} {t.footer.rights}
           </p>
