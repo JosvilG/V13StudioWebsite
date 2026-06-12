@@ -31,6 +31,9 @@ export interface Dictionary {
     headingAccent: string
     intro: string
     items: { title: string; description: string }[]
+    howWeWorkHeading: string
+    faqHeading: string
+    faq: { q: string; a: string }[]
   }
   process: {
     eyebrow: string
@@ -62,6 +65,9 @@ export interface Dictionary {
     p2: string
     location: string
     founded: string
+    teamHeading: string
+    valuesHeading: string
+    values: { title: string; description: string }[]
   }
   contact: {
     eyebrow: string
@@ -113,6 +119,8 @@ export interface Dictionary {
     lastUpdated: string
     moreDocuments: string
   }
+  stats: { heading: string }
+  viewMore: string
 }
 
 const en: Dictionary = {
@@ -181,6 +189,26 @@ const en: Dictionary = {
         title: 'AI Integration',
         description:
           'Intelligent features powered by cutting-edge AI and machine learning.',
+      },
+    ],
+    howWeWorkHeading: 'How we work',
+    faqHeading: 'Frequently asked questions',
+    faq: [
+      {
+        q: 'How long does a typical project take?',
+        a: 'It depends on scope, but most products run 8–16 weeks from concept to launch: 1–2 weeks of strategy, 2–4 weeks of design and architecture, then iterative build sprints. We agree a timeline before we start.',
+      },
+      {
+        q: 'How do you price engagements?',
+        a: 'Fixed scope for well-defined projects, or a monthly rate for ongoing product work. We share an estimate after the first strategy conversation — no surprises later.',
+      },
+      {
+        q: 'Can you work with our existing team or codebase?',
+        a: 'Yes. We regularly join in-house teams or pick up existing codebases, review the architecture, and ship alongside your engineers.',
+      },
+      {
+        q: 'What happens after launch?',
+        a: 'We stay on for monitoring, iteration, and growth work. A launch is a starting point, not a hand-off.',
       },
     ],
   },
@@ -258,6 +286,13 @@ const en: Dictionary = {
     p2: 'No bloated teams. No endless meetings. Just focused execution from people who genuinely care about the outcome.',
     location: 'CATALONIA, SPAIN',
     founded: 'Founded',
+    teamHeading: 'The team',
+    valuesHeading: 'What we value',
+    values: [
+      { title: 'Craft', description: 'PLACEHOLDER — describe the value the studio places on craftsmanship.' },
+      { title: 'Ownership', description: 'PLACEHOLDER — describe how the team takes ownership of outcomes.' },
+      { title: 'Honesty', description: 'PLACEHOLDER — describe the studio’s commitment to straight talk.' },
+    ],
   },
   contact: {
     eyebrow: 'Contact',
@@ -312,6 +347,8 @@ const en: Dictionary = {
     lastUpdated: 'Last updated',
     moreDocuments: 'More documents',
   },
+  stats: { heading: 'By the numbers' },
+  viewMore: 'View more',
 }
 
 const es: Dictionary = {
@@ -380,6 +417,26 @@ const es: Dictionary = {
         title: 'Integración de IA',
         description:
           'Funciones inteligentes impulsadas por IA y machine learning de vanguardia.',
+      },
+    ],
+    howWeWorkHeading: 'Cómo trabajamos',
+    faqHeading: 'Preguntas frecuentes',
+    faq: [
+      {
+        q: '¿Cuánto dura un proyecto típico?',
+        a: 'Depende del alcance, pero la mayoría de productos van de 8 a 16 semanas del concepto al lanzamiento: 1–2 semanas de estrategia, 2–4 de diseño y arquitectura, y luego sprints iterativos de desarrollo. Acordamos un calendario antes de empezar.',
+      },
+      {
+        q: '¿Cómo calculáis el precio?',
+        a: 'Alcance cerrado para proyectos bien definidos, o una tarifa mensual para trabajo de producto continuo. Compartimos una estimación tras la primera conversación de estrategia, sin sorpresas después.',
+      },
+      {
+        q: '¿Podéis trabajar con nuestro equipo o código existente?',
+        a: 'Sí. Nos integramos con equipos internos o retomamos bases de código existentes, revisamos la arquitectura y entregamos junto a vuestros ingenieros.',
+      },
+      {
+        q: '¿Qué pasa tras el lanzamiento?',
+        a: 'Seguimos con monitorización, iteración y crecimiento. Un lanzamiento es un punto de partida, no una despedida.',
       },
     ],
   },
@@ -457,6 +514,13 @@ const es: Dictionary = {
     p2: 'Sin equipos inflados. Sin reuniones interminables. Solo ejecución enfocada de gente que se preocupa de verdad por el resultado.',
     location: 'CATALUÑA, ESPAÑA',
     founded: 'Fundado',
+    teamHeading: 'El equipo',
+    valuesHeading: 'Lo que valoramos',
+    values: [
+      { title: 'Oficio', description: 'PLACEHOLDER — describe el valor que el estudio da al oficio y la artesanía.' },
+      { title: 'Compromiso', description: 'PLACEHOLDER — describe cómo el equipo se responsabiliza de los resultados.' },
+      { title: 'Honestidad', description: 'PLACEHOLDER — describe el compromiso del estudio con hablar claro.' },
+    ],
   },
   contact: {
     eyebrow: 'Contacto',
@@ -511,6 +575,8 @@ const es: Dictionary = {
     lastUpdated: 'Última actualización',
     moreDocuments: 'Más documentos',
   },
+  stats: { heading: 'En cifras' },
+  viewMore: 'Ver más',
 }
 
 const ca: Dictionary = {
@@ -579,6 +645,26 @@ const ca: Dictionary = {
         title: 'Integració d’IA',
         description:
           'Funcions intel·ligents impulsades per IA i machine learning d’avantguarda.',
+      },
+    ],
+    howWeWorkHeading: 'Com treballem',
+    faqHeading: 'Preguntes freqüents',
+    faq: [
+      {
+        q: 'Quant dura un projecte típic?',
+        a: "Depèn de l’abast, però la majoria de productes van de 8 a 16 setmanes del concepte al llançament: 1–2 setmanes d’estratègia, 2–4 de disseny i arquitectura, i després sprints iteratius de desenvolupament. Acordem un calendari abans de començar.",
+      },
+      {
+        q: 'Com calculeu el preu?',
+        a: "Abast tancat per a projectes ben definits, o una tarifa mensual per a feina de producte contínua. Compartim una estimació després de la primera conversa d’estratègia, sense sorpreses després.",
+      },
+      {
+        q: 'Podeu treballar amb el nostre equip o codi existent?',
+        a: "Sí. Ens integrem amb equips interns o reprenem bases de codi existents, revisem l’arquitectura i lliurem al costat dels vostres enginyers.",
+      },
+      {
+        q: 'Què passa després del llançament?',
+        a: 'Continuem amb monitoratge, iteració i creixement. Un llançament és un punt de partida, no un comiat.',
       },
     ],
   },
@@ -656,6 +742,13 @@ const ca: Dictionary = {
     p2: 'Sense equips inflats. Sense reunions interminables. Només execució enfocada de gent que es preocupa de debò pel resultat.',
     location: 'CATALUNYA, ESPANYA',
     founded: 'Fundat',
+    teamHeading: "L'equip",
+    valuesHeading: 'El que valorem',
+    values: [
+      { title: 'Ofici', description: "PLACEHOLDER — descriu el valor que l'estudi dona a l'ofici i l'artesania." },
+      { title: 'Compromís', description: "PLACEHOLDER — descriu com l'equip es responsabilitza dels resultats." },
+      { title: 'Honestedat', description: "PLACEHOLDER — descriu el compromís de l'estudi amb parlar clar." },
+    ],
   },
   contact: {
     eyebrow: 'Contacte',
@@ -710,6 +803,8 @@ const ca: Dictionary = {
     lastUpdated: 'Última actualització',
     moreDocuments: 'Més documents',
   },
+  stats: { heading: 'En xifres' },
+  viewMore: "Veure'n més",
 }
 
 const dictionaries: Record<Locale, Dictionary> = { en, es, ca }
