@@ -17,38 +17,38 @@
     --card-foreground: #0A0A0A;
     --popover: #FFFFFF;
     --popover-foreground: #0A0A0A;
-    --primary: #7C3AED;
+    --primary: #2E83E6;
     --primary-foreground: #FFFFFF;
     --secondary: #F3F4F6;
     --secondary-foreground: #0A0A0A;
     --muted: #F3F4F6;
     --muted-foreground: #6B7280;
-    --accent: #7C3AED;
+    --accent: #2E83E6;
     --accent-foreground: #FFFFFF;
     --destructive: #EF4444;
     --destructive-foreground: #FFFFFF;
     --border: #E5E7EB;
     --input: #F3F4F6;
-    --ring: #7C3AED;
-    --chart-1: #7C3AED;
-    --chart-2: #8B5CF6;
-    --chart-3: #A78BFA;
-    --chart-4: #6D28D9;
-    --chart-5: #5B21B6;
+    --ring: #2E83E6;
+    --chart-1: #2E83E6;
+    --chart-2: #3D8BFF;
+    --chart-3: #7CB2FF;
+    --chart-4: #1D6FD0;
+    --chart-5: #22D3EE;
     --radius: 0rem;
-    --glow: #7C3AED;
+    --glow: #2E83E6;
 
     /* Overlay / decorative colors for inline styles */
     --overlay-text: rgba(0, 0, 0, 0.03);
     --overlay-border: rgba(0, 0, 0, 0.08);
-    --glow-purple: rgba(124, 58, 237, 0.08);
-    --glow-purple-strong: rgba(124, 58, 237, 0.15);
-    --glow-cyan: rgba(6, 182, 212, 0.06);
-    --glow-cyan-strong: rgba(6, 182, 212, 0.12);
-    --grid-color: rgba(124, 58, 237, 0.04);
-    --gradient-accent-1: #7C3AED;
-    --gradient-accent-2: #A78BFA;
-    --gradient-accent-3: #06B6D4;
+    --glow-purple: rgba(46, 131, 230, 0.08);
+    --glow-purple-strong: rgba(46, 131, 230, 0.15);
+    --glow-cyan: rgba(34, 211, 238, 0.06);
+    --glow-cyan-strong: rgba(34, 211, 238, 0.12);
+    --grid-color: rgba(46, 131, 230, 0.04);
+    --gradient-accent-1: #2E83E6;
+    --gradient-accent-2: #7CB2FF;
+    --gradient-accent-3: #22D3EE;
     --stroke-muted: rgba(107, 114, 128, 0.3);
 
     color-scheme: light;
@@ -62,37 +62,37 @@
     --card-foreground: #FAFAFA;
     --popover: #0A0A0A;
     --popover-foreground: #FAFAFA;
-    --primary: #8B5CF6;
+    --primary: #5AA2FF;
     --primary-foreground: #FFFFFF;
     --secondary: #111111;
     --secondary-foreground: #FAFAFA;
     --muted: #1A1A1A;
     --muted-foreground: #666666;
-    --accent: #8B5CF6;
+    --accent: #5AA2FF;
     --accent-foreground: #FFFFFF;
     --destructive: #EF4444;
     --destructive-foreground: #FFFFFF;
     --border: #222222;
     --input: #1A1A1A;
-    --ring: #8B5CF6;
-    --chart-1: #8B5CF6;
-    --chart-2: #A78BFA;
-    --chart-3: #C4B5FD;
-    --chart-4: #7C3AED;
-    --chart-5: #6D28D9;
-    --glow: #8B5CF6;
+    --ring: #5AA2FF;
+    --chart-1: #5AA2FF;
+    --chart-2: #7CB2FF;
+    --chart-3: #A9CEFF;
+    --chart-4: #2E83E6;
+    --chart-5: #22D3EE;
+    --glow: #5AA2FF;
 
     /* Overlay / decorative colors for inline styles */
     --overlay-text: rgba(255, 255, 255, 0.02);
     --overlay-border: rgba(255, 255, 255, 0.1);
-    --glow-purple: rgba(139, 92, 246, 0.4);
-    --glow-purple-strong: rgba(139, 92, 246, 0.5);
-    --glow-cyan: rgba(6, 182, 212, 0.3);
-    --glow-cyan-strong: rgba(6, 182, 212, 0.6);
-    --grid-color: rgba(139, 92, 246, 0.03);
-    --gradient-accent-1: #8B5CF6;
-    --gradient-accent-2: #A78BFA;
-    --gradient-accent-3: #06B6D4;
+    --glow-purple: rgba(90, 162, 255, 0.4);
+    --glow-purple-strong: rgba(90, 162, 255, 0.5);
+    --glow-cyan: rgba(34, 211, 238, 0.3);
+    --glow-cyan-strong: rgba(34, 211, 238, 0.6);
+    --grid-color: rgba(90, 162, 255, 0.03);
+    --gradient-accent-1: #5AA2FF;
+    --gradient-accent-2: #7CB2FF;
+    --gradient-accent-3: #22D3EE;
     --stroke-muted: rgba(128, 128, 128, 0.3);
 
     color-scheme: dark;
@@ -391,6 +391,31 @@
   50% { transform: translate3d(-8%, -1%, 0) scale(1.04); }
   100% { transform: translate3d(8%, 3%, 0) scale(1.22); }
 }
+
+/* Contact: small white particles, in place, gentle twinkle */
+@keyframes contact-particle-twinkle {
+  0%, 100% { opacity: var(--p-min, 0.1); }
+  50% { opacity: var(--p-op, 0.5); }
+}
+
+/* Contact: strong light behind the V13, gentle breathe */
+@keyframes contact-light-pulse {
+  0%, 100% { opacity: 0.78; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+/* Contact: V13 outline draws itself in, then rests fully drawn */
+@keyframes contact-logo-drawin {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Contact: glow breathing on the V13 outline halo (opacity only — no CSS filter,
+   so no square GPU-compositing artefact) */
+@keyframes contact-logo-glow {
+  0%, 100% { opacity: 0.22; }
+  50% { opacity: 0.55; }
+}
 .hero-smoke-1 {
   background:
     radial-gradient(40% 36% at 38% 42%, rgba(165, 182, 212, 0.16) 0%, transparent 62%),
@@ -416,6 +441,28 @@
   box-shadow: 0 0 8px 2px rgba(190, 215, 255, 0.85);
   transform: translate(-50%, -50%) rotate(var(--a, 0deg))
     translateX(calc(var(--d, 0px) * var(--burst, 0)));
+}
+
+/* Process blueprint timeline nodes */
+.bp-node {
+  background: rgba(120, 150, 210, calc(0.22 + 0.78 * var(--on, 0)));
+  border: 1px solid rgba(150, 195, 255, calc(0.35 + 0.65 * var(--on, 0)));
+  box-shadow: 0 0 calc(2px + 13px * var(--on, 0)) calc(1px + 2px * var(--on, 0))
+    rgba(140, 190, 255, calc(0.7 * var(--on, 0)));
+}
+.bp-label::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: calc(18px * var(--on, 0));
+  height: 1px;
+  background: rgba(150, 195, 255, calc(0.5 * var(--on, 0)));
+}
+.bp-label[style*="left"]::before {
+  right: 100%;
+}
+.bp-label[style*="right"]::before {
+  left: 100%;
 }
 
 /* Border animation */

@@ -113,7 +113,7 @@ export function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#070a0e]/80 py-20"
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#070a0e]/80"
     >
       <ServicesBackdrop />
 

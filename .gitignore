@@ -19,3 +19,6 @@ node_modules/
 *.tsbuildinfo
 # Superpowers brainstorm companion
 .superpowers/
+
+# Scratch screenshots/scripts
+.tmp_specs2/
