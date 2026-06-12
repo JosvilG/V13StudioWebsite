@@ -7,6 +7,41 @@ import { ThemeLogo } from "@/components/theme-logo"
 import { useT, useLocale } from "@/components/i18n-provider"
 import { locales, localeNames } from "@/lib/i18n/config"
 
+const linkCls =
+  "text-sm text-white/55 hover:text-[#7ca8ff] transition-colors duration-300"
+const headingCls =
+  "mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-white/35"
+
+function Column({
+  heading,
+  links,
+}: {
+  heading: string
+  links: { label: string; href: string; external?: boolean }[]
+}) {
+  return (
+    <div>
+      <p className={headingCls}>{heading}</p>
+      <ul className="space-y-2.5">
+        {links.map((l) => (
+          <li key={l.label}>
+            <a
+              href={l.href}
+              aria-label={l.label}
+              {...(l.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className={linkCls}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export function Footer() {
   const t = useT()
   const locale = useLocale()
@@ -40,6 +75,7 @@ export function Footer() {
     { label: t.nav.blog, href: `/${locale}/blog` },
     { label: t.nav.tools, href: "https://tools.v13studio.com", external: true },
   ]
+  // TODO: replace "#" with real social URLs (pending owner setup)
   const socialLinks = ["LinkedIn", "GitHub", "Twitter", "Dribbble"].map((l) => ({
     label: l,
     href: "#",
@@ -50,38 +86,6 @@ export function Footer() {
     { label: t.footer.cookies, href: `/${locale}/legal/cookies` },
     { label: t.footer.terms, href: `/${locale}/legal/terms` },
   ]
-
-  const linkCls =
-    "text-sm text-white/55 hover:text-[#7ca8ff] transition-colors duration-300"
-  const headingCls =
-    "mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-white/35"
-
-  const Column = ({
-    heading,
-    links,
-  }: {
-    heading: string
-    links: { label: string; href: string; external?: boolean }[]
-  }) => (
-    <div>
-      <p className={headingCls}>{heading}</p>
-      <ul className="space-y-2.5">
-        {links.map((l) => (
-          <li key={l.label}>
-            <a
-              href={l.href}
-              {...(l.external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-              className={linkCls}
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
 
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-black">
@@ -100,6 +104,7 @@ export function Footer() {
               >
                 v13studio@v13studio.com
                 <svg
+                  aria-hidden="true"
                   className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"
                   viewBox="0 0 24 24"
