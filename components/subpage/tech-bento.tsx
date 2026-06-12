@@ -129,20 +129,19 @@ const ICONS: Record<string, Icon> = {
   'Claude Agent SDK': SiClaude,
 }
 
-// Bento rhythm: the two smaller groups share the top row, Support spans full width.
-const SPANS = ['lg:col-span-2', 'lg:col-span-2', 'lg:col-span-4']
-
 export function TechBento({
   groups,
 }: {
-  groups: { category: string; note: string; items: string[] }[]
+  groups: { category: string; items: string[] }[]
 }) {
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+    <div className="grid grid-flow-dense grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {groups.map((group, i) => (
         <div
           key={group.category}
-          className={`rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-[#9268f6]/40 sm:p-7 ${SPANS[i] ?? ''}`}
+          className={`rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-[#9268f6]/40 sm:p-7 ${
+            group.items.length >= 8 ? 'lg:col-span-2' : 'lg:col-span-1'
+          }`}
         >
           <div className="flex items-baseline gap-3">
             <span className="font-mono text-[11px] text-[#9a82d6]">
@@ -151,9 +150,6 @@ export function TechBento({
             <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-white">
               {group.category}
             </h3>
-            <span className="font-mono text-[10px] lowercase tracking-[0.12em] text-white/40">
-              — {group.note}
-            </span>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-7">

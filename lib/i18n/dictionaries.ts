@@ -35,7 +35,7 @@ export interface Dictionary {
     faqHeading: string
     faq: { q: string; a: string }[]
     techHeading: string
-    techGroups: { category: string; note: string; items: string[] }[]
+    techGroups: { category: string; items: string[] }[]
   }
   process: {
     eyebrow: string
@@ -220,21 +220,14 @@ const en: Dictionary = {
     ],
     techHeading: 'Technologies we use',
     techGroups: [
-      {
-        category: 'Core',
-        note: 'essentials',
-        items: ['TypeScript', 'JavaScript', 'HTML', 'CSS', 'React', 'React Native', 'Angular', 'Next.js', 'Expo', 'Node.js', 'NestJS', 'PostgreSQL', 'Firebase', 'Supabase'],
-      },
-      {
-        category: 'Key architecture',
-        note: 'very important',
-        items: ['Prisma', 'Drizzle ORM', 'Zustand', 'MobX', 'TanStack Query', 'Zod', 'React Hook Form', 'Tailwind CSS', 'Material UI', 'Astro', 'Railway', 'Vercel', 'AWS S3', 'Cloudflare DNS'],
-      },
-      {
-        category: 'Support',
-        note: 'useful but replaceable',
-        items: ['Express', 'Sentry', 'PostHog', 'Grafana Cloud', 'Pino', 'Jest', 'Vitest', 'Playwright', 'Detox', 'Testing Library', 'Supertest', 'Framer Motion', 'Reanimated', 'i18next', 'next-intl', 'React Navigation', 'react-router-dom', 'NativeWind', 'Emotion', 'MMKV', 'AsyncStorage', 'Swagger', 'class-validator', 'ESLint', 'Prettier', 'GitHub Actions', 'Twilio', 'Resend', 'AdMob', 'Redis', 'Anthropic API', 'Claude Agent SDK'],
-      },
+      { category: 'Languages', items: ['TypeScript', 'JavaScript', 'HTML', 'CSS'] },
+      { category: 'Frontend', items: ['React', 'Angular', 'Next.js', 'Astro', 'Tailwind CSS', 'Material UI', 'Emotion', 'react-router-dom', 'TanStack Query', 'Zustand', 'MobX', 'React Hook Form', 'Framer Motion', 'i18next', 'next-intl'] },
+      { category: 'Mobile', items: ['React Native', 'Expo', 'Reanimated', 'React Navigation', 'NativeWind', 'MMKV', 'AsyncStorage', 'Detox', 'AdMob'] },
+      { category: 'Backend', items: ['Node.js', 'NestJS', 'Express', 'Zod', 'class-validator', 'Swagger'] },
+      { category: 'Data & Storage', items: ['PostgreSQL', 'Redis', 'Prisma', 'Drizzle ORM', 'Supabase', 'Firebase', 'AWS S3'] },
+      { category: 'DevOps & CI/CD', items: ['Vercel', 'Railway', 'Cloudflare DNS', 'GitHub Actions', 'ESLint', 'Prettier'] },
+      { category: 'Testing', items: ['Jest', 'Vitest', 'Playwright', 'Testing Library', 'Supertest'] },
+      { category: 'Observability & APIs', items: ['Sentry', 'PostHog', 'Grafana Cloud', 'Pino', 'Twilio', 'Resend', 'Anthropic API', 'Claude Agent SDK'] },
     ],
   },
   process: {
@@ -471,21 +464,14 @@ const es: Dictionary = {
     ],
     techHeading: 'Tecnologías que usamos',
     techGroups: [
-      {
-        category: 'Núcleo',
-        note: 'imprescindibles',
-        items: ['TypeScript', 'JavaScript', 'HTML', 'CSS', 'React', 'React Native', 'Angular', 'Next.js', 'Expo', 'Node.js', 'NestJS', 'PostgreSQL', 'Firebase', 'Supabase'],
-      },
-      {
-        category: 'Arquitectura clave',
-        note: 'muy importantes',
-        items: ['Prisma', 'Drizzle ORM', 'Zustand', 'MobX', 'TanStack Query', 'Zod', 'React Hook Form', 'Tailwind CSS', 'Material UI', 'Astro', 'Railway', 'Vercel', 'AWS S3', 'Cloudflare DNS'],
-      },
-      {
-        category: 'Soporte',
-        note: 'útiles pero sustituibles',
-        items: ['Express', 'Sentry', 'PostHog', 'Grafana Cloud', 'Pino', 'Jest', 'Vitest', 'Playwright', 'Detox', 'Testing Library', 'Supertest', 'Framer Motion', 'Reanimated', 'i18next', 'next-intl', 'React Navigation', 'react-router-dom', 'NativeWind', 'Emotion', 'MMKV', 'AsyncStorage', 'Swagger', 'class-validator', 'ESLint', 'Prettier', 'GitHub Actions', 'Twilio', 'Resend', 'AdMob', 'Redis', 'Anthropic API', 'Claude Agent SDK'],
-      },
+      { category: 'Lenguajes', items: ['TypeScript', 'JavaScript', 'HTML', 'CSS'] },
+      { category: 'Frontend', items: ['React', 'Angular', 'Next.js', 'Astro', 'Tailwind CSS', 'Material UI', 'Emotion', 'react-router-dom', 'TanStack Query', 'Zustand', 'MobX', 'React Hook Form', 'Framer Motion', 'i18next', 'next-intl'] },
+      { category: 'Móvil', items: ['React Native', 'Expo', 'Reanimated', 'React Navigation', 'NativeWind', 'MMKV', 'AsyncStorage', 'Detox', 'AdMob'] },
+      { category: 'Backend', items: ['Node.js', 'NestJS', 'Express', 'Zod', 'class-validator', 'Swagger'] },
+      { category: 'Datos y almacenamiento', items: ['PostgreSQL', 'Redis', 'Prisma', 'Drizzle ORM', 'Supabase', 'Firebase', 'AWS S3'] },
+      { category: 'DevOps y CI/CD', items: ['Vercel', 'Railway', 'Cloudflare DNS', 'GitHub Actions', 'ESLint', 'Prettier'] },
+      { category: 'Testing', items: ['Jest', 'Vitest', 'Playwright', 'Testing Library', 'Supertest'] },
+      { category: 'Observabilidad y APIs', items: ['Sentry', 'PostHog', 'Grafana Cloud', 'Pino', 'Twilio', 'Resend', 'Anthropic API', 'Claude Agent SDK'] },
     ],
   },
   process: {
@@ -722,21 +708,14 @@ const ca: Dictionary = {
     ],
     techHeading: 'Tecnologies que fem servir',
     techGroups: [
-      {
-        category: 'Nucli',
-        note: 'imprescindibles',
-        items: ['TypeScript', 'JavaScript', 'HTML', 'CSS', 'React', 'React Native', 'Angular', 'Next.js', 'Expo', 'Node.js', 'NestJS', 'PostgreSQL', 'Firebase', 'Supabase'],
-      },
-      {
-        category: 'Arquitectura clau',
-        note: 'molt importants',
-        items: ['Prisma', 'Drizzle ORM', 'Zustand', 'MobX', 'TanStack Query', 'Zod', 'React Hook Form', 'Tailwind CSS', 'Material UI', 'Astro', 'Railway', 'Vercel', 'AWS S3', 'Cloudflare DNS'],
-      },
-      {
-        category: 'Suport',
-        note: 'útils però substituïbles',
-        items: ['Express', 'Sentry', 'PostHog', 'Grafana Cloud', 'Pino', 'Jest', 'Vitest', 'Playwright', 'Detox', 'Testing Library', 'Supertest', 'Framer Motion', 'Reanimated', 'i18next', 'next-intl', 'React Navigation', 'react-router-dom', 'NativeWind', 'Emotion', 'MMKV', 'AsyncStorage', 'Swagger', 'class-validator', 'ESLint', 'Prettier', 'GitHub Actions', 'Twilio', 'Resend', 'AdMob', 'Redis', 'Anthropic API', 'Claude Agent SDK'],
-      },
+      { category: 'Llenguatges', items: ['TypeScript', 'JavaScript', 'HTML', 'CSS'] },
+      { category: 'Frontend', items: ['React', 'Angular', 'Next.js', 'Astro', 'Tailwind CSS', 'Material UI', 'Emotion', 'react-router-dom', 'TanStack Query', 'Zustand', 'MobX', 'React Hook Form', 'Framer Motion', 'i18next', 'next-intl'] },
+      { category: 'Mòbil', items: ['React Native', 'Expo', 'Reanimated', 'React Navigation', 'NativeWind', 'MMKV', 'AsyncStorage', 'Detox', 'AdMob'] },
+      { category: 'Backend', items: ['Node.js', 'NestJS', 'Express', 'Zod', 'class-validator', 'Swagger'] },
+      { category: 'Dades i emmagatzematge', items: ['PostgreSQL', 'Redis', 'Prisma', 'Drizzle ORM', 'Supabase', 'Firebase', 'AWS S3'] },
+      { category: 'DevOps i CI/CD', items: ['Vercel', 'Railway', 'Cloudflare DNS', 'GitHub Actions', 'ESLint', 'Prettier'] },
+      { category: 'Testing', items: ['Jest', 'Vitest', 'Playwright', 'Testing Library', 'Supertest'] },
+      { category: 'Observabilitat i APIs', items: ['Sentry', 'PostHog', 'Grafana Cloud', 'Pino', 'Twilio', 'Resend', 'Anthropic API', 'Claude Agent SDK'] },
     ],
   },
   process: {
