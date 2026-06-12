@@ -51,7 +51,7 @@ export default async function WorkPage({
     <>
       <main className="relative min-h-screen overflow-hidden bg-[#04060a] text-white">
         <WorkBackdrop />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
+        <div className="subpage-enter relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
           <PageHero
             locale={locale}
             eyebrow={dict.portfolio.eyebrow}

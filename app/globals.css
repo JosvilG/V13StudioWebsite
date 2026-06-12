@@ -476,3 +476,29 @@
 .border-animate {
   animation: border-dance 4s linear infinite;
 }
+
+/* Route transition — gentle opacity fade on every navigation. Opacity only so it
+   never breaks `position: fixed` / scroll math on the choreographed homepage. */
+@keyframes route-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.route-fade {
+  animation: route-fade 0.45s ease-out both;
+}
+
+/* Subpage entrance — slide up + fade. Applied only on detail pages (no fixed
+   descendants), so the transform is safe here. */
+@keyframes subpage-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.subpage-enter {
+  animation: subpage-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-fade,
+  .subpage-enter {
+    animation: none;
+  }
+}

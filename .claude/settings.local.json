@@ -8,7 +8,15 @@
       "Bash(dir \"C:\\\\Users\\\\josvi\\\\Desktop\\\\_JVG Proyectos\\\\V13 Studio\\\\Logos\")",
       "Bash(dir \"E:\\\\Repos\\\\V13StudioWeb\\\\public\")",
       "Bash(cp \"C:\\\\Users\\\\josvi\\\\Desktop\\\\_JVG Proyectos\\\\V13 Studio\\\\Logos\\\\v13_dark_1c1e40_512.png\" \"E:\\\\Repos\\\\V13StudioWeb\\\\public\\\\logo-dark.png\")",
-      "Bash(cp \"C:\\\\Users\\\\josvi\\\\Desktop\\\\_JVG Proyectos\\\\V13 Studio\\\\Logos\\\\v13_light_efebee_512.png\" \"E:\\\\Repos\\\\V13StudioWeb\\\\public\\\\logo-light.png\")"
+      "Bash(cp \"C:\\\\Users\\\\josvi\\\\Desktop\\\\_JVG Proyectos\\\\V13 Studio\\\\Logos\\\\v13_light_efebee_512.png\" \"E:\\\\Repos\\\\V13StudioWeb\\\\public\\\\logo-light.png\")",
+      "Bash(curl -sL \"https://lh3.googleusercontent.com/aida/AP1WRLvoJJY0uwk1ctdRa4-mBlyqKGgJZEM2JVKe2uaP7Xct6Gd78NZ76pjsiidFho0RGxWmKIhJvf4Oh4t0Lhl8rxmJdG97Efy6dEfcgOdkCQXj4vB6qym4cRuc14koeEdqZqv8ZnlnhbFrIDjRFbzV64aJBXGFj0-ZAvzO3_sgmqgZh05cUOXnzxSgX2BVanyaqzMC7HWPHkXxzEGVoncytEyCu4OOz7ZoQ17DzAuQpZFIWCOzEurbSB_HRFU\" -o home2.png)",
+      "Bash(curl -sL \"https://lh3.googleusercontent.com/aida/AP1WRLse3ktIJ0YKqmHG-0bCu1SEjPn-A8luvh4CCVaChecer7MSesCnZ6sVwfbCv1b8BC92le-NF_5qBG1AXseEtE4YDFvCsXpR28IKsevFko4nP7SSg60tsOodFH-yOm-FTV99QgESlQVa56NvtXM8jP-WzYTobMMpEEr2A2e4PL4IdgBJRRnAzG315fdBh4VPu7e59psEcDxnkWEBaCm5CVuN9o0d-yCuhsTdn4da-BMDrZic9faead1Kiw\" -o home3.png)",
+      "Bash(curl -sL \"https://lh3.googleusercontent.com/aida/AP1WRLtODEnmEGyQ_i-F_E00hTk2GcgdnT12mI-rKGYcOcRIzHDqMIOHQcxo-UoNShyNjrZ1tE320Jbvh-iduvQqScoV94vRqeFti-QSFy5kq2EpymFdf6B5lAQlN3g2WyPQ1OWgo_nbKwhPSmDCZF8uYofNYoHACLNA8z_qBQWBmYxAnc-jngB-9y3AexlahvhB1ZlA7MTaVbe9VviJ7waC_FiosP6edb6g-mB7PyTp-0PCps4c7Nx9QZCfpxY\" -o home4.png)",
+      "Bash(curl -sL https://lh3.googleusercontent.com/aida/AP1WRLu7dlofqkK07hij966YVwHvlSzmZVDvKvIvN9EGiRVll_tIK4OYuHB7smPJTJvTU7fTw13cnVXJlQ_QVoV9XUcQVk7G9D9jxQmsPaaZfZSMkFNY-V798vhjMRAMUFX86d2ilbcUwtKBPeO2ZItNFGA9eWjd02rdZ-x8EcZuo750VLY8EyaJ2cAmszr4yk0Ql1YZVqtsZk30Vf1MvhnN9p9vQD62hLWV6QHHRWl28_51N92Ei4xJU64MV_o -o D:/repos/V13StudioWebsite/.stitch_tmp/home5.png)",
+      "Bash(curl -sL https://lh3.googleusercontent.com/aida/AP1WRLs6saFbrHZdjlPJUevnMhkRXDGuEw2eU7uawPdG-iEYh_5IFeG-9dDGqH7-YGirN-zqdrIkMgqeTxxOmJ288ZZzcBRXEwV8OCRcVOXsJVCv1stn3CikfNGwWQ6gcZmInev09p7IFQH2P96nVMyfj4UTgdVbL_J96DLlcBAUNbsnjc5ZNKYzdTHrVUM-v1eiD3OQCAJX_3nulP-Ek6Sg3vFw7YplvVRNY-TToYmfXAsAt3uGqXkSDpaWNA -o D:/repos/V13StudioWebsite/.stitch_tmp/home6.png)",
+      "Bash(curl -sL https://lh3.googleusercontent.com/aida/AP1WRLtWPNuRrpg-SIwTp7u8jV__0cg_hpR8yzD2vJxEU7EXsJbWvkR6v5FEAqZeA7PVBKJjOCLTixQRCFEAGSIvyMlVKnFnfqyhKf8lWEB64PjZJ6gR3YHxRRUy9ELnuswdLyBhFsOSsdeU-plEKd_-hoG8aPHsd5X2kO2G6rKRlGd6OsCc6LlgNL3b3tPh1C_2VUpHtOlbKVfvIM5YSwd1CqI8mu8wgR6uYpEIW9ww-t9sMws4_p-_WA9z52U -o D:/repos/V13StudioWebsite/.stitch_tmp/home7.png)",
+      "Bash(xxd D:/repos/V13StudioWebsite/lib/i18n/dictionaries.ts)",
+      "Bash(xxd)"
     ]
   }
 }

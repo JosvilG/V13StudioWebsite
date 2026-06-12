@@ -52,7 +52,7 @@ export default async function AboutPage({
     <>
       <main className="relative min-h-screen overflow-hidden bg-[#04060a] text-white">
         <AboutBackdrop />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
+        <div className="subpage-enter relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
           <PageHero locale={locale} eyebrow={a.eyebrow} title={a.title} intro={a.statement} />
 
           {/* Pillars */}
