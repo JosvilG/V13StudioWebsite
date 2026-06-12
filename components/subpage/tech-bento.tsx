@@ -104,19 +104,33 @@ const ICONS: Record<string, Icon> = {
   'OpenAI API': SiOpenai,
 }
 
+// Bento mosaic on a 4-column grid: two large 2×2 anchors (Frontend, Data) with
+// wide and small tiles packed around them via grid-flow-dense. Indexed to the
+// dictionary order (Languages, Frontend, Mobile, Backend, Data, DevOps, Testing,
+// Observability, AI) so it stays correct across locales.
+const SPANS = [
+  '', // Languages
+  'lg:col-span-2 lg:row-span-2', // Frontend
+  '', // Mobile
+  'lg:col-span-2', // Backend
+  'lg:col-span-2 lg:row-span-2', // Data & Storage
+  'lg:col-span-2', // DevOps & CI/CD
+  '', // Testing
+  'lg:col-span-2', // Observability & APIs
+  '', // AI
+]
+
 export function TechBento({
   groups,
 }: {
   groups: { category: string; items: string[] }[]
 }) {
   return (
-    <div className="grid grid-flow-dense grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid auto-rows-[minmax(170px,auto)] grid-flow-dense grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {groups.map((group, i) => (
         <div
           key={group.category}
-          className={`rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-[#9268f6]/40 sm:p-7 ${
-            group.items.length >= 8 ? 'lg:col-span-2' : 'lg:col-span-1'
-          }`}
+          className={`flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-[#9268f6]/40 sm:p-7 ${SPANS[i] ?? ''}`}
         >
           <div className="flex items-baseline gap-3">
             <span className="font-mono text-[11px] text-[#9a82d6]">
