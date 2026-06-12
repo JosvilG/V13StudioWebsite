@@ -54,7 +54,7 @@ export function ProjectsBento({
               }
             }}
             className={cn(
-              'flex h-full cursor-pointer flex-col rounded-[22px] border border-white/20 bg-white/[0.08] p-7 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-colors duration-300 hover:border-[#9268f6]/40',
+              'flex h-full cursor-pointer flex-col rounded-[22px] border border-white/20 bg-white/[0.08] p-7 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-[border-color,grid-column] duration-300 hover:border-[#9268f6]/40',
               open ? 'col-span-1 sm:col-span-2 lg:col-span-4 lg:row-span-1' : SPANS[i % SPANS.length],
             )}
           >
@@ -82,16 +82,17 @@ export function ProjectsBento({
               </span>
             </div>
 
-            {/* collapsed: basic info */}
-            {!open && (
-              <>
+            {/* collapsed: basic info — collapses away (grid-rows 1fr→0fr) when open */}
+            <div
+              className={cn(
+                'grid transition-all duration-500 ease-out',
+                open ? 'mt-0 grid-rows-[0fr] opacity-0' : 'mt-4 flex-1 grid-rows-[1fr] opacity-100',
+              )}
+            >
+              <div className="overflow-hidden">
                 {p.description ? (
-                  <p className="mt-4 line-clamp-3 flex-1 text-sm leading-relaxed text-white/55">
-                    {p.description}
-                  </p>
-                ) : (
-                  <div className="flex-1" />
-                )}
+                  <p className="line-clamp-3 text-sm leading-relaxed text-white/55">{p.description}</p>
+                ) : null}
                 {p.tags.length > 0 ? (
                   <div className="mt-5 flex flex-wrap gap-2">
                     {p.tags.slice(0, 4).map((tag) => (
@@ -104,12 +105,18 @@ export function ProjectsBento({
                     ))}
                   </div>
                 ) : null}
-              </>
-            )}
+              </div>
+            </div>
 
-            {/* expanded: full details */}
-            {open && (
-              <div className="mt-6 grid gap-8 border-t border-white/10 pt-6 lg:grid-cols-[0.8fr_1.2fr]">
+            {/* expanded: full details — reveals (grid-rows 0fr→1fr) when open */}
+            <div
+              className={cn(
+                'grid transition-all duration-500 ease-out',
+                open ? 'mt-6 grid-rows-[1fr] opacity-100' : 'mt-0 grid-rows-[0fr] opacity-0',
+              )}
+            >
+              <div className="overflow-hidden">
+                <div className="grid gap-8 border-t border-white/10 pt-6 lg:grid-cols-[0.8fr_1.2fr]">
                 {/* meta column */}
                 <div>
                   {p.client || p.role ? (
@@ -181,8 +188,9 @@ export function ProjectsBento({
                     </div>
                   ) : null}
                 </div>
+                </div>
               </div>
-            )}
+            </div>
           </article>
         )
       })}
