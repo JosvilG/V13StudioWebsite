@@ -207,7 +207,12 @@ export function Work({ projects }: { projects: SheetProject[] }) {
 
       // about content + video
       if (aboutOverlayRef.current) aboutOverlayRef.current.style.opacity = String(openP)
-      if (aboutContentRef.current) aboutContentRef.current.style.opacity = String(aboutReveal)
+      if (aboutContentRef.current) {
+        aboutContentRef.current.style.opacity = String(aboutReveal)
+        // Only catch clicks once the Nosotros content is actually visible — otherwise
+        // this full-screen z-30 layer sits invisibly over the projects and blocks them.
+        aboutContentRef.current.style.pointerEvents = aboutReveal > 0.5 ? "auto" : "none"
+      }
       if (video && duration > 0) {
         const target = videoLocal * (duration - 0.05)
         if (Math.abs(video.currentTime - target) > 0.03) video.currentTime = target
@@ -480,14 +485,14 @@ export function Work({ projects }: { projects: SheetProject[] }) {
       </div>
 
       {/* ── PROCESS title ── */}
-      <div ref={titleRef} className="absolute inset-x-0 top-[8vh] z-30 text-center" style={{ opacity: 0 }}>
+      <div ref={titleRef} className="pointer-events-none absolute inset-x-0 top-[8vh] z-30 text-center" style={{ opacity: 0 }}>
         <h2 className="text-3xl font-semibold uppercase tracking-[0.4em] text-white sm:text-4xl md:text-5xl">
           {t.process.headingAccent}
         </h2>
       </div>
 
       {/* ── PROCESS central timeline ── */}
-      <div ref={lineWrapRef} className="absolute left-1/2 top-[27%] z-30 h-[52%] w-0" style={{ opacity: 0 }}>
+      <div ref={lineWrapRef} className="pointer-events-none absolute left-1/2 top-[27%] z-30 h-[52%] w-0" style={{ opacity: 0 }}>
         <div
           ref={railRef}
           className="absolute left-[-1.5px] top-0 h-full w-[3px]"
@@ -563,7 +568,7 @@ export function Work({ projects }: { projects: SheetProject[] }) {
       </div>
 
       {/* ── PROCESS footer ── */}
-      <div ref={footerRef} className="absolute inset-x-0 bottom-[6vh] z-30 text-center" style={{ opacity: 0 }}>
+      <div ref={footerRef} className="pointer-events-none absolute inset-x-0 bottom-[6vh] z-30 text-center" style={{ opacity: 0 }}>
         <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-white/35 sm:text-[11px]">
           V13 Studio — Next-Generation Software &amp; Digital Products
         </p>
@@ -587,7 +592,7 @@ export function Work({ projects }: { projects: SheetProject[] }) {
       {/* ── NOSOTROS content (over the revealed video) ── */}
       <div
         ref={aboutContentRef}
-        className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center"
+        className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center"
         style={{ opacity: 0 }}
       >
         <div className="mx-auto flex max-w-4xl flex-col items-center">
