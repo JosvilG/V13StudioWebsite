@@ -502,3 +502,15 @@
     animation: none;
   }
 }
+
+/* View Transitions — smooth morph of the project card box (size + reflow) when it
+   expands/collapses. */
+::view-transition-group(*) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*) {
+    animation-duration: 0.01ms;
+  }
+}

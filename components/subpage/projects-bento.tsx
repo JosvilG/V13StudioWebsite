@@ -1,8 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
+import { flushSync } from 'react-dom'
 import { cn } from '@/lib/utils'
 import type { SheetProject } from '@/lib/content'
+
+/**
+ * Toggle state inside a View Transition so the browser animates the card's box
+ * resize (and the surrounding reflow) — not just the inner content. Falls back to
+ * an instant state change where the API is unsupported.
+ */
+function withViewTransition(update: () => void) {
+  const doc = document as Document & {
+    startViewTransition?: (cb: () => void) => void
+  }
+  if (doc.startViewTransition) {
+    doc.startViewTransition(() => flushSync(update))
+  } else {
+    update()
+  }
+}
 
 interface Labels {
   client: string
@@ -46,15 +63,16 @@ export function ProjectsBento({
             role="button"
             tabIndex={0}
             aria-expanded={open}
-            onClick={() => setOpenId(open ? null : p.id)}
+            onClick={() => withViewTransition(() => setOpenId(open ? null : p.id))}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                setOpenId(open ? null : p.id)
+                withViewTransition(() => setOpenId(open ? null : p.id))
               }
             }}
+            style={{ viewTransitionName: `proj-${i}` } as CSSProperties}
             className={cn(
-              'flex h-full cursor-pointer flex-col rounded-[22px] border border-white/20 bg-white/[0.08] p-7 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-[border-color,grid-column] duration-300 hover:border-[#9268f6]/40',
+              'flex h-full cursor-pointer flex-col rounded-[22px] border border-white/20 bg-white/[0.08] p-7 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-colors duration-300 hover:border-[#9268f6]/40',
               open ? 'col-span-1 sm:col-span-2 lg:col-span-4 lg:row-span-1' : SPANS[i % SPANS.length],
             )}
           >
