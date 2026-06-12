@@ -7,6 +7,7 @@ import { PageHero } from '@/components/subpage/page-hero'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { WorkGrid } from '@/components/subpage/work-grid'
+import { WorkBackdrop } from '@/components/subpage/backdrops'
 import { Footer } from '@/components/sections/footer'
 
 export const dynamicParams = true
@@ -48,8 +49,9 @@ export default async function WorkPage({
 
   return (
     <>
-      <main className="min-h-screen bg-black text-white">
-        <div className="mx-auto max-w-6xl px-6 py-24 sm:py-28">
+      <main className="relative min-h-screen overflow-hidden bg-[#04060a] text-white">
+        <WorkBackdrop />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
           <PageHero
             locale={locale}
             eyebrow={dict.portfolio.eyebrow}

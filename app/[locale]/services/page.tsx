@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { Marquee } from '@/components/marquee'
+import { ServicesBackdrop } from '@/components/sections/services-backdrop'
 import { Footer } from '@/components/sections/footer'
 
 export const dynamicParams = true
@@ -48,8 +49,9 @@ export default async function ServicesPage({
 
   return (
     <>
-      <main className="min-h-screen bg-black text-white">
-        <div className="mx-auto max-w-6xl px-6 py-24 sm:py-28">
+      <main className="relative min-h-screen overflow-hidden bg-[#070a0e] text-white">
+        <ServicesBackdrop />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
           <PageHero
             locale={locale}
             eyebrow={s.eyebrow}
