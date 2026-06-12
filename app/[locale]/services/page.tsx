@@ -2,11 +2,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isLocale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
-import Link from 'next/link'
+import { PageHero } from '@/components/subpage/page-hero'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
-import { ServicesHero } from '@/components/subpage/services-hero'
-import { ScrollReveal } from '@/components/scroll-reveal'
+import { Reveal } from '@/components/subpage/reveal'
 import { Marquee } from '@/components/marquee'
 import { ServicesBackdrop } from '@/components/sections/services-backdrop'
 import { Footer } from '@/components/sections/footer'
@@ -51,53 +50,45 @@ export default async function ServicesPage({
   return (
     <>
       <main className="relative min-h-screen bg-[#070a0e] text-white">
-        <ServicesBackdrop />
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+          <ServicesBackdrop />
+        </div>
         <div className="subpage-enter relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
-          <Link
-            href={`/${locale}`}
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#9268f6]"
-          >
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            V13 Studio
-          </Link>
-
-          {/* Scroll crossfade hero — echoes the homepage Services section */}
-          <ServicesHero
-            statementHeading={s.statementHeading}
-            statementBody={s.statementBody}
-            stack={s.stack}
-            capHeading={`${s.headingTop} ${s.headingAccent}`}
+          <PageHero
+            locale={locale}
+            eyebrow={s.eyebrow}
+            title={`${s.headingTop} ${s.headingAccent}`}
+            intro={s.statementBody}
           />
 
           {/* Capabilities */}
-          <section className="mt-8">
-            <SectionHeading eyebrow={s.eyebrow} title={s.headingAccent} />
+          <Reveal className="mt-20">
+            <SectionHeading title={s.headingAccent} />
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {s.items.map((item, i) => (
-                <ScrollReveal key={item.title} delay={i * 60}>
-                  <article className="h-full border-l-2 border-white/10 pl-5 transition-colors duration-300 hover:border-[#9268f6]">
-                    <span className="font-mono text-[11px] text-[#9a82d6]">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="mt-2 text-base font-bold uppercase tracking-wide text-white">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/60">{item.description}</p>
-                  </article>
-                </ScrollReveal>
+                <article
+                  key={item.title}
+                  className="h-full border-l-2 border-white/10 pl-5 transition-colors duration-300 hover:border-[#9268f6]"
+                >
+                  <span className="font-mono text-[11px] text-[#9a82d6]">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="mt-2 text-base font-bold uppercase tracking-wide text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/60">{item.description}</p>
+                </article>
               ))}
             </div>
-          </section>
+          </Reveal>
 
           {/* Stack marquee */}
-          <section className="mt-24">
+          <Reveal className="mt-24">
             <Marquee items={s.stack} />
-          </section>
+          </Reveal>
 
           {/* How we work */}
-          <ScrollReveal className="mt-24">
+          <Reveal className="mt-24">
             <SectionHeading eyebrow={dict.process.eyebrow} title={s.howWeWorkHeading} />
             <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {dict.process.steps.map((step, i) => (
@@ -118,10 +109,10 @@ export default async function ServicesPage({
                 </li>
               ))}
             </ol>
-          </ScrollReveal>
+          </Reveal>
 
           {/* FAQ */}
-          <ScrollReveal className="mt-24">
+          <Reveal className="mt-24">
             <SectionHeading title={s.faqHeading} />
             <div className="divide-y divide-white/10 border-y border-white/10">
               {s.faq.map((item) => (
@@ -131,7 +122,7 @@ export default async function ServicesPage({
                 </div>
               ))}
             </div>
-          </ScrollReveal>
+          </Reveal>
 
           <CtaBand
             locale={locale}

@@ -6,7 +6,7 @@ import { getTeam, getStats } from '@/lib/content'
 import { PageHero } from '@/components/subpage/page-hero'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
-import { ScrollReveal } from '@/components/scroll-reveal'
+import { Reveal } from '@/components/subpage/reveal'
 import { AboutBackdrop } from '@/components/subpage/backdrops'
 import { Footer } from '@/components/sections/footer'
 
@@ -56,22 +56,20 @@ export default async function AboutPage({
           <PageHero locale={locale} eyebrow={a.eyebrow} title={a.title} intro={a.statement} />
 
           {/* Pillars */}
-          <section className="mt-20 grid gap-10 sm:grid-cols-3">
-            {a.pillars.map((pillar, i) => (
-              <ScrollReveal key={pillar.title} delay={i * 60}>
-                <div>
-                  <span className="mb-3 block h-px w-10 bg-[#9268f6]/70" />
-                  <h3 className="text-base font-bold uppercase tracking-[0.2em] text-white sm:text-lg">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">{pillar.description}</p>
-                </div>
-              </ScrollReveal>
+          <Reveal className="mt-20 grid gap-10 sm:grid-cols-3">
+            {a.pillars.map((pillar) => (
+              <div key={pillar.title}>
+                <span className="mb-3 block h-px w-10 bg-[#9268f6]/70" />
+                <h3 className="text-base font-bold uppercase tracking-[0.2em] text-white sm:text-lg">
+                  {pillar.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{pillar.description}</p>
+              </div>
             ))}
-          </section>
+          </Reveal>
 
           {/* Story */}
-          <section className="mt-24 max-w-3xl">
+          <Reveal className="mt-24 max-w-3xl">
             <h2 className="text-3xl font-light tracking-tight text-white sm:text-4xl" style={{ fontFamily: 'var(--font-serif)' }}>
               {a.headingTop} {a.headingAccent}
             </h2>
@@ -80,11 +78,11 @@ export default async function AboutPage({
             <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
               {a.location} · {a.founded}
             </p>
-          </section>
+          </Reveal>
 
           {/* Team (Sheets-backed; hidden if empty) */}
           {team.length > 0 && (
-            <section className="mt-24">
+            <Reveal className="mt-24">
               <SectionHeading title={a.teamHeading} />
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {team.map((member) => (
@@ -101,11 +99,11 @@ export default async function AboutPage({
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           {/* Values (placeholder copy — to be filled by owner) */}
-          <section className="mt-24">
+          <Reveal className="mt-24">
             <SectionHeading title={a.valuesHeading} />
             <div className="grid gap-8 sm:grid-cols-3">
               {a.values.map((value) => (
@@ -115,11 +113,11 @@ export default async function AboutPage({
                 </div>
               ))}
             </div>
-          </section>
+          </Reveal>
 
           {/* Stats (Sheets-backed; hidden if empty) */}
           {stats.length > 0 && (
-            <section className="mt-24">
+            <Reveal className="mt-24">
               <SectionHeading title={dict.stats.heading} />
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 {stats.map((stat) => (
@@ -133,7 +131,7 @@ export default async function AboutPage({
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           <CtaBand

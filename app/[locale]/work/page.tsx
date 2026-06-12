@@ -7,6 +7,7 @@ import { PageHero } from '@/components/subpage/page-hero'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { WorkGrid } from '@/components/subpage/work-grid'
+import { Reveal } from '@/components/subpage/reveal'
 import { WorkBackdrop } from '@/components/subpage/backdrops'
 import { Footer } from '@/components/sections/footer'
 
@@ -69,7 +70,7 @@ export default async function WorkPage({
           </section>
 
           {stats.length > 0 && (
-            <section className="mt-24">
+            <Reveal className="mt-24">
               <SectionHeading title={dict.stats.heading} />
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 {stats.map((stat) => (
@@ -83,7 +84,7 @@ export default async function WorkPage({
                   </div>
                 ))}
               </div>
-            </section>
+            </Reveal>
           )}
 
           <CtaBand

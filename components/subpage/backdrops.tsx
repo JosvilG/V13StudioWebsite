@@ -8,7 +8,7 @@
 /** Work atmosphere: dark base + blueprint grid + drifting fog (from the Work section). */
 export function WorkBackdrop() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       {/* blueprint grid */}
       <div
         className="absolute inset-0 opacity-50"
@@ -51,7 +51,7 @@ export function WorkBackdrop() {
 /** About atmosphere: a static poster frame of the studio video + dark overlay. */
 export function AboutBackdrop() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         className="absolute inset-0 h-full w-full object-cover"
