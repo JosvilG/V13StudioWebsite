@@ -88,30 +88,6 @@ export default async function ServicesPage({
             <TechBento groups={s.techGroups} />
           </Reveal>
 
-          {/* How we work */}
-          <Reveal className="mt-24">
-            <SectionHeading eyebrow={dict.process.eyebrow} title={s.howWeWorkHeading} />
-            <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {dict.process.steps.map((step, i) => (
-                <li key={step.title} className="border-t-2 border-white/10 pt-5">
-                  <span className="font-mono text-[11px] text-[#9268f6]">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-2 text-base font-bold uppercase tracking-[0.16em] text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-[#9a82d6]">
-                    {step.tagline}
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">{step.description}</p>
-                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
-                    {dict.process.durationLabel}: {step.duration}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-
           {/* FAQ */}
           <Reveal className="mt-24">
             <SectionHeading title={s.faqHeading} />
