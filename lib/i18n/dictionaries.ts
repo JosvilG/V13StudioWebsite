@@ -38,7 +38,7 @@ export interface Dictionary {
     headingAccent: string
     intro: string
     durationLabel: string
-    steps: { title: string; description: string; duration: string }[]
+    steps: { title: string; tagline: string; description: string; duration: string }[]
   }
   portfolio: {
     eyebrow: string
@@ -52,6 +52,10 @@ export interface Dictionary {
   }
   about: {
     eyebrow: string
+    title: string
+    statement: string
+    intro: string
+    pillars: { title: string; description: string }[]
     headingTop: string
     headingAccent: string
     p1: string
@@ -68,6 +72,10 @@ export interface Dictionary {
     nameLabel: string
     emailLabel: string
     messageLabel: string
+    ctaProject: string
+    phoneLabel: string
+    phoneValue: string
+    addressLabel: string
     send: string
     sending: string
     errorTitle: string
@@ -86,6 +94,9 @@ export interface Dictionary {
     terms: string
     legalNotice: string
     cookies: string
+    navHeading: string
+    socialHeading: string
+    legalHeading: string
   }
   blog: {
     backHome: string
@@ -180,25 +191,29 @@ const en: Dictionary = {
     durationLabel: 'Duration',
     steps: [
       {
-        title: 'Discovery',
+        title: 'Concept',
+        tagline: 'Blueprint & Strategy',
         description:
           'We dive deep into your vision, users, and market. Research, interviews, and strategic planning.',
         duration: '1-2 weeks',
       },
       {
-        title: 'Design',
+        title: 'Architecture',
+        tagline: 'Technical Design',
         description:
           'From wireframes to high-fidelity prototypes. Interfaces that are intuitive and beautiful.',
         duration: '2-4 weeks',
       },
       {
-        title: 'Development',
+        title: 'Development Sprint',
+        tagline: 'Iterative Building',
         description:
           'Clean, scalable code across web, mobile, and backend. Continuous delivery in sprints.',
         duration: '6-12 weeks',
       },
       {
         title: 'Launch',
+        tagline: 'Deployment & Growth',
         description:
           'Deployment, monitoring, and iteration. We ensure your product succeeds post-launch.',
         duration: 'Ongoing',
@@ -217,6 +232,24 @@ const en: Dictionary = {
   },
   about: {
     eyebrow: 'About us',
+    title: 'About',
+    statement: 'Redefining the impossible. Innovation & exclusivity.',
+    intro:
+      'At V13 Studio we fuse art and technology to craft digital experiences that defy limits. Our pursuit of excellence drives us to build next-generation software and products for demanding clients.',
+    pillars: [
+      {
+        title: 'Strategy',
+        description: 'Tailored strategy and solutions that turn a vision into a product with purpose.',
+      },
+      {
+        title: 'Design',
+        description: 'Visual and experience design (UI/UX) that makes every interaction intuitive and memorable.',
+      },
+      {
+        title: 'Engineering',
+        description: 'Robust development and architecture to build scalable, next-generation software.',
+      },
+    ],
     headingTop: 'Small team.',
     headingAccent: 'Big impact.',
     p1: "We're a 4-person studio based in Catalonia, Spain. We build digital products with the precision of an agency and the soul of a startup.",
@@ -231,9 +264,13 @@ const en: Dictionary = {
     intro:
       'Have a project in mind? We would love to hear about it. Drop us a line and we will get back to you within 24 hours.',
     location: 'Catalonia, Spain',
-    nameLabel: 'Your name',
-    emailLabel: 'Your email',
-    messageLabel: 'Tell us about your project',
+    nameLabel: 'Name',
+    emailLabel: 'Email',
+    messageLabel: 'Message',
+    ctaProject: 'Start a Project',
+    phoneLabel: 'Tel',
+    phoneValue: '+34 600 000 000',
+    addressLabel: 'Address',
     send: 'Send Message',
     sending: 'Sending…',
     errorTitle: 'Something went wrong',
@@ -253,6 +290,9 @@ const en: Dictionary = {
     terms: 'Terms',
     legalNotice: 'Legal Notice',
     cookies: 'Cookies',
+    navHeading: 'Navigation',
+    socialHeading: 'Social',
+    legalHeading: 'Legal',
   },
   blog: {
     backHome: '← V13 STUDIO',
@@ -348,25 +388,29 @@ const es: Dictionary = {
     durationLabel: 'Duración',
     steps: [
       {
-        title: 'Descubrimiento',
+        title: 'Concepto',
+        tagline: 'Blueprint y Estrategia',
         description:
           'Profundizamos en tu visión, usuarios y mercado. Investigación, entrevistas y planificación estratégica.',
         duration: '1-2 semanas',
       },
       {
-        title: 'Diseño',
+        title: 'Arquitectura',
+        tagline: 'Diseño Técnico',
         description:
           'De wireframes a prototipos de alta fidelidad. Interfaces intuitivas y atractivas.',
         duration: '2-4 semanas',
       },
       {
-        title: 'Desarrollo',
+        title: 'Desarrollo Sprint',
+        tagline: 'Construcción Iterativa',
         description:
           'Código limpio y escalable en web, móvil y backend. Entrega continua en sprints.',
         duration: '6-12 semanas',
       },
       {
         title: 'Lanzamiento',
+        tagline: 'Despliegue y Crecimiento',
         description:
           'Despliegue, monitorización e iteración. Aseguramos que tu producto triunfe tras el lanzamiento.',
         duration: 'Continuo',
@@ -385,6 +429,24 @@ const es: Dictionary = {
   },
   about: {
     eyebrow: 'Sobre nosotros',
+    title: 'Nosotros',
+    statement: 'Redefiniendo lo imposible. Innovación y exclusividad.',
+    intro:
+      'En V13 Studio fusionamos arte y tecnología para crear experiencias digitales que desafían los límites. Nuestra pasión por la excelencia nos impulsa a desarrollar software y productos de nueva generación para clientes exigentes.',
+    pillars: [
+      {
+        title: 'Estrategia',
+        description: 'Estrategia y soluciones a medida para convertir una visión en un producto con propósito.',
+      },
+      {
+        title: 'Diseño',
+        description: 'Diseño visual y de experiencia (UI/UX) que hace cada interacción intuitiva y memorable.',
+      },
+      {
+        title: 'Ingeniería',
+        description: 'Desarrollo y arquitectura robusta para construir software escalable de nueva generación.',
+      },
+    ],
     headingTop: 'Equipo pequeño.',
     headingAccent: 'Gran impacto.',
     p1: 'Somos un estudio de 4 personas con base en Cataluña, España. Construimos productos digitales con la precisión de una agencia y el alma de una startup.',
@@ -399,9 +461,13 @@ const es: Dictionary = {
     intro:
       '¿Tienes un proyecto en mente? Nos encantaría conocerlo. Escríbenos y te responderemos en 24 horas.',
     location: 'Cataluña, España',
-    nameLabel: 'Tu nombre',
-    emailLabel: 'Tu email',
-    messageLabel: 'Cuéntanos sobre tu proyecto',
+    nameLabel: 'Nombre',
+    emailLabel: 'Email',
+    messageLabel: 'Mensaje',
+    ctaProject: 'Iniciar Proyecto',
+    phoneLabel: 'Tel',
+    phoneValue: '+34 600 000 000',
+    addressLabel: 'Dirección',
     send: 'Enviar Mensaje',
     sending: 'Enviando…',
     errorTitle: 'Algo ha fallado',
@@ -421,6 +487,9 @@ const es: Dictionary = {
     terms: 'Términos',
     legalNotice: 'Aviso Legal',
     cookies: 'Cookies',
+    navHeading: 'Navegación',
+    socialHeading: 'Social',
+    legalHeading: 'Legal',
   },
   blog: {
     backHome: '← V13 STUDIO',
@@ -516,25 +585,29 @@ const ca: Dictionary = {
     durationLabel: 'Durada',
     steps: [
       {
-        title: 'Descobriment',
+        title: 'Concepte',
+        tagline: 'Blueprint i Estratègia',
         description:
           'Aprofundim en la teva visió, usuaris i mercat. Recerca, entrevistes i planificació estratègica.',
         duration: '1-2 setmanes',
       },
       {
-        title: 'Disseny',
+        title: 'Arquitectura',
+        tagline: 'Disseny Tècnic',
         description:
           'De wireframes a prototips d’alta fidelitat. Interfícies intuïtives i atractives.',
         duration: '2-4 setmanes',
       },
       {
-        title: 'Desenvolupament',
+        title: 'Desenvolupament Sprint',
+        tagline: 'Construcció Iterativa',
         description:
           'Codi net i escalable en web, mòbil i backend. Lliurament continu en sprints.',
         duration: '6-12 setmanes',
       },
       {
         title: 'Llançament',
+        tagline: 'Desplegament i Creixement',
         description:
           'Desplegament, monitoratge i iteració. Assegurem que el teu producte triomfi després del llançament.',
         duration: 'Continu',
@@ -553,6 +626,24 @@ const ca: Dictionary = {
   },
   about: {
     eyebrow: 'Sobre nosaltres',
+    title: 'Nosaltres',
+    statement: 'Redefinint l’impossible. Innovació i exclusivitat.',
+    intro:
+      'A V13 Studio fusionem art i tecnologia per crear experiències digitals que desafien els límits. La nostra passió per l’excel·lència ens impulsa a desenvolupar programari i productes de nova generació per a clients exigents.',
+    pillars: [
+      {
+        title: 'Estratègia',
+        description: 'Estratègia i solucions a mida per convertir una visió en un producte amb propòsit.',
+      },
+      {
+        title: 'Disseny',
+        description: 'Disseny visual i d’experiència (UI/UX) que fa cada interacció intuïtiva i memorable.',
+      },
+      {
+        title: 'Enginyeria',
+        description: 'Desenvolupament i arquitectura robusta per construir programari escalable de nova generació.',
+      },
+    ],
     headingTop: 'Equip petit.',
     headingAccent: 'Gran impacte.',
     p1: 'Som un estudi de 4 persones amb base a Catalunya, Espanya. Construïm productes digitals amb la precisió d’una agència i l’ànima d’una startup.',
@@ -567,9 +658,13 @@ const ca: Dictionary = {
     intro:
       'Tens un projecte en ment? Ens encantaria conèixer-lo. Escriu-nos i et respondrem en 24 hores.',
     location: 'Catalunya, Espanya',
-    nameLabel: 'El teu nom',
-    emailLabel: 'El teu correu',
-    messageLabel: 'Explica’ns el teu projecte',
+    nameLabel: 'Nom',
+    emailLabel: 'Email',
+    messageLabel: 'Missatge',
+    ctaProject: 'Iniciar Projecte',
+    phoneLabel: 'Tel',
+    phoneValue: '+34 600 000 000',
+    addressLabel: 'Direcció',
     send: 'Envia el Missatge',
     sending: 'Enviant…',
     errorTitle: 'Alguna cosa ha fallat',
@@ -589,6 +684,9 @@ const ca: Dictionary = {
     terms: 'Termes',
     legalNotice: 'Avís Legal',
     cookies: 'Cookies',
+    navHeading: 'Navegació',
+    socialHeading: 'Social',
+    legalHeading: 'Legal',
   },
   blog: {
     backHome: '← V13 STUDIO',
