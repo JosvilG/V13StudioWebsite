@@ -6,9 +6,9 @@ import type { SheetProject } from '@/lib/content'
 const isYear = (s: string) => /^\d{4}$/.test(s)
 
 /**
- * Static project grid with category/year filter tabs. Filter logic mirrors
- * components/sections/work.tsx but renders a plain responsive grid (no 3D
- * carousel). `allLabel` and `viewProject` come from the dictionary.
+ * Project grid for the /work subpage, styled to match the homepage Work section:
+ * glassmorphic cards (rounded, blurred, light border), serif titles, and serif
+ * category tabs. Static responsive grid + category/year filter (no 3D carousel).
  */
 export function WorkGrid({
   projects,
@@ -49,13 +49,16 @@ export function WorkGrid({
   return (
     <div>
       {tabs.length > 1 && (
-        <div className="mb-10 flex flex-wrap gap-x-6 gap-y-2">
+        <div className="mb-12 flex flex-wrap items-center gap-x-7 gap-y-2 border-b border-white/10 pb-6">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className="font-mono text-xs uppercase tracking-[0.16em] transition-colors"
-              style={{ color: activeTab === tab ? '#9268f6' : 'rgba(255,255,255,0.4)' }}
+              className="whitespace-nowrap text-lg transition-colors duration-300 sm:text-xl"
+              style={{
+                fontFamily: 'var(--font-serif)',
+                color: activeTab === tab ? '#ffffff' : 'rgba(255,255,255,0.35)',
+              }}
             >
               {tab}
             </button>
@@ -67,13 +70,13 @@ export function WorkGrid({
         {filtered.map((p) => (
           <article
             key={p.id}
-            className="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-6 transition-colors duration-300 hover:border-[#9268f6]/40"
+            className="flex flex-col rounded-[22px] border border-white/20 bg-white/[0.08] p-7 shadow-[0_20px_70px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-colors duration-300 hover:border-[#9268f6]/40"
           >
             <div className="flex items-baseline justify-between gap-3">
-              <h3 className="text-xl leading-tight text-white" style={{ fontFamily: 'var(--font-serif)' }}>
+              <h3 className="text-[26px] leading-tight text-white" style={{ fontFamily: 'var(--font-serif)' }}>
                 {p.title}
               </h3>
-              {p.year ? <span className="shrink-0 font-mono text-[11px] text-white/35">{p.year}</span> : null}
+              {p.year ? <span className="shrink-0 font-mono text-[11px] text-white/40">{p.year}</span> : null}
             </div>
             {p.category ? (
               <span className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[#9a82d6]">
@@ -81,12 +84,15 @@ export function WorkGrid({
               </span>
             ) : null}
             {p.description ? (
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-white/55">{p.description}</p>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-white/55">{p.description}</p>
             ) : null}
             {p.tags.length > 0 ? (
               <div className="mt-5 flex flex-wrap gap-2">
                 {p.tags.slice(0, 4).map((tag) => (
-                  <span key={tag} className="border border-white/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/45">
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/45"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -97,14 +103,15 @@ export function WorkGrid({
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-[#9268f6] transition-opacity hover:opacity-80"
+                className="mt-7 inline-flex w-fit rounded-md border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-white/20"
               >
                 {viewProject}
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
               </a>
-            ) : null}
+            ) : (
+              <span className="mt-7 inline-flex w-fit rounded-md border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white/90">
+                {viewProject}
+              </span>
+            )}
           </article>
         ))}
       </div>
