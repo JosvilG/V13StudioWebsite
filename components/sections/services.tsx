@@ -182,7 +182,7 @@ export function Services() {
         </>
       )}
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center px-4">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center px-4 py-24 lg:min-h-screen lg:py-0">
         <div className="relative w-full max-w-md lg:h-[64vh]">
           {/* Statement */}
           <div

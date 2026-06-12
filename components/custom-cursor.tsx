@@ -14,10 +14,17 @@ export function CustomCursor() {
   const [mode, setMode] = useState<CursorMode>("default")
   const [isMobile, setIsMobile] = useState(true)
 
-  // Detect mobile on mount
+  // Detect touch / small screens (no custom cursor there)
   useEffect(() => {
-    const isCoarse = window.matchMedia("(pointer: coarse)").matches
-    setIsMobile(isCoarse)
+    const check = () =>
+      setIsMobile(
+        window.matchMedia("(pointer: coarse), (hover: none)").matches ||
+          "ontouchstart" in window ||
+          window.innerWidth < 768
+      )
+    check()
+    window.addEventListener("resize", check, { passive: true })
+    return () => window.removeEventListener("resize", check)
   }, [])
 
   // Hide default cursor on non-mobile

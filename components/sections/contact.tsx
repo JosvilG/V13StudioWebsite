@@ -105,6 +105,9 @@ export function Contact() {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)_minmax(0,0.7fr)] lg:gap-8">
         {/* Left — form */}
         <div>
+          <h2 className="mb-10 text-3xl font-bold uppercase tracking-tight text-white sm:text-4xl">
+            {t.contact.eyebrow}
+          </h2>
           {status === "success" ? (
             <div className="flex flex-col items-start gap-4 border-l-2 border-primary pl-6 py-4">
               <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary">

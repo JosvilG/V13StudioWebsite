@@ -121,26 +121,47 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
         </ol>
       </div>
 
-      {/* ── NOSOTROS ── */}
-      <div className="mt-24">
-        <h2 className="text-3xl font-bold uppercase tracking-[0.16em] text-white">
-          {t.about.title}
-        </h2>
-        <p className="mt-5 text-lg font-semibold uppercase leading-snug tracking-[0.12em] text-white/90">
-          {t.about.statement}
-        </p>
-        <p className="mt-5 text-sm leading-relaxed text-white/65">{t.about.intro}</p>
+      {/* ── NOSOTROS (over a full-bleed static frame of the background video) ── */}
+      <div className="relative mt-24 -mx-6 overflow-hidden">
+        {/* static video frame — not animated, just a poster frame */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/background.mp4#t=3"
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden
+          tabIndex={-1}
+          style={{ filter: "grayscale(0.35) brightness(0.5) contrast(1.05)" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(4,6,10,0.84) 0%, rgba(4,6,10,0.7) 40%, rgba(4,6,10,0.9) 100%)",
+          }}
+        />
 
-        <div className="mt-10 space-y-8">
-          {pillars.map((pillar) => (
-            <div key={pillar.title}>
-              <span className="mb-3 block h-px w-10 bg-[#7ca8ff]/70" />
-              <h3 className="text-base font-bold uppercase tracking-[0.2em] text-white">
-                {pillar.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">{pillar.description}</p>
-            </div>
-          ))}
+        <div className="relative z-10 px-6 py-14">
+          <h2 className="text-3xl font-bold uppercase tracking-[0.16em] text-white">
+            {t.about.title}
+          </h2>
+          <p className="mt-5 text-lg font-semibold uppercase leading-snug tracking-[0.12em] text-white/90">
+            {t.about.statement}
+          </p>
+          <p className="mt-5 text-sm leading-relaxed text-white/65">{t.about.intro}</p>
+
+          <div className="mt-10 space-y-8">
+            {pillars.map((pillar) => (
+              <div key={pillar.title}>
+                <span className="mb-3 block h-px w-10 bg-[#7ca8ff]/70" />
+                <h3 className="text-base font-bold uppercase tracking-[0.2em] text-white">
+                  {pillar.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{pillar.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
