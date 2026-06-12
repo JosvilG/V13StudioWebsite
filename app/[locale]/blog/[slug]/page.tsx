@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getPostBySlug, getPostSlugs } from '@/lib/blog'
+import { getPostBySlug, getPostSlugs, sourceHost } from '@/lib/blog'
 import { locales, isLocale, localeHtmlLang } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 
@@ -143,6 +143,28 @@ export default async function BlogPostPage({
             ),
           )}
         </div>
+
+        {post.sources.length > 0 && (
+          <section className="mt-16 pt-8 border-t border-border">
+            <h2 className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground">
+              {dict.blog.sources}
+            </h2>
+            <ul className="mt-4 space-y-2">
+              {post.sources.map((src) => (
+                <li key={src}>
+                  <a
+                    href={src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors break-all"
+                  >
+                    {sourceHost(src)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <div className="mt-16 pt-8 border-t border-border">
           <Link

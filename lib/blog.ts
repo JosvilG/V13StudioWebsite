@@ -17,6 +17,17 @@ export interface BlogPost {
   /** Estimated reading time in minutes */
   readingTime: number
   body: BlogBlock[]
+  /** Source URLs the post was researched from (column `sources`). */
+  sources: string[]
+}
+
+/** Display label for a source link: bare host without the `www.` prefix, or the raw string if unparseable. */
+export function sourceHost(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '')
+  } catch {
+    return url
+  }
 }
 
 /** Map one CSV row to a BlogPost for a locale, or null if not a published post. */
@@ -32,6 +43,7 @@ export function rowToPost(row: Record<string, string>, locale: Locale): BlogPost
     title: localized(row, 'title', locale),
     description: localized(row, 'description', locale),
     body: parseMarkdownToBlocks(localized(row, 'body', locale)),
+    sources: (row.sources || '').split(',').map((s) => s.trim()).filter(Boolean),
   }
 }
 

@@ -88,6 +88,7 @@ export interface Dictionary {
     comingSoon: string
     backToBlog: string
     cta: string
+    sources: string
   }
   legal: {
     backHome: string
@@ -250,6 +251,7 @@ const en: Dictionary = {
     comingSoon: 'New articles coming soon.',
     backToBlog: '← BLOG',
     cta: 'Start a project with V13 Studio →',
+    sources: 'Sources',
   },
   legal: {
     backHome: '← V13 STUDIO',
@@ -412,6 +414,7 @@ const es: Dictionary = {
     comingSoon: 'Próximamente nuevos artículos.',
     backToBlog: '← BLOG',
     cta: 'Inicia un proyecto con V13 Studio →',
+    sources: 'Fuentes',
   },
   legal: {
     backHome: '← V13 STUDIO',
@@ -574,6 +577,7 @@ const ca: Dictionary = {
     comingSoon: 'Nous articles ben aviat.',
     backToBlog: '← BLOG',
     cta: 'Inicia un projecte amb V13 Studio →',
+    sources: 'Fonts',
   },
   legal: {
     backHome: '← V13 STUDIO',
