@@ -119,10 +119,14 @@ export default async function BlogIndex({
               className="mt-4 text-6xl font-light tracking-tight text-white sm:text-7xl md:text-8xl"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
-              Journal
+              {dict.blog.title}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/55">
               {dict.blog.intro}
+            </p>
+            <p className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
+              <span className="h-1 w-1 rounded-full bg-[#9268f6]" />
+              {dict.blog.aiDisclosure}
             </p>
           </header>
 

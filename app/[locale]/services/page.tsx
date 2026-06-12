@@ -23,15 +23,15 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {}
   const dict = getDictionary(locale)
   return {
-    title: dict.nav.services,
-    description: dict.services.intro,
+    title: dict.services.metaTitle,
+    description: dict.services.metaDescription,
     alternates: {
       canonical: `/${locale}/services`,
       languages: { en: '/en/services', es: '/es/services', ca: '/ca/services', 'x-default': '/en/services' },
     },
     openGraph: {
-      title: `${dict.nav.services} | V13 Studio`,
-      description: dict.services.intro,
+      title: `${dict.services.metaTitle} | V13 Studio`,
+      description: dict.services.metaDescription,
       url: `${siteUrl}/${locale}/services`,
       type: 'website',
     },
@@ -48,9 +48,23 @@ export default async function ServicesPage({
   const dict = getDictionary(locale)
   const s = dict.services
 
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: s.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  }
+
   return (
     <>
       <main className="relative min-h-screen bg-[#070a0e] text-white">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
         <ScrollReset />
         <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
           <ServicesBackdrop />

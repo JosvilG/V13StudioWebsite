@@ -24,15 +24,15 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {}
   const dict = getDictionary(locale)
   return {
-    title: dict.nav.work,
-    description: dict.portfolio.eyebrow,
+    title: dict.portfolio.metaTitle,
+    description: dict.portfolio.metaDescription,
     alternates: {
       canonical: `/${locale}/work`,
       languages: { en: '/en/work', es: '/es/work', ca: '/ca/work', 'x-default': '/en/work' },
     },
     openGraph: {
-      title: `${dict.nav.work} | V13 Studio`,
-      description: dict.portfolio.eyebrow,
+      title: `${dict.portfolio.metaTitle} | V13 Studio`,
+      description: dict.portfolio.metaDescription,
       url: `${siteUrl}/${locale}/work`,
       type: 'website',
     },

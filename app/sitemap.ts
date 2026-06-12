@@ -19,21 +19,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const slugs = await getPostSlugs()
 
+  const staticPages: { path: string; changeFrequency: 'weekly' | 'monthly' | 'yearly'; priority: number }[] = [
+    { path: '', changeFrequency: 'monthly', priority: 1 },
+    { path: '/services', changeFrequency: 'monthly', priority: 0.9 },
+    { path: '/work', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/about', changeFrequency: 'monthly', priority: 0.7 },
+    { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
+    // Legal docs are noindex — keep them out of the sitemap.
+  ]
+
   for (const locale of locales) {
-    entries.push({
-      url: `${baseUrl}/${locale}`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 1,
-      alternates: { languages: languagesFor('') },
-    })
-    entries.push({
-      url: `${baseUrl}/${locale}/blog`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-      alternates: { languages: languagesFor('/blog') },
-    })
+    for (const page of staticPages) {
+      entries.push({
+        url: `${baseUrl}/${locale}${page.path}`,
+        lastModified: now,
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+        alternates: { languages: languagesFor(page.path) },
+      })
+    }
     for (const slug of slugs) {
       entries.push({
         url: `${baseUrl}/${locale}/blog/${slug}`,

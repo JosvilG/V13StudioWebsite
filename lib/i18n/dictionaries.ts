@@ -1,7 +1,7 @@
 import type { Locale } from './config'
 
 export interface Dictionary {
-  meta: { title: string; description: string }
+  meta: { title: string; description: string; keywords: string[] }
   nav: {
     home: string
     services: string
@@ -23,6 +23,8 @@ export interface Dictionary {
     scroll: string
   }
   services: {
+    metaTitle: string
+    metaDescription: string
     statementHeading: string
     statementBody: string
     stack: string[]
@@ -46,6 +48,8 @@ export interface Dictionary {
     steps: { title: string; tagline: string; description: string; duration: string }[]
   }
   portfolio: {
+    metaTitle: string
+    metaDescription: string
     eyebrow: string
     headingTop: string
     headingAccent: string
@@ -61,6 +65,8 @@ export interface Dictionary {
     resultLabel: string
   }
   about: {
+    metaTitle: string
+    metaDescription: string
     eyebrow: string
     title: string
     statement: string
@@ -112,8 +118,10 @@ export interface Dictionary {
     legalHeading: string
   }
   blog: {
+    title: string
     backHome: string
     intro: string
+    aiDisclosure: string
     minRead: string
     comingSoon: string
     backToBlog: string
@@ -132,9 +140,23 @@ export interface Dictionary {
 
 const en: Dictionary = {
   meta: {
-    title: 'V13 Studio | Software Product Studio',
+    title: 'V13 Studio | Software Development & Digital Product Studio',
     description:
-      'A digital product studio crafting software from strategy to deployment. Mobile, web, and backend engineering based in Catalonia, Spain.',
+      'Independent software studio in Catalonia, Spain. We design and build web apps, mobile apps and backends, from the first idea to production.',
+    keywords: [
+      'software development studio',
+      'web development',
+      'mobile app development',
+      'React Native development',
+      'Next.js development',
+      'UX/UI design',
+      'product strategy',
+      'backend engineering',
+      'AI integration',
+      'software studio Spain',
+      'Catalonia',
+      'Tarragona',
+    ],
   },
   nav: {
     home: 'Home',
@@ -151,51 +173,54 @@ const en: Dictionary = {
     line1: 'BUILD',
     line2: 'BEYOND',
     line3: 'ORDINARY',
-    subtitle: 'Next-Generation Software & Digital Products',
+    subtitle: 'Software products designed, built and shipped end to end',
     ctaWork: 'View Work',
     ctaContact: 'Start Project',
     scroll: 'Scroll to Explore',
   },
   services: {
+    metaTitle: 'Software Development Services',
+    metaDescription:
+      'Product strategy, UX/UI design, web and mobile development, backend engineering and AI integration. One senior team from first sketch to production.',
     statementHeading: 'What we do.',
     statementBody:
-      'Full-stack software development. Capabilities: Frontend, Backend, Cloud, DevOps. Robust architecture and cutting-edge digital products.',
+      'We design and build software end to end: frontend, backend, cloud and DevOps. Solid architecture underneath, careful product work on top.',
     stack: ['React', 'Node.js', 'Python', 'AWS', 'Azure', 'Docker', 'Kubernetes'],
     eyebrow: 'Capabilities',
     headingTop: 'Full-stack',
     headingAccent: 'capabilities',
     intro:
-      'From concept to launch, we handle every aspect of your digital product.',
+      'From first sketch to production: strategy, design, web and mobile development, backend and AI. This is what we do every day.',
     items: [
       {
         title: 'Product Strategy',
         description:
-          'We dive deep into your vision, market, and users to craft a roadmap that makes sense.',
+          'We start with questions, not code: who is this for, what should it do first, what can wait. You leave with a roadmap you can actually follow.',
       },
       {
         title: 'UX/UI Design',
         description:
-          'Interfaces that feel intuitive and look stunning. Every pixel serves a purpose.',
+          'Interfaces people understand the first time they open them. We prototype early and test real flows, so what you approve is what ships.',
       },
       {
         title: 'Mobile Development',
         description:
-          'Native-feeling apps built with React Native. One codebase, all platforms.',
+          'iOS and Android apps from one React Native codebase. Faster releases and less maintenance, without giving up the native feel.',
       },
       {
         title: 'Web Development',
         description:
-          'Fast, accessible, and beautiful web experiences with modern frameworks.',
+          'Websites and web apps built with React and Next.js. Quick to load, accessible by default and easy to maintain once we hand over the keys.',
       },
       {
         title: 'Backend Engineering',
         description:
-          'Scalable APIs and infrastructure that grow with your business.',
+          'APIs, data models and infrastructure with Node.js and PostgreSQL. Built to hold up when traffic grows, and instrumented so you know what is going on.',
       },
       {
         title: 'AI Integration',
         description:
-          'Intelligent features powered by cutting-edge AI and machine learning.',
+          'Assistants, search and automation built on Claude and OpenAI models. We pick the reliable option over the demo that breaks on Monday.',
       },
     ],
     howWeWorkHeading: 'How we work',
@@ -236,40 +261,43 @@ const en: Dictionary = {
     headingTop: 'Our',
     headingAccent: 'process',
     intro:
-      'A proven methodology honed over years of building successful products.',
+      'Four phases with clear deliverables. This is how a project moves from idea to production, and what you get at each step.',
     durationLabel: 'Duration',
     steps: [
       {
         title: 'Concept',
         tagline: 'Blueprint & Strategy',
         description:
-          'We dive deep into your vision, users, and market. Research, interviews, and strategic planning.',
+          'We map what you want to build and why: users, market, scope. One or two intense weeks that save months later.',
         duration: '1-2 weeks',
       },
       {
         title: 'Architecture',
         tagline: 'Technical Design',
         description:
-          'From wireframes to high-fidelity prototypes. Interfaces that are intuitive and beautiful.',
+          'We decide how it will work before building it: data model, APIs, screens. Wireframes turn into prototypes, decisions into a build plan.',
         duration: '2-4 weeks',
       },
       {
         title: 'Development Sprint',
         tagline: 'Iterative Building',
         description:
-          'Clean, scalable code across web, mobile, and backend. Continuous delivery in sprints.',
+          'We build in short sprints, and every sprint ends with something you can click. Web, mobile and backend move forward together.',
         duration: '6-12 weeks',
       },
       {
         title: 'Launch',
         tagline: 'Deployment & Growth',
         description:
-          'Deployment, monitoring, and iteration. We ensure your product succeeds post-launch.',
+          'We ship, watch the numbers and keep iterating. Launch is the start of the conversation, not the end of the project.',
         duration: 'Ongoing',
       },
     ],
   },
   portfolio: {
+    metaTitle: 'Projects & Selected Work',
+    metaDescription:
+      'Selected software projects by V13 Studio: web platforms, mobile apps and backend systems, with the challenge and the result behind each one.',
     eyebrow: 'Selected Work',
     headingTop: 'Projects',
     headingAccent: 'push boundaries',
@@ -285,23 +313,26 @@ const en: Dictionary = {
     resultLabel: 'Result',
   },
   about: {
+    metaTitle: 'About the Studio',
+    metaDescription:
+      'V13 Studio is a four-person software studio in Catalonia, Spain. Strategy, design, development and launch, all under one roof.',
     eyebrow: 'About us',
     title: 'About',
-    statement: 'Redefining the impossible. Innovation & exclusivity.',
+    statement: 'Four people, one studio. We design, build and ship software products end to end.',
     intro:
-      'At V13 Studio we fuse art and technology to craft digital experiences that defy limits. Our pursuit of excellence drives us to build next-generation software and products for demanding clients.',
+      'V13 Studio is a four-person software studio in Catalonia, Spain. We take products from idea to production: strategy, design, development and launch, all under one roof.',
     pillars: [
       {
         title: 'Strategy',
-        description: 'Tailored strategy and solutions that turn a vision into a product with purpose.',
+        description: 'We help you decide what to build and in what order, so the budget goes to the features that matter.',
       },
       {
         title: 'Design',
-        description: 'Visual and experience design (UI/UX) that makes every interaction intuitive and memorable.',
+        description: 'Interface and experience design that makes complex things feel simple, on the first use and on the hundredth.',
       },
       {
         title: 'Engineering',
-        description: 'Robust development and architecture to build scalable, next-generation software.',
+        description: 'Architecture and code meant to last: tested, documented and ready to grow when your product does.',
       },
     ],
     headingTop: 'Small team.',
@@ -313,9 +344,21 @@ const en: Dictionary = {
     teamHeading: 'The team',
     valuesHeading: 'What we value',
     values: [
-      { title: 'Craft', description: 'PLACEHOLDER — describe the value the studio places on craftsmanship.' },
-      { title: 'Ownership', description: 'PLACEHOLDER — describe how the team takes ownership of outcomes.' },
-      { title: 'Honesty', description: 'PLACEHOLDER — describe the studio’s commitment to straight talk.' },
+      {
+        title: 'Craft',
+        description:
+          'The details people feel but rarely name: type that breathes, screens that respond instantly, code that is still readable a year later. That is where we spend the extra hour.',
+      },
+      {
+        title: 'Ownership',
+        description:
+          'Your product is not a ticket queue to us. We flag risks early, suggest cheaper paths when they exist, and answer for what we ship.',
+      },
+      {
+        title: 'Honesty',
+        description:
+          'If something will not work, we say so before it costs you money. Straight answers about scope, deadlines and trade-offs, even when they are not what you hoped to hear.',
+      },
     ],
   },
   contact: {
@@ -323,7 +366,7 @@ const en: Dictionary = {
     headingTop: "Let's build",
     headingAccent: 'something great',
     intro:
-      'Have a project in mind? We would love to hear about it. Drop us a line and we will get back to you within 24 hours.',
+      'Have a project in mind? Tell us about it. A person, not a bot, reads every message and gets back to you within 24 hours.',
     location: 'Roquetes 43520, Tarragona, Spain',
     nameLabel: 'Name',
     emailLabel: 'Email',
@@ -344,7 +387,7 @@ const en: Dictionary = {
   },
   footer: {
     tagline:
-      'Software product studio crafting exceptional digital experiences for everyone and everywhere.',
+      'Software product studio in Catalonia, Spain. We design, build and ship web, mobile and backend products.',
     barcelonaTime: 'Barcelona Time',
     rights: 'V13 Studio. All rights reserved.',
     privacy: 'Privacy',
@@ -356,9 +399,11 @@ const en: Dictionary = {
     legalHeading: 'Legal',
   },
   blog: {
+    title: 'Journal',
     backHome: 'V13 Studio',
     intro:
-      'Notes on product strategy, design, and software engineering from our studio in Catalonia.',
+      'Daily news on software and AI: releases, models and tools that change how products get built.',
+    aiDisclosure: 'AI-generated, reviewed by the V13 Studio team',
     minRead: 'min read',
     comingSoon: 'New articles coming soon.',
     backToBlog: 'Blog',
@@ -377,9 +422,23 @@ const en: Dictionary = {
 
 const es: Dictionary = {
   meta: {
-    title: 'V13 Studio | Estudio de Producto de Software',
+    title: 'V13 Studio | Desarrollo de Software y Producto Digital',
     description:
-      'Estudio de producto digital que crea software de la estrategia al despliegue. Ingeniería móvil, web y backend con base en Cataluña, España.',
+      'Estudio de software independiente en Cataluña. Diseñamos y desarrollamos aplicaciones web, apps móviles y backends, de la primera idea a producción.',
+    keywords: [
+      'desarrollo de software',
+      'desarrollo web',
+      'desarrollo de aplicaciones móviles',
+      'React Native',
+      'Next.js',
+      'diseño UX/UI',
+      'estrategia de producto',
+      'desarrollo backend',
+      'integración de IA',
+      'estudio de software España',
+      'Cataluña',
+      'Tarragona',
+    ],
   },
   nav: {
     home: 'Inicio',
@@ -396,51 +455,54 @@ const es: Dictionary = {
     line1: 'CREAMOS',
     line2: 'MÁS ALLÁ',
     line3: 'DE LO COMÚN',
-    subtitle: 'Software y Productos Digitales de Nueva Generación',
+    subtitle: 'Productos de software diseñados, construidos y lanzados de principio a fin',
     ctaWork: 'Ver Trabajo',
     ctaContact: 'Iniciar Proyecto',
     scroll: 'Desliza para Explorar',
   },
   services: {
+    metaTitle: 'Servicios de Desarrollo de Software',
+    metaDescription:
+      'Estrategia de producto, diseño UX/UI, desarrollo web y móvil, ingeniería backend e integración de IA. Un mismo equipo del primer boceto a producción.',
     statementHeading: 'Qué hacemos.',
     statementBody:
-      'Desarrollo de Software Full-Stack. Capacidades: Frontend, Backend, Cloud, DevOps. Arquitectura robusta y productos digitales de vanguardia.',
+      'Diseñamos y construimos software de principio a fin: frontend, backend, cloud y DevOps. Arquitectura sólida por debajo, trabajo de producto cuidado por encima.',
     stack: ['React', 'Node.js', 'Python', 'AWS', 'Azure', 'Docker', 'Kubernetes'],
     eyebrow: 'Capacidades',
     headingTop: 'Capacidades',
     headingAccent: 'full-stack',
     intro:
-      'Del concepto al lanzamiento, gestionamos cada aspecto de tu producto digital.',
+      'Del primer boceto a producción: estrategia, diseño, desarrollo web y móvil, backend e IA. Esto es lo que hacemos cada día.',
     items: [
       {
         title: 'Estrategia de Producto',
         description:
-          'Profundizamos en tu visión, mercado y usuarios para crear una hoja de ruta con sentido.',
+          'Empezamos con preguntas, no con código: para quién es, qué debe hacer primero, qué puede esperar. Sales con una hoja de ruta que se puede seguir de verdad.',
       },
       {
         title: 'Diseño UX/UI',
         description:
-          'Interfaces intuitivas y espectaculares. Cada píxel tiene un propósito.',
+          'Interfaces que la gente entiende la primera vez que las abre. Prototipamos pronto y probamos flujos reales, así lo que apruebas es lo que se publica.',
       },
       {
         title: 'Desarrollo Móvil',
         description:
-          'Apps con sensación nativa hechas con React Native. Un solo código, todas las plataformas.',
+          'Apps para iOS y Android desde un solo código con React Native. Publicaciones más rápidas y menos mantenimiento, sin renunciar a la sensación nativa.',
       },
       {
         title: 'Desarrollo Web',
         description:
-          'Experiencias web rápidas, accesibles y atractivas con frameworks modernos.',
+          'Webs y aplicaciones web con React y Next.js. Cargan rápido, son accesibles por defecto y fáciles de mantener cuando te entregamos las llaves.',
       },
       {
         title: 'Ingeniería Backend',
         description:
-          'APIs e infraestructura escalables que crecen con tu negocio.',
+          'APIs, modelos de datos e infraestructura con Node.js y PostgreSQL. Aguantan cuando crece el tráfico y están instrumentadas para que sepas qué está pasando.',
       },
       {
         title: 'Integración de IA',
         description:
-          'Funciones inteligentes impulsadas por IA y machine learning de vanguardia.',
+          'Asistentes, búsqueda y automatización sobre modelos de Claude y OpenAI. Elegimos la opción fiable antes que la demo que falla el lunes.',
       },
     ],
     howWeWorkHeading: 'Cómo trabajamos',
@@ -481,40 +543,43 @@ const es: Dictionary = {
     headingTop: 'Nuestro',
     headingAccent: 'proceso',
     intro:
-      'Una metodología probada y perfeccionada durante años construyendo productos de éxito.',
+      'Cuatro fases con entregables claros. Así avanza un proyecto de la idea a producción, y esto es lo que recibes en cada paso.',
     durationLabel: 'Duración',
     steps: [
       {
         title: 'Concepto',
         tagline: 'Blueprint y Estrategia',
         description:
-          'Profundizamos en tu visión, usuarios y mercado. Investigación, entrevistas y planificación estratégica.',
+          'Aclaramos qué quieres construir y por qué: usuarios, mercado, alcance. Una o dos semanas intensas que ahorran meses después.',
         duration: '1-2 semanas',
       },
       {
         title: 'Arquitectura',
         tagline: 'Diseño Técnico',
         description:
-          'De wireframes a prototipos de alta fidelidad. Interfaces intuitivas y atractivas.',
+          'Decidimos cómo funcionará antes de construirlo: modelo de datos, APIs, pantallas. Los wireframes se vuelven prototipos y las decisiones, un plan de construcción.',
         duration: '2-4 semanas',
       },
       {
         title: 'Desarrollo Sprint',
         tagline: 'Construcción Iterativa',
         description:
-          'Código limpio y escalable en web, móvil y backend. Entrega continua en sprints.',
+          'Construimos en sprints cortos, y cada sprint termina con algo que puedes probar. Web, móvil y backend avanzan a la vez.',
         duration: '6-12 semanas',
       },
       {
         title: 'Lanzamiento',
         tagline: 'Despliegue y Crecimiento',
         description:
-          'Despliegue, monitorización e iteración. Aseguramos que tu producto triunfe tras el lanzamiento.',
+          'Publicamos, miramos los números y seguimos iterando. El lanzamiento es el principio de la conversación, no el final del proyecto.',
         duration: 'Continuo',
       },
     ],
   },
   portfolio: {
+    metaTitle: 'Proyectos y Trabajo Seleccionado',
+    metaDescription:
+      'Proyectos de software de V13 Studio: plataformas web, apps móviles y sistemas backend, con el reto y el resultado detrás de cada uno.',
     eyebrow: 'Trabajo Seleccionado',
     headingTop: 'Proyectos',
     headingAccent: 'rompen límites',
@@ -530,23 +595,26 @@ const es: Dictionary = {
     resultLabel: 'Resultado',
   },
   about: {
+    metaTitle: 'Sobre el Estudio',
+    metaDescription:
+      'V13 Studio es un estudio de software de cuatro personas en Cataluña. Estrategia, diseño, desarrollo y lanzamiento, todo bajo el mismo techo.',
     eyebrow: 'Sobre nosotros',
     title: 'Nosotros',
-    statement: 'Redefiniendo lo imposible. Innovación y exclusividad.',
+    statement: 'Cuatro personas, un estudio. Diseñamos, construimos y lanzamos productos de software de principio a fin.',
     intro:
-      'En V13 Studio fusionamos arte y tecnología para crear experiencias digitales que desafían los límites. Nuestra pasión por la excelencia nos impulsa a desarrollar software y productos de nueva generación para clientes exigentes.',
+      'V13 Studio es un estudio de software de cuatro personas en Cataluña. Llevamos productos de la idea a producción: estrategia, diseño, desarrollo y lanzamiento, todo bajo el mismo techo.',
     pillars: [
       {
         title: 'Estrategia',
-        description: 'Estrategia y soluciones a medida para convertir una visión en un producto con propósito.',
+        description: 'Te ayudamos a decidir qué construir y en qué orden, para que el presupuesto vaya a lo que de verdad importa.',
       },
       {
         title: 'Diseño',
-        description: 'Diseño visual y de experiencia (UI/UX) que hace cada interacción intuitiva y memorable.',
+        description: 'Diseño de interfaz y experiencia que hace simple lo complejo, en el primer uso y en el número cien.',
       },
       {
         title: 'Ingeniería',
-        description: 'Desarrollo y arquitectura robusta para construir software escalable de nueva generación.',
+        description: 'Arquitectura y código pensados para durar: probados, documentados y listos para crecer cuando tu producto lo haga.',
       },
     ],
     headingTop: 'Equipo pequeño.',
@@ -558,9 +626,21 @@ const es: Dictionary = {
     teamHeading: 'El equipo',
     valuesHeading: 'Lo que valoramos',
     values: [
-      { title: 'Oficio', description: 'PLACEHOLDER — describe el valor que el estudio da al oficio y la artesanía.' },
-      { title: 'Compromiso', description: 'PLACEHOLDER — describe cómo el equipo se responsabiliza de los resultados.' },
-      { title: 'Honestidad', description: 'PLACEHOLDER — describe el compromiso del estudio con hablar claro.' },
+      {
+        title: 'Oficio',
+        description:
+          'Los detalles que la gente nota aunque no sepa nombrarlos: tipografía que respira, pantallas que responden al instante, código legible un año después. Ahí es donde invertimos la hora extra.',
+      },
+      {
+        title: 'Compromiso',
+        description:
+          'Tu producto no es una cola de tickets para nosotros. Avisamos de los riesgos pronto, proponemos caminos más baratos cuando existen y respondemos por lo que entregamos.',
+      },
+      {
+        title: 'Honestidad',
+        description:
+          'Si algo no va a funcionar, lo decimos antes de que te cueste dinero. Respuestas claras sobre alcance, plazos y renuncias, aunque no sean lo que esperabas oír.',
+      },
     ],
   },
   contact: {
@@ -568,7 +648,7 @@ const es: Dictionary = {
     headingTop: 'Construyamos',
     headingAccent: 'algo grande',
     intro:
-      '¿Tienes un proyecto en mente? Nos encantaría conocerlo. Escríbenos y te responderemos en 24 horas.',
+      '¿Tienes un proyecto en mente? Cuéntanoslo. Lo lee una persona, no un bot, y te responde en menos de 24 horas.',
     location: 'Roquetes 43520, Tarragona, España',
     nameLabel: 'Nombre',
     emailLabel: 'Email',
@@ -589,7 +669,7 @@ const es: Dictionary = {
   },
   footer: {
     tagline:
-      'Estudio de producto de software que crea experiencias digitales excepcionales para todos y en todas partes.',
+      'Estudio de producto de software en Cataluña. Diseñamos, construimos y lanzamos productos web, móviles y backend.',
     barcelonaTime: 'Hora de Barcelona',
     rights: 'V13 Studio. Todos los derechos reservados.',
     privacy: 'Privacidad',
@@ -601,9 +681,11 @@ const es: Dictionary = {
     legalHeading: 'Legal',
   },
   blog: {
+    title: 'Diario',
     backHome: 'V13 Studio',
     intro:
-      'Notas sobre estrategia de producto, diseño e ingeniería de software desde nuestro estudio en Cataluña.',
+      'Noticias diarias de software e IA: lanzamientos, modelos y herramientas que cambian cómo se construye producto.',
+    aiDisclosure: 'Generado con IA y revisado por el equipo de V13 Studio',
     minRead: 'min de lectura',
     comingSoon: 'Próximamente nuevos artículos.',
     backToBlog: 'Blog',
@@ -622,9 +704,23 @@ const es: Dictionary = {
 
 const ca: Dictionary = {
   meta: {
-    title: 'V13 Studio | Estudi de Producte de Programari',
+    title: 'V13 Studio | Desenvolupament de Programari i Producte Digital',
     description:
-      'Estudi de producte digital que crea programari de l’estratègia al desplegament. Enginyeria mòbil, web i backend amb base a Catalunya, Espanya.',
+      'Estudi de programari independent a Catalunya. Dissenyem i desenvolupem aplicacions web, apps mòbils i backends, de la primera idea a producció.',
+    keywords: [
+      'desenvolupament de programari',
+      'desenvolupament web',
+      'aplicacions mòbils',
+      'React Native',
+      'Next.js',
+      'disseny UX/UI',
+      'estratègia de producte',
+      'desenvolupament backend',
+      "integració d'IA",
+      'estudi de programari',
+      'Catalunya',
+      'Tarragona',
+    ],
   },
   nav: {
     home: 'Inici',
@@ -641,51 +737,54 @@ const ca: Dictionary = {
     line1: 'CREEM',
     line2: 'MÉS ENLLÀ',
     line3: 'DEL COMÚ',
-    subtitle: 'Programari i Productes Digitals de Nova Generació',
+    subtitle: 'Productes de programari dissenyats, construïts i llançats de principi a fi',
     ctaWork: 'Veure Treball',
     ctaContact: 'Iniciar Projecte',
     scroll: 'Desplaça per Explorar',
   },
   services: {
+    metaTitle: 'Serveis de Desenvolupament de Programari',
+    metaDescription:
+      "Estratègia de producte, disseny UX/UI, desenvolupament web i mòbil, enginyeria backend i integració d'IA. Un mateix equip del primer esbós a producció.",
     statementHeading: 'Què fem.',
     statementBody:
-      'Desenvolupament de Software Full-Stack. Capacitats: Frontend, Backend, Cloud, DevOps. Arquitectura robusta i productes digitals d’avantguarda.',
+      'Dissenyem i construïm programari de principi a fi: frontend, backend, cloud i DevOps. Arquitectura sòlida per sota, treball de producte acurat per sobre.',
     stack: ['React', 'Node.js', 'Python', 'AWS', 'Azure', 'Docker', 'Kubernetes'],
     eyebrow: 'Capacitats',
     headingTop: 'Capacitats',
     headingAccent: 'full-stack',
     intro:
-      'Del concepte al llançament, gestionem cada aspecte del teu producte digital.',
+      "Del primer esbós a producció: estratègia, disseny, desenvolupament web i mòbil, backend i IA. Això és el que fem cada dia.",
     items: [
       {
         title: 'Estratègia de Producte',
         description:
-          'Aprofundim en la teva visió, mercat i usuaris per crear un full de ruta amb sentit.',
+          'Comencem amb preguntes, no amb codi: per a qui és, què ha de fer primer, què pot esperar. En surts amb un full de ruta que es pot seguir de debò.',
       },
       {
         title: 'Disseny UX/UI',
         description:
-          'Interfícies intuïtives i espectaculars. Cada píxel té un propòsit.',
+          'Interfícies que la gent entén el primer cop que les obre. Prototipem aviat i provem fluxos reals, així el que aproves és el que es publica.',
       },
       {
         title: 'Desenvolupament Mòbil',
         description:
-          'Apps amb sensació nativa fetes amb React Native. Un sol codi, totes les plataformes.',
+          "Apps per a iOS i Android des d'un sol codi amb React Native. Publicacions més ràpides i menys manteniment, sense renunciar a la sensació nativa.",
       },
       {
         title: 'Desenvolupament Web',
         description:
-          'Experiències web ràpides, accessibles i atractives amb frameworks moderns.',
+          'Webs i aplicacions web amb React i Next.js. Carreguen ràpid, són accessibles per defecte i fàcils de mantenir quan et donem les claus.',
       },
       {
         title: 'Enginyeria Backend',
         description:
-          'APIs i infraestructura escalables que creixen amb el teu negoci.',
+          'APIs, models de dades i infraestructura amb Node.js i PostgreSQL. Aguanten quan creix el trànsit i estan instrumentades perquè sàpigues què està passant.',
       },
       {
-        title: 'Integració d’IA',
+        title: "Integració d'IA",
         description:
-          'Funcions intel·ligents impulsades per IA i machine learning d’avantguarda.',
+          "Assistents, cerca i automatització sobre models de Claude i OpenAI. Triem l'opció fiable abans que la demo que falla dilluns.",
       },
     ],
     howWeWorkHeading: 'Com treballem',
@@ -693,15 +792,15 @@ const ca: Dictionary = {
     faq: [
       {
         q: 'Quant dura un projecte típic?',
-        a: "Depèn de l’abast, però la majoria de productes van de 8 a 16 setmanes del concepte al llançament: 1–2 setmanes d’estratègia, 2–4 de disseny i arquitectura, i després sprints iteratius de desenvolupament. Acordem un calendari abans de començar.",
+        a: "Depèn de l'abast, però la majoria de productes van de 8 a 16 setmanes del concepte al llançament: 1–2 setmanes d'estratègia, 2–4 de disseny i arquitectura, i després sprints iteratius de desenvolupament. Acordem un calendari abans de començar.",
       },
       {
         q: 'Com calculeu el preu?',
-        a: "Abast tancat per a projectes ben definits, o una tarifa mensual per a feina de producte contínua. Compartim una estimació després de la primera conversa d’estratègia, sense sorpreses després.",
+        a: "Abast tancat per a projectes ben definits, o una tarifa mensual per a feina de producte contínua. Compartim una estimació després de la primera conversa d'estratègia, sense sorpreses després.",
       },
       {
         q: 'Podeu treballar amb el nostre equip o codi existent?',
-        a: "Sí. Ens integrem amb equips interns o reprenem bases de codi existents, revisem l’arquitectura i lliurem al costat dels vostres enginyers.",
+        a: "Sí. Ens integrem amb equips interns o reprenem bases de codi existents, revisem l'arquitectura i lliurem al costat dels vostres enginyers.",
       },
       {
         q: 'Què passa després del llançament?',
@@ -726,40 +825,43 @@ const ca: Dictionary = {
     headingTop: 'El nostre',
     headingAccent: 'procés',
     intro:
-      'Una metodologia provada i perfeccionada durant anys construint productes d’èxit.',
+      'Quatre fases amb lliurables clars. Així avança un projecte de la idea a producció, i això és el que reps a cada pas.',
     durationLabel: 'Durada',
     steps: [
       {
         title: 'Concepte',
         tagline: 'Blueprint i Estratègia',
         description:
-          'Aprofundim en la teva visió, usuaris i mercat. Recerca, entrevistes i planificació estratègica.',
+          'Aclarim què vols construir i per què: usuaris, mercat, abast. Una o dues setmanes intenses que estalvien mesos després.',
         duration: '1-2 setmanes',
       },
       {
         title: 'Arquitectura',
         tagline: 'Disseny Tècnic',
         description:
-          'De wireframes a prototips d’alta fidelitat. Interfícies intuïtives i atractives.',
+          'Decidim com funcionarà abans de construir-ho: model de dades, APIs, pantalles. Els wireframes es tornen prototips i les decisions, un pla de construcció.',
         duration: '2-4 setmanes',
       },
       {
         title: 'Desenvolupament Sprint',
         tagline: 'Construcció Iterativa',
         description:
-          'Codi net i escalable en web, mòbil i backend. Lliurament continu en sprints.',
+          'Construïm en sprints curts, i cada sprint acaba amb alguna cosa que pots provar. Web, mòbil i backend avancen alhora.',
         duration: '6-12 setmanes',
       },
       {
         title: 'Llançament',
         tagline: 'Desplegament i Creixement',
         description:
-          'Desplegament, monitoratge i iteració. Assegurem que el teu producte triomfi després del llançament.',
+          'Publiquem, mirem els números i seguim iterant. El llançament és el principi de la conversa, no el final del projecte.',
         duration: 'Continu',
       },
     ],
   },
   portfolio: {
+    metaTitle: 'Projectes i Treball Seleccionat',
+    metaDescription:
+      'Projectes de programari de V13 Studio: plataformes web, apps mòbils i sistemes backend, amb el repte i el resultat darrere de cadascun.',
     eyebrow: 'Treball Seleccionat',
     headingTop: 'Projectes',
     headingAccent: 'trenquen límits',
@@ -775,37 +877,52 @@ const ca: Dictionary = {
     resultLabel: 'Resultat',
   },
   about: {
+    metaTitle: "Sobre l'Estudi",
+    metaDescription:
+      'V13 Studio és un estudi de programari de quatre persones a Catalunya. Estratègia, disseny, desenvolupament i llançament, tot sota el mateix sostre.',
     eyebrow: 'Sobre nosaltres',
     title: 'Nosaltres',
-    statement: 'Redefinint l’impossible. Innovació i exclusivitat.',
+    statement: 'Quatre persones, un estudi. Dissenyem, construïm i llancem productes de programari de principi a fi.',
     intro:
-      'A V13 Studio fusionem art i tecnologia per crear experiències digitals que desafien els límits. La nostra passió per l’excel·lència ens impulsa a desenvolupar programari i productes de nova generació per a clients exigents.',
+      'V13 Studio és un estudi de programari de quatre persones a Catalunya. Portem productes de la idea a producció: estratègia, disseny, desenvolupament i llançament, tot sota el mateix sostre.',
     pillars: [
       {
         title: 'Estratègia',
-        description: 'Estratègia i solucions a mida per convertir una visió en un producte amb propòsit.',
+        description: "T'ajudem a decidir què construir i en quin ordre, perquè el pressupost vagi al que de debò importa.",
       },
       {
         title: 'Disseny',
-        description: 'Disseny visual i d’experiència (UI/UX) que fa cada interacció intuïtiva i memorable.',
+        description: "Disseny d'interfície i experiència que fa simple allò complex, en el primer ús i en el número cent.",
       },
       {
         title: 'Enginyeria',
-        description: 'Desenvolupament i arquitectura robusta per construir programari escalable de nova generació.',
+        description: 'Arquitectura i codi pensats per durar: provats, documentats i a punt per créixer quan el teu producte ho faci.',
       },
     ],
     headingTop: 'Equip petit.',
     headingAccent: 'Gran impacte.',
-    p1: 'Som un estudi de 4 persones amb base a Catalunya, Espanya. Construïm productes digitals amb la precisió d’una agència i l’ànima d’una startup.',
+    p1: "Som un estudi de 4 persones amb base a Catalunya, Espanya. Construïm productes digitals amb la precisió d'una agència i l'ànima d'una startup.",
     p2: 'Sense equips inflats. Sense reunions interminables. Només execució enfocada de gent que es preocupa de debò pel resultat.',
     location: 'CATALUNYA, ESPANYA',
     founded: 'Fundat',
     teamHeading: "L'equip",
     valuesHeading: 'El que valorem',
     values: [
-      { title: 'Ofici', description: "PLACEHOLDER — descriu el valor que l'estudi dona a l'ofici i l'artesania." },
-      { title: 'Compromís', description: "PLACEHOLDER — descriu com l'equip es responsabilitza dels resultats." },
-      { title: 'Honestedat', description: "PLACEHOLDER — descriu el compromís de l'estudi amb parlar clar." },
+      {
+        title: 'Ofici',
+        description:
+          'Els detalls que la gent nota encara que no els sàpiga anomenar: tipografia que respira, pantalles que responen a l’instant, codi llegible un any després. És on invertim l’hora extra.',
+      },
+      {
+        title: 'Compromís',
+        description:
+          'El teu producte no és una cua de tiquets per a nosaltres. Avisem dels riscos aviat, proposem camins més barats quan existeixen i responem pel que lliurem.',
+      },
+      {
+        title: 'Honestedat',
+        description:
+          'Si alguna cosa no funcionarà, ho diem abans que et costi diners. Respostes clares sobre abast, terminis i renúncies, encara que no siguin el que esperaves sentir.',
+      },
     ],
   },
   contact: {
@@ -813,7 +930,7 @@ const ca: Dictionary = {
     headingTop: 'Construïm',
     headingAccent: 'alguna cosa gran',
     intro:
-      'Tens un projecte en ment? Ens encantaria conèixer-lo. Escriu-nos i et respondrem en 24 hores.',
+      "Tens un projecte en ment? Explica'ns-el. El llegeix una persona, no un bot, i et respon en menys de 24 hores.",
     location: 'Roquetes 43520, Tarragona, Espanya',
     nameLabel: 'Nom',
     emailLabel: 'Email',
@@ -834,7 +951,7 @@ const ca: Dictionary = {
   },
   footer: {
     tagline:
-      'Estudi de producte de programari que crea experiències digitals excepcionals per a tothom i a tot arreu.',
+      'Estudi de producte de programari a Catalunya. Dissenyem, construïm i llancem productes web, mòbils i backend.',
     barcelonaTime: 'Hora de Barcelona',
     rights: 'V13 Studio. Tots els drets reservats.',
     privacy: 'Privacitat',
@@ -846,9 +963,11 @@ const ca: Dictionary = {
     legalHeading: 'Legal',
   },
   blog: {
+    title: 'Diari',
     backHome: 'V13 Studio',
     intro:
-      'Notes sobre estratègia de producte, disseny i enginyeria de programari des del nostre estudi a Catalunya.',
+      'Notícies diàries de programari i IA: llançaments, models i eines que canvien com es construeix producte.',
+    aiDisclosure: "Generat amb IA i revisat per l'equip de V13 Studio",
     minRead: 'min de lectura',
     comingSoon: 'Nous articles ben aviat.',
     backToBlog: 'Blog',
