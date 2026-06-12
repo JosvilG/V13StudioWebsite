@@ -7,7 +7,6 @@ import { getProjects, getStats } from '@/lib/content'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { ProjectsBento } from '@/components/subpage/projects-bento'
-import { ProjectDetailList } from '@/components/subpage/project-detail-list'
 import { Reveal } from '@/components/subpage/reveal'
 import { WorkBackdrop } from '@/components/subpage/backdrops'
 import { Footer } from '@/components/sections/footer'
@@ -73,19 +72,7 @@ export default async function WorkPage({
 
           {projects.length > 0 ? (
             <div className="mt-12">
-              <ProjectsBento projects={projects} viewProject={dict.portfolio.viewProject} />
-            </div>
-          ) : (
-            <p className="mt-12 font-mono text-sm uppercase tracking-[0.2em] text-white/45">
-              {dict.portfolio.ctaText}
-            </p>
-          )}
-
-          {/* Detailed breakdown of every project */}
-          {projects.length > 0 && (
-            <Reveal className="mt-24">
-              <SectionHeading eyebrow={dict.portfolio.eyebrow} title={dict.portfolio.detailHeading} />
-              <ProjectDetailList
+              <ProjectsBento
                 projects={projects}
                 labels={{
                   client: dict.portfolio.clientLabel,
@@ -95,7 +82,11 @@ export default async function WorkPage({
                   viewProject: dict.portfolio.viewProject,
                 }}
               />
-            </Reveal>
+            </div>
+          ) : (
+            <p className="mt-12 font-mono text-sm uppercase tracking-[0.2em] text-white/45">
+              {dict.portfolio.ctaText}
+            </p>
           )}
 
           {stats.length > 0 && (
