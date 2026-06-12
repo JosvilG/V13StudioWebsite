@@ -10,16 +10,20 @@ export function PageHero({
   eyebrow,
   title,
   intro,
+  section,
 }: {
   locale: Locale
   eyebrow: string
   title: string
   intro: string
+  /** Homepage anchor to return to (e.g. "about"); defaults to the top. */
+  section?: string
 }) {
   return (
     <header className="border-b border-white/10 pb-12">
       <Link
-        href={`/${locale}`}
+        href={section ? `/${locale}#${section}` : `/${locale}`}
+        scroll={false}
         className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#9268f6]"
       >
         <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -8,6 +8,7 @@ import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { Reveal } from '@/components/subpage/reveal'
 import { AboutBackdrop } from '@/components/subpage/backdrops'
+import { ScrollReset } from '@/components/subpage/scroll-reset'
 import { Footer } from '@/components/sections/footer'
 
 export const dynamicParams = true
@@ -52,8 +53,9 @@ export default async function AboutPage({
     <>
       <main className="relative min-h-screen overflow-hidden bg-[#04060a] text-white">
         <AboutBackdrop />
+        <ScrollReset />
         <div className="subpage-enter relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
-          <PageHero locale={locale} eyebrow={a.eyebrow} title={a.title} intro={a.statement} />
+          <PageHero locale={locale} eyebrow={a.eyebrow} title={a.title} intro={a.statement} section="about" />
 
           {/* Pillars */}
           <Reveal className="mt-20 grid gap-10 sm:grid-cols-3">

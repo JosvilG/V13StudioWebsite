@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
 import { Reveal } from '@/components/subpage/reveal'
 import { TechBento } from '@/components/subpage/tech-bento'
+import { ScrollReset } from '@/components/subpage/scroll-reset'
 import { ServicesBackdrop } from '@/components/sections/services-backdrop'
 import { Footer } from '@/components/sections/footer'
 
@@ -50,6 +51,7 @@ export default async function ServicesPage({
   return (
     <>
       <main className="relative min-h-screen bg-[#070a0e] text-white">
+        <ScrollReset />
         <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
           <ServicesBackdrop />
         </div>
@@ -59,6 +61,7 @@ export default async function ServicesPage({
             eyebrow={s.eyebrow}
             title={`${s.headingTop} ${s.headingAccent}`}
             intro={s.statementBody}
+            section="services"
           />
 
           {/* Capabilities */}

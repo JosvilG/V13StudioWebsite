@@ -9,6 +9,7 @@ import { SectionStack } from "@/components/section-stack"
 import { TransitionFlash } from "@/components/transition-flash"
 import { CustomCursor } from "@/components/custom-cursor"
 import { Preloader } from "@/components/preloader"
+import { HomeHashScroll } from "@/components/home-hash-scroll"
 import { getProjects } from "@/lib/content"
 import { isLocale } from "@/lib/i18n/config"
 
@@ -26,6 +27,7 @@ export default async function Home({
   return (
     <>
       <Preloader />
+      <HomeHashScroll />
       <CustomCursor />
       <Header hasProjects={hasProjects} />
       <main>

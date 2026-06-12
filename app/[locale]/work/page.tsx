@@ -9,6 +9,7 @@ import { CtaBand } from '@/components/subpage/cta-band'
 import { ProjectsBento } from '@/components/subpage/projects-bento'
 import { Reveal } from '@/components/subpage/reveal'
 import { WorkBackdrop } from '@/components/subpage/backdrops'
+import { ScrollReset } from '@/components/subpage/scroll-reset'
 import { Footer } from '@/components/sections/footer'
 
 export const dynamicParams = true
@@ -52,9 +53,11 @@ export default async function WorkPage({
     <>
       <main className="relative min-h-screen overflow-hidden bg-[#04060a] text-white">
         <WorkBackdrop />
+        <ScrollReset />
         <div className="subpage-enter relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-16 sm:pt-28">
           <Link
-            href={`/${locale}`}
+            href={`/${locale}#work`}
+            scroll={false}
             className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#9268f6]"
           >
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
