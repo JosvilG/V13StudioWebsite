@@ -8,7 +8,7 @@ import { useT, useLocale } from "@/components/i18n-provider"
 import { locales, localeNames } from "@/lib/i18n/config"
 
 const linkCls =
-  "text-sm text-white/55 hover:text-[#7ca8ff] transition-colors duration-300"
+  "text-sm text-white/55 hover:text-[#9268f6] transition-colors duration-300"
 const headingCls =
   "mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-white/35"
 
@@ -100,7 +100,7 @@ export function Footer() {
               </p>
               <a
                 href="mailto:v13studio@v13studio.com"
-                className="group mt-6 inline-flex items-center gap-2 border-b border-white/20 pb-1 font-mono text-sm text-white/80 transition-colors hover:border-[#7ca8ff] hover:text-[#7ca8ff]"
+                className="group mt-6 inline-flex items-center gap-2 border-b border-white/20 pb-1 font-mono text-sm text-white/80 transition-colors hover:border-[#9268f6] hover:text-[#9268f6]"
               >
                 v13studio@v13studio.com
                 <svg
@@ -149,7 +149,7 @@ export function Footer() {
                   hrefLang={lng}
                   className={
                     lng === locale
-                      ? "text-[#7ca8ff]"
+                      ? "text-[#9268f6]"
                       : "text-white/45 transition-colors hover:text-white/80"
                   }
                 >

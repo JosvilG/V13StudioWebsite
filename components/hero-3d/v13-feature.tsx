@@ -55,7 +55,7 @@ export default function V13Feature() {
       <Suspense fallback={null}>
         <ambientLight intensity={0.35} />
         <directionalLight position={[6, 9, 7]} intensity={1.8} />
-        <directionalLight position={[-7, -3, 4]} intensity={0.9} color="#9fb6e6" />
+        <directionalLight position={[-7, -3, 4]} intensity={0.9} color="#b4a2ea" />
         <FeatureLogo />
         {/* real studio HDRI → genuine chrome reflections (loads from CDN) */}
         <Environment preset="studio" environmentIntensity={2.2} />

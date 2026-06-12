@@ -134,8 +134,8 @@ export function CustomCursor() {
         }}
       >
         <div
-          className="h-full w-full rounded-full bg-[#cfe4ff]"
-          style={{ boxShadow: "0 0 8px 1px rgba(120,180,255,0.9)" }}
+          className="h-full w-full rounded-full bg-[#cabfff]"
+          style={{ boxShadow: "0 0 8px 1px rgba(146,104,246,0.9)" }}
         />
       </div>
 
@@ -155,9 +155,9 @@ export function CustomCursor() {
         <div
           className="h-full w-full rounded-full"
           style={{
-            border: "1px solid rgba(140,190,255,0.85)",
-            boxShadow: "0 0 12px rgba(90,162,255,0.35), inset 0 0 8px rgba(90,162,255,0.15)",
-            background: mode === "interactive" ? "rgba(90,162,255,0.08)" : "transparent",
+            border: "1px solid rgba(176,150,250,0.85)",
+            boxShadow: "0 0 12px rgba(146,104,246,0.35), inset 0 0 8px rgba(146,104,246,0.15)",
+            background: mode === "interactive" ? "rgba(146,104,246,0.08)" : "transparent",
             transition: "background 0.3s ease",
           }}
         />

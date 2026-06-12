@@ -101,7 +101,7 @@ export default async function BlogPostPage({
         <article className="mx-auto max-w-3xl px-6 py-24 sm:py-28">
           <Link
             href={`/${locale}/blog`}
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#7ca8ff]"
+            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#9268f6]"
           >
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -158,7 +158,7 @@ export default async function BlogPostPage({
           <div className="mt-16 border-t border-white/10 pt-8">
             <Link
               href={`/${locale}#contact`}
-              className="group inline-flex items-center gap-3 font-mono text-sm uppercase tracking-[0.15em] text-[#7ca8ff] transition-opacity hover:opacity-80"
+              className="group inline-flex items-center gap-3 font-mono text-sm uppercase tracking-[0.15em] text-[#9268f6] transition-opacity hover:opacity-80"
             >
               {dict.blog.cta}
               <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

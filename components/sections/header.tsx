@@ -109,7 +109,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
         className={cn(
           "fixed top-6 right-6 z-[60] w-10 h-10",
           "border border-white/15 bg-black/80 backdrop-blur-xl",
-          "hover:border-[#7ca8ff] hover:bg-[#7ca8ff]/10 transition-all duration-300",
+          "hover:border-[#9268f6] hover:bg-[#9268f6]/10 transition-all duration-300",
         )}
         aria-label={isOpen ? "Close menu" : "Open menu"}
       >
@@ -161,7 +161,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           fill="none"
           aria-hidden="true"
         >
-          <path d={V13_PATH} fill="none" stroke="#7ca8ff" strokeWidth={3} strokeLinejoin="round" />
+          <path d={V13_PATH} fill="none" stroke="#9268f6" strokeWidth={3} strokeLinejoin="round" />
         </svg>
 
         {/* Panel content above watermark */}
@@ -192,18 +192,18 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
                         transform: isOpen ? undefined : "translateX(20px)",
                       }}
                     >
-                      <span className="text-xs font-mono text-[#7ca8ff]/70 w-5">
+                      <span className="text-xs font-mono text-[#9268f6]/70 w-5">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-lg font-medium text-white group-hover:text-[#7ca8ff] transition-colors">
+                      <span className="text-lg font-medium text-white group-hover:text-[#9268f6] transition-colors">
                         {item.label}
                       </span>
                       {isExternal ? (
-                        <svg aria-hidden="true" className="ml-auto w-4 h-4 text-white/45 group-hover:text-[#7ca8ff] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg aria-hidden="true" className="ml-auto w-4 h-4 text-white/45 group-hover:text-[#9268f6] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       ) : (
-                        <span className="ml-auto w-0 group-hover:w-6 h-px bg-[#7ca8ff] transition-all duration-300" />
+                        <span className="ml-auto w-0 group-hover:w-6 h-px bg-[#9268f6] transition-all duration-300" />
                       )}
                     </button>
                   </li>
@@ -229,8 +229,8 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
                     className={cn(
                       "flex-1 text-center py-2 text-xs font-mono tracking-[0.2em] border transition-all duration-300",
                       lng === locale
-                        ? "border-[#7ca8ff] text-[#7ca8ff] bg-[#7ca8ff]/5"
-                        : "border-white/15 text-white/50 hover:border-[#7ca8ff]/50 hover:text-white"
+                        ? "border-[#9268f6] text-[#9268f6] bg-[#9268f6]/5"
+                        : "border-white/15 text-white/50 hover:border-[#9268f6]/50 hover:text-white"
                     )}
                   >
                     {localeNames[lng]}
@@ -242,7 +242,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
             {/* Contact info */}
             <a
               href="mailto:v13studio@v13studio.com"
-              className="block text-xs text-white/50 hover:text-[#7ca8ff] transition-colors font-mono"
+              className="block text-xs text-white/50 hover:text-[#9268f6] transition-colors font-mono"
             >
               v13studio@v13studio.com
             </a>
@@ -256,7 +256,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
         className={cn(
           "fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center",
           "border border-white/15 bg-black/80 backdrop-blur-xl",
-          "hover:border-[#7ca8ff] hover:bg-[#7ca8ff]/10 transition-all duration-300",
+          "hover:border-[#9268f6] hover:bg-[#9268f6]/10 transition-all duration-300",
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}
         aria-label="Scroll to top"

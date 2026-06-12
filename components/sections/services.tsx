@@ -212,10 +212,10 @@ export function Services() {
               {t.services.items.map((item, i) => (
                 <li
                   key={item.title}
-                  className="group border-l-2 border-white/10 pl-4 transition-colors duration-300 hover:border-[#22d3ee]"
+                  className="group border-l-2 border-white/10 pl-4 transition-colors duration-300 hover:border-[#9268f6]"
                 >
                   <div className="flex items-baseline gap-3">
-                    <span className="font-mono text-[11px] text-[#7c9fd6]">
+                    <span className="font-mono text-[11px] text-[#9a82d6]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="text-sm font-bold uppercase tracking-wide text-white sm:text-base">

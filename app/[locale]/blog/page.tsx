@@ -102,7 +102,7 @@ export default async function BlogIndex({
           {/* top bar */}
           <Link
             href={`/${locale}`}
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#7ca8ff]"
+            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#9268f6]"
           >
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -112,7 +112,7 @@ export default async function BlogIndex({
 
           {/* header */}
           <header className="mt-12 border-b border-white/10 pb-12">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#7ca8ff]">
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#9268f6]">
               V13 Studio
             </p>
             <h1
@@ -136,21 +136,21 @@ export default async function BlogIndex({
           {featured && (
             <Link
               href={`/${locale}/blog/${featured.slug}`}
-              className="group relative mt-16 block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-8 transition-all duration-300 hover:border-[#7ca8ff]/40 sm:p-12"
+              className="group relative mt-16 block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-8 transition-all duration-300 hover:border-[#9268f6]/40 sm:p-12"
             >
               <div
                 className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-50 transition-opacity duration-500 group-hover:opacity-90"
-                style={{ background: 'radial-gradient(circle, rgba(124,168,255,0.22), transparent 70%)' }}
+                style={{ background: 'radial-gradient(circle, rgba(146,104,246,0.22), transparent 70%)' }}
               />
               <div className="relative">
-                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#7ca8ff]">
+                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#9268f6]">
                   {dict.blog.featured}
                 </span>
                 <div className="mt-4">
                   <Meta post={featured} minRead={dict.blog.minRead} />
                 </div>
                 <h2
-                  className="mt-4 max-w-3xl text-3xl font-medium leading-tight text-white transition-colors group-hover:text-[#dce8ff] sm:text-4xl md:text-5xl"
+                  className="mt-4 max-w-3xl text-3xl font-medium leading-tight text-white transition-colors group-hover:text-[#cabfff] sm:text-4xl md:text-5xl"
                   style={{ fontFamily: 'var(--font-serif)' }}
                 >
                   {featured.title}
@@ -159,7 +159,7 @@ export default async function BlogIndex({
                   {featured.description}
                 </p>
                 <Tags tags={featured.tags} />
-                <span className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#7ca8ff]">
+                <span className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#9268f6]">
                   {dict.blog.readArticle}
                   <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -176,11 +176,11 @@ export default async function BlogIndex({
                 <Link
                   key={post.slug}
                   href={`/${locale}/blog/${post.slug}`}
-                  className="group flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-7 transition-all duration-300 hover:border-[#7ca8ff]/40"
+                  className="group flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-7 transition-all duration-300 hover:border-[#9268f6]/40"
                 >
                   <Meta post={post} minRead={dict.blog.minRead} />
                   <h3
-                    className="mt-4 text-2xl font-medium leading-tight text-white transition-colors group-hover:text-[#dce8ff]"
+                    className="mt-4 text-2xl font-medium leading-tight text-white transition-colors group-hover:text-[#cabfff]"
                     style={{ fontFamily: 'var(--font-serif)' }}
                   >
                     {post.title}
@@ -189,7 +189,7 @@ export default async function BlogIndex({
                     {post.description}
                   </p>
                   <Tags tags={post.tags} />
-                  <span className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-white/45 transition-colors group-hover:text-[#7ca8ff]">
+                  <span className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-white/45 transition-colors group-hover:text-[#9268f6]">
                     {dict.blog.readArticle}
                     <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />

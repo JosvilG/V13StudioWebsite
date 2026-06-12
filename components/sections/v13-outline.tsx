@@ -33,9 +33,9 @@ export function V13Outline() {
     >
       <defs>
         <linearGradient id="v13-stroke" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#dce8ff" />
-          <stop offset="50%" stopColor="#7ca8ff" />
-          <stop offset="100%" stopColor="#b6cdff" />
+          <stop offset="0%" stopColor="#cabfff" />
+          <stop offset="50%" stopColor="#9268f6" />
+          <stop offset="100%" stopColor="#b9a6f5" />
         </linearGradient>
         {/* shaped glow — blur stays inside the SVG (no square CSS-filter layer) */}
         <filter id="v13-glow" x="-25%" y="-25%" width="150%" height="150%">

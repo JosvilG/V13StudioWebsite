@@ -491,8 +491,8 @@ export function Work({ projects }: { projects: SheetProject[] }) {
             transformOrigin: "50% 50%",
             transform: "scaleY(0)",
             background:
-              "linear-gradient(to bottom, rgba(150,195,255,0.55), rgba(120,170,235,0.7) 50%, rgba(150,195,255,0.55))",
-            boxShadow: "0 0 12px 1px rgba(120,175,255,0.55)",
+              "linear-gradient(to bottom, rgba(176,150,250,0.55), rgba(146,104,246,0.7) 50%, rgba(176,150,250,0.55))",
+            boxShadow: "0 0 12px 1px rgba(146,104,246,0.55)",
           }}
         />
         <div
@@ -501,8 +501,8 @@ export function Work({ projects }: { projects: SheetProject[] }) {
           style={{
             height: "0%",
             background:
-              "linear-gradient(to bottom, rgba(150,200,255,0) 0%, rgba(160,210,255,1) 24%, rgba(210,235,255,1) 100%)",
-            boxShadow: "0 0 18px 4px rgba(140,195,255,0.9), 0 0 40px 8px rgba(120,180,255,0.45)",
+              "linear-gradient(to bottom, rgba(176,150,250,0) 0%, rgba(176,150,250,1) 24%, rgba(202,191,255,1) 100%)",
+            boxShadow: "0 0 18px 4px rgba(176,150,250,0.9), 0 0 40px 8px rgba(146,104,246,0.45)",
           }}
         />
         <div
@@ -511,13 +511,13 @@ export function Work({ projects }: { projects: SheetProject[] }) {
           style={{
             opacity: 0,
             transform: "translate(-50%, -50%)",
-            boxShadow: "0 0 24px 10px rgba(130,190,255,0.9), 0 0 60px 18px rgba(110,170,255,0.4)",
+            boxShadow: "0 0 24px 10px rgba(146,104,246,0.9), 0 0 60px 18px rgba(146,104,246,0.4)",
           }}
         />
         <div
           ref={headRef}
           className="absolute left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
-          style={{ top: "0%", opacity: 0, boxShadow: "0 0 16px 5px rgba(160,205,255,0.95)" }}
+          style={{ top: "0%", opacity: 0, boxShadow: "0 0 16px 5px rgba(176,150,250,0.95)" }}
         />
 
         {NODES.map((n, i) => {
@@ -551,7 +551,7 @@ export function Work({ projects }: { projects: SheetProject[] }) {
                   <img src="/logo-light.png" alt="" aria-hidden className="mb-1 inline-block h-3 w-auto opacity-70" />
                 )}
                 <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-white sm:text-base">{stepItem.title}</h3>
-                <p className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-[#7c9fd6] sm:text-xs">{stepItem.tagline}</p>
+                <p className="mt-0.5 text-[11px] uppercase tracking-[0.16em] text-[#9a82d6] sm:text-xs">{stepItem.tagline}</p>
               </div>
             </div>
           )
@@ -575,8 +575,8 @@ export function Work({ projects }: { projects: SheetProject[] }) {
           transform: "scaleY(0.52)",
           marginLeft: "-1.5px",
           background:
-            "linear-gradient(to bottom, rgba(160,205,255,0.2), rgba(170,215,255,0.95) 50%, rgba(160,205,255,0.2))",
-          boxShadow: "0 0 22px 5px rgba(140,195,255,0.9), 0 0 60px 12px rgba(120,180,255,0.4)",
+            "linear-gradient(to bottom, rgba(176,150,250,0.2), rgba(176,150,250,0.95) 50%, rgba(176,150,250,0.2))",
+          boxShadow: "0 0 22px 5px rgba(176,150,250,0.9), 0 0 60px 12px rgba(146,104,246,0.4)",
         }}
       />
 
@@ -598,7 +598,7 @@ export function Work({ projects }: { projects: SheetProject[] }) {
           <div className="mt-14 grid w-full max-w-4xl grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-white/12">
             {pillars.map((pillar) => (
               <div key={pillar.title} className="flex flex-col items-center px-6">
-                <span className="mb-3 block h-px w-10 bg-[#7c9fd6]/70" />
+                <span className="mb-3 block h-px w-10 bg-[#9a82d6]/70" />
                 <h3 className="text-base font-bold uppercase tracking-[0.22em] text-white sm:text-lg">{pillar.title}</h3>
                 <p className="mt-2 max-w-[17rem] text-sm leading-relaxed text-white/60">{pillar.description}</p>
               </div>

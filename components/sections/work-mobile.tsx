@@ -18,7 +18,7 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
     <section id="work" className="relative overflow-hidden bg-[#04060a] px-6 py-20">
       {/* ── PROYECTOS ── */}
       <div>
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#7ca8ff]">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#9268f6]">
           {t.portfolio.eyebrow}
         </p>
         <h2
@@ -58,7 +58,7 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#7ca8ff] transition-opacity hover:opacity-80"
+                    className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#9268f6] transition-opacity hover:opacity-80"
                   >
                     {t.portfolio.viewProject}
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
             <p className="text-sm text-white/55">{t.portfolio.ctaText}</p>
             <a
               href="#contact"
-              className="mt-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#7ca8ff]"
+              className="mt-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#9268f6]"
             >
               {t.portfolio.ctaLink}
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -87,7 +87,7 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
 
       {/* ── PROCESO ── */}
       <div id="process" className="mt-24 scroll-mt-24">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#7ca8ff]">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#9268f6]">
           {t.process.eyebrow}
         </p>
         <h2 className="mt-3 text-2xl font-semibold uppercase tracking-[0.3em] text-white">
@@ -98,14 +98,14 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
           {steps.map((s, i) => (
             <li key={s.title} className="border-l-2 border-white/10 pl-5">
               <div className="flex items-baseline gap-3">
-                <span className="font-mono text-[11px] text-[#7ca8ff]">
+                <span className="font-mono text-[11px] text-[#9268f6]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-base font-bold uppercase tracking-[0.18em] text-white">
                   {s.title}
                 </h3>
               </div>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-[#7c9fd6]">
+              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-[#9a82d6]">
                 {s.tagline}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-white/60">{s.description}</p>
@@ -150,7 +150,7 @@ export function WorkMobile({ projects }: { projects: SheetProject[] }) {
           <div className="mt-10 space-y-8">
             {pillars.map((pillar) => (
               <div key={pillar.title}>
-                <span className="mb-3 block h-px w-10 bg-[#7ca8ff]/70" />
+                <span className="mb-3 block h-px w-10 bg-[#9268f6]/70" />
                 <h3 className="text-base font-bold uppercase tracking-[0.2em] text-white">
                   {pillar.title}
                 </h3>

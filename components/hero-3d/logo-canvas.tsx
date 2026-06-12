@@ -180,7 +180,7 @@ export default function LogoCanvas() {
       <Suspense fallback={null}>
         <ambientLight intensity={0.35} />
         <directionalLight position={[5, 8, 6]} intensity={2.2} />
-        <directionalLight position={[-6, -2, 4]} intensity={1.1} color="#9fb6e6" />
+        <directionalLight position={[-6, -2, 4]} intensity={1.1} color="#b4a2ea" />
         <Particles />
         <SpinningLogo />
         <StudioEnv />
