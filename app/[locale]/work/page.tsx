@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { getProjects, getStats } from '@/lib/content'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
-import { ProjectsCarousel } from '@/components/subpage/projects-carousel'
+import { ProjectsBento } from '@/components/subpage/projects-bento'
 import { ProjectDetailList } from '@/components/subpage/project-detail-list'
 import { Reveal } from '@/components/subpage/reveal'
 import { WorkBackdrop } from '@/components/subpage/backdrops'
@@ -64,15 +64,19 @@ export default async function WorkPage({
             V13 Studio
           </Link>
 
+          <h1
+            className="mt-12 text-5xl font-medium tracking-tight text-white sm:text-6xl md:text-7xl"
+            style={{ fontFamily: 'var(--font-serif)' }}
+          >
+            {dict.portfolio.headingTop}
+          </h1>
+
           {projects.length > 0 ? (
-            <ProjectsCarousel
-              projects={projects}
-              heading={dict.portfolio.headingTop}
-              allLabel={dict.portfolio.all}
-              viewProject={dict.portfolio.viewProject}
-            />
+            <div className="mt-12">
+              <ProjectsBento projects={projects} viewProject={dict.portfolio.viewProject} />
+            </div>
           ) : (
-            <p className="mt-20 font-mono text-sm uppercase tracking-[0.2em] text-white/45">
+            <p className="mt-12 font-mono text-sm uppercase tracking-[0.2em] text-white/45">
               {dict.portfolio.ctaText}
             </p>
           )}
