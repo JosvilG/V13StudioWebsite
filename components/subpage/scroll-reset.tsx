@@ -2,7 +2,10 @@
 
 import { useEffect } from 'react'
 
-type LenisLike = { scrollTo: (t: number, o?: { immediate?: boolean }) => void }
+type LenisLike = {
+  scrollTo: (t: number, o?: { immediate?: boolean }) => void
+  resize?: () => void
+}
 
 /**
  * Forces the viewport to the top when a subpage mounts. Without this, Lenis keeps
@@ -14,6 +17,7 @@ export function ScrollReset() {
     const lenis = (window as unknown as Record<string, unknown>).__lenis as LenisLike | undefined
     const reset = () => {
       window.scrollTo(0, 0)
+      lenis?.resize?.()
       lenis?.scrollTo(0, { immediate: true })
     }
     reset()

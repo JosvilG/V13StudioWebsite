@@ -2,7 +2,10 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-type LenisLike = { scrollTo: (t: number, o?: { immediate?: boolean }) => void }
+type LenisLike = {
+  scrollTo: (t: number, o?: { immediate?: boolean }) => void
+  resize?: () => void
+}
 
 // Runs before paint on the client; falls back to useEffect during SSR.
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -72,11 +75,18 @@ export function HomeHashScroll() {
         }
         return
       }
+      // Lenis persists across navigation and caches the (short) subpage's
+      // dimensions — without a resize it clamps a large target back near the top.
+      lenis.resize?.()
       lenis.scrollTo(target, { immediate: true })
       history.replaceState(null, '', window.location.pathname + window.location.search)
       // Re-assert in case Next/Lenis restore scroll just after, then reveal.
-      window.setTimeout(() => lenis.scrollTo(target, { immediate: true }), 80)
       window.setTimeout(() => {
+        lenis.resize?.()
+        lenis.scrollTo(target, { immediate: true })
+      }, 80)
+      window.setTimeout(() => {
+        lenis.resize?.()
         lenis.scrollTo(target, { immediate: true })
         reveal()
       }, 180)
