@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isLocale } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
+import Link from 'next/link'
 import { getProjects, getStats } from '@/lib/content'
-import { PageHero } from '@/components/subpage/page-hero'
 import { SectionHeading } from '@/components/subpage/section-heading'
 import { CtaBand } from '@/components/subpage/cta-band'
-import { WorkGrid } from '@/components/subpage/work-grid'
+import { ProjectsCarousel } from '@/components/subpage/projects-carousel'
 import { Reveal } from '@/components/subpage/reveal'
 import { WorkBackdrop } from '@/components/subpage/backdrops'
 import { Footer } from '@/components/sections/footer'
@@ -52,22 +52,29 @@ export default async function WorkPage({
     <>
       <main className="relative min-h-screen overflow-hidden bg-[#04060a] text-white">
         <WorkBackdrop />
-        <div className="subpage-enter relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
-          <PageHero
-            locale={locale}
-            eyebrow={dict.portfolio.eyebrow}
-            title={`${dict.portfolio.headingTop} ${dict.portfolio.headingAccent}`}
-            intro={dict.portfolio.ctaText}
-          />
+        <div className="subpage-enter relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-16 sm:pt-28">
+          <Link
+            href={`/${locale}`}
+            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-[#9268f6]"
+          >
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            V13 Studio
+          </Link>
 
-          <section className="mt-20">
-            <WorkGrid
+          {projects.length > 0 ? (
+            <ProjectsCarousel
               projects={projects}
+              heading={dict.portfolio.headingTop}
               allLabel={dict.portfolio.all}
               viewProject={dict.portfolio.viewProject}
-              emptyText={dict.portfolio.ctaText}
             />
-          </section>
+          ) : (
+            <p className="mt-20 font-mono text-sm uppercase tracking-[0.2em] text-white/45">
+              {dict.portfolio.ctaText}
+            </p>
+          )}
 
           {stats.length > 0 && (
             <Reveal className="mt-24">
