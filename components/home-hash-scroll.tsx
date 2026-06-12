@@ -10,7 +10,7 @@ const LOCAL_BY_ANCHOR: Record<string, number> = {
   services: 0.1,
   work: 0.1,
   process: 0.46,
-  about: 0.88,
+  about: 0.85,
 }
 
 /**
