@@ -17,38 +17,38 @@
     --card-foreground: #0A0A0A;
     --popover: #FFFFFF;
     --popover-foreground: #0A0A0A;
-    --primary: #7C3AED;
+    --primary: #7C4DDB;
     --primary-foreground: #FFFFFF;
     --secondary: #F3F4F6;
     --secondary-foreground: #0A0A0A;
     --muted: #F3F4F6;
     --muted-foreground: #6B7280;
-    --accent: #7C3AED;
+    --accent: #7C4DDB;
     --accent-foreground: #FFFFFF;
     --destructive: #EF4444;
     --destructive-foreground: #FFFFFF;
     --border: #E5E7EB;
     --input: #F3F4F6;
-    --ring: #7C3AED;
-    --chart-1: #7C3AED;
-    --chart-2: #8B5CF6;
-    --chart-3: #A78BFA;
-    --chart-4: #6D28D9;
-    --chart-5: #5B21B6;
+    --ring: #7C4DDB;
+    --chart-1: #7C4DDB;
+    --chart-2: #3D8BFF;
+    --chart-3: #7CB2FF;
+    --chart-4: #1D6FD0;
+    --chart-5: #9268F6;
     --radius: 0rem;
-    --glow: #7C3AED;
+    --glow: #7C4DDB;
 
     /* Overlay / decorative colors for inline styles */
     --overlay-text: rgba(0, 0, 0, 0.03);
     --overlay-border: rgba(0, 0, 0, 0.08);
-    --glow-purple: rgba(124, 58, 237, 0.08);
-    --glow-purple-strong: rgba(124, 58, 237, 0.15);
-    --glow-cyan: rgba(6, 182, 212, 0.06);
-    --glow-cyan-strong: rgba(6, 182, 212, 0.12);
-    --grid-color: rgba(124, 58, 237, 0.04);
-    --gradient-accent-1: #7C3AED;
-    --gradient-accent-2: #A78BFA;
-    --gradient-accent-3: #06B6D4;
+    --glow-purple: rgba(124, 77, 219, 0.08);
+    --glow-purple-strong: rgba(124, 77, 219, 0.15);
+    --glow-cyan: rgba(146, 104, 246, 0.06);
+    --glow-cyan-strong: rgba(146, 104, 246, 0.12);
+    --grid-color: rgba(124, 77, 219, 0.04);
+    --gradient-accent-1: #7C4DDB;
+    --gradient-accent-2: #7CB2FF;
+    --gradient-accent-3: #9268F6;
     --stroke-muted: rgba(107, 114, 128, 0.3);
 
     color-scheme: light;
@@ -62,37 +62,37 @@
     --card-foreground: #FAFAFA;
     --popover: #0A0A0A;
     --popover-foreground: #FAFAFA;
-    --primary: #8B5CF6;
+    --primary: #9268F6;
     --primary-foreground: #FFFFFF;
     --secondary: #111111;
     --secondary-foreground: #FAFAFA;
     --muted: #1A1A1A;
     --muted-foreground: #666666;
-    --accent: #8B5CF6;
+    --accent: #9268F6;
     --accent-foreground: #FFFFFF;
     --destructive: #EF4444;
     --destructive-foreground: #FFFFFF;
     --border: #222222;
     --input: #1A1A1A;
-    --ring: #8B5CF6;
-    --chart-1: #8B5CF6;
-    --chart-2: #A78BFA;
-    --chart-3: #C4B5FD;
-    --chart-4: #7C3AED;
-    --chart-5: #6D28D9;
-    --glow: #8B5CF6;
+    --ring: #9268F6;
+    --chart-1: #9268F6;
+    --chart-2: #7CB2FF;
+    --chart-3: #A9CEFF;
+    --chart-4: #7C4DDB;
+    --chart-5: #9268F6;
+    --glow: #9268F6;
 
     /* Overlay / decorative colors for inline styles */
     --overlay-text: rgba(255, 255, 255, 0.02);
     --overlay-border: rgba(255, 255, 255, 0.1);
-    --glow-purple: rgba(139, 92, 246, 0.4);
-    --glow-purple-strong: rgba(139, 92, 246, 0.5);
-    --glow-cyan: rgba(6, 182, 212, 0.3);
-    --glow-cyan-strong: rgba(6, 182, 212, 0.6);
-    --grid-color: rgba(139, 92, 246, 0.03);
-    --gradient-accent-1: #8B5CF6;
-    --gradient-accent-2: #A78BFA;
-    --gradient-accent-3: #06B6D4;
+    --glow-purple: rgba(146, 104, 246, 0.4);
+    --glow-purple-strong: rgba(146, 104, 246, 0.5);
+    --glow-cyan: rgba(146, 104, 246, 0.3);
+    --glow-cyan-strong: rgba(146, 104, 246, 0.6);
+    --grid-color: rgba(146, 104, 246, 0.03);
+    --gradient-accent-1: #9268F6;
+    --gradient-accent-2: #7CB2FF;
+    --gradient-accent-3: #9268F6;
     --stroke-muted: rgba(128, 128, 128, 0.3);
 
     color-scheme: dark;
@@ -310,6 +310,161 @@
   text-shadow: 0 0 20px var(--glow-purple-strong), 0 0 40px var(--glow-purple);
 }
 
+/* Cinematic hero - metallic V13 logo */
+.hero-logo-wrap {
+  position: relative;
+  width: clamp(190px, 30vw, 430px);
+  aspect-ratio: 1.9 / 1;
+}
+/* 3D canvas fills the whole hero so the logo can fly in / through with no box edges */
+.hero-3d-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-3d-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.hero-metallic-depth,
+.hero-metallic-face {
+  position: absolute;
+  inset: 0;
+  -webkit-mask: url('/logo-light.png') center / 180% auto no-repeat;
+  mask: url('/logo-light.png') center / 180% auto no-repeat;
+}
+/* Extruded thickness + contact shadow (separate layer so it isn't clipped by the face) */
+.hero-metallic-depth {
+  background: linear-gradient(180deg, #3a3f48 0%, #14171c 60%, #07090c 100%);
+  transform: translateY(9px);
+  filter: blur(1px) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+}
+/* Chrome face: sharp light/dark "horizon" at mid-height = classic polished metal */
+.hero-metallic-face {
+  background: linear-gradient(
+    180deg,
+    #9aa3af 0%,
+    #c2c9d2 14%,
+    #e4e8ee 40%,
+    #767e8a 49.4%,
+    #2c313a 50%,
+    #4e555f 57%,
+    #aab1bc 66%,
+    #828a96 84%,
+    #565d68 100%
+  );
+  filter:
+    drop-shadow(0 -1px 0 rgba(220, 230, 245, 0.4))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 70px rgba(146, 104, 246, 0.3));
+}
+/* Moving specular sheen sweeping across the chrome */
+.hero-metallic-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(235, 242, 255, 0.55) 49%,
+    rgba(255, 255, 255, 0) 58%
+  );
+  background-size: 250% 100%;
+  mix-blend-mode: screen;
+  animation: hero-chrome-sheen 6.5s ease-in-out infinite;
+}
+@keyframes hero-chrome-sheen {
+  0% { background-position: 175% 0; }
+  55%, 100% { background-position: -75% 0; }
+}
+
+/* Hero smoke / fog drift */
+@keyframes hero-fog-drift-1 {
+  0% { transform: translate3d(-7%, -2%, 0) scale(1.08); }
+  50% { transform: translate3d(7%, -4%, 0) scale(1.28); }
+  100% { transform: translate3d(-7%, -2%, 0) scale(1.08); }
+}
+@keyframes hero-fog-drift-2 {
+  0% { transform: translate3d(8%, 3%, 0) scale(1.22); }
+  50% { transform: translate3d(-8%, -1%, 0) scale(1.04); }
+  100% { transform: translate3d(8%, 3%, 0) scale(1.22); }
+}
+
+/* Contact: small white particles, in place, gentle twinkle */
+@keyframes contact-particle-twinkle {
+  0%, 100% { opacity: var(--p-min, 0.1); }
+  50% { opacity: var(--p-op, 0.5); }
+}
+
+/* Contact: strong light behind the V13, gentle breathe */
+@keyframes contact-light-pulse {
+  0%, 100% { opacity: 0.78; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+/* Contact: V13 outline draws itself in, then rests fully drawn */
+@keyframes contact-logo-drawin {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Contact: glow breathing on the V13 outline halo (opacity only — no CSS filter,
+   so no square GPU-compositing artefact) */
+@keyframes contact-logo-glow {
+  0%, 100% { opacity: 0.22; }
+  50% { opacity: 0.55; }
+}
+.hero-smoke-1 {
+  background:
+    radial-gradient(40% 36% at 38% 42%, rgba(176, 150, 250, 0.16) 0%, transparent 62%),
+    radial-gradient(30% 28% at 52% 52%, rgba(140, 158, 190, 0.12) 0%, transparent 66%);
+  filter: blur(52px);
+  animation: hero-fog-drift-1 13s ease-in-out infinite;
+}
+.hero-smoke-2 {
+  background:
+    radial-gradient(42% 38% at 64% 50%, rgba(146, 104, 246, 0.14) 0%, transparent 64%),
+    radial-gradient(28% 26% at 72% 42%, rgba(110, 126, 158, 0.10) 0%, transparent 68%);
+  filter: blur(64px);
+  animation: hero-fog-drift-2 17s ease-in-out infinite;
+}
+
+/* Big-bang particle burst (Services -> Projects transition) */
+.bigbang-particle {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  border-radius: 9999px;
+  background: #eaf1ff;
+  box-shadow: 0 0 8px 2px rgba(176, 150, 250, 0.85);
+  transform: translate(-50%, -50%) rotate(var(--a, 0deg))
+    translateX(calc(var(--d, 0px) * var(--burst, 0)));
+}
+
+/* Process blueprint timeline nodes */
+.bp-node {
+  background: rgba(146, 104, 246, calc(0.22 + 0.78 * var(--on, 0)));
+  border: 1px solid rgba(176, 150, 250, calc(0.35 + 0.65 * var(--on, 0)));
+  box-shadow: 0 0 calc(2px + 13px * var(--on, 0)) calc(1px + 2px * var(--on, 0))
+    rgba(176, 150, 250, calc(0.7 * var(--on, 0)));
+}
+.bp-label::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: calc(18px * var(--on, 0));
+  height: 1px;
+  background: rgba(176, 150, 250, calc(0.5 * var(--on, 0)));
+}
+.bp-label[style*="left"]::before {
+  right: 100%;
+}
+.bp-label[style*="right"]::before {
+  left: 100%;
+}
+
 /* Border animation */
 @keyframes border-dance {
   0%, 100% { border-color: transparent; border-top-color: var(--primary); }
@@ -320,4 +475,42 @@
 
 .border-animate {
   animation: border-dance 4s linear infinite;
+}
+
+/* Route transition — gentle opacity fade on every navigation. Opacity only so it
+   never breaks `position: fixed` / scroll math on the choreographed homepage. */
+@keyframes route-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.route-fade {
+  animation: route-fade 0.45s ease-out both;
+}
+
+/* Subpage entrance — slide up + fade. Applied only on detail pages (no fixed
+   descendants), so the transform is safe here. */
+@keyframes subpage-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.subpage-enter {
+  animation: subpage-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-fade,
+  .subpage-enter {
+    animation: none;
+  }
+}
+
+/* View Transitions — smooth morph of the project card box (size + reflow) when it
+   expands/collapses. */
+::view-transition-group(*) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*) {
+    animation-duration: 0.01ms;
+  }
 }

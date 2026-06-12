@@ -9,6 +9,14 @@ export interface SheetProject {
   url?: string
   category: string
   description: string
+  // Optional richer detail fields (shown on the /work detail list when present).
+  // `client`/`role`/`image` are plain columns; `challenge`/`result` are localized
+  // (`challenge_en`, `challenge_es`, …).
+  client?: string
+  role?: string
+  image?: string
+  challenge?: string
+  result?: string
 }
 
 export interface SheetTeamMember {
@@ -118,6 +126,11 @@ export async function getProjects(locale: Locale): Promise<SheetProject[]> {
       url: row.url || undefined,
       category: localized(row, 'category', locale),
       description: localized(row, 'description', locale),
+      client: row.client || undefined,
+      role: localized(row, 'role', locale) || undefined,
+      image: row.image || undefined,
+      challenge: localized(row, 'challenge', locale) || undefined,
+      result: localized(row, 'result', locale) || undefined,
     }))
 }
 

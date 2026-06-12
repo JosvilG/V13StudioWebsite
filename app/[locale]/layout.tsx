@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google'
+import { Space_Grotesk, Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { notFound } from 'next/navigation'
@@ -36,6 +36,12 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+})
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
@@ -56,17 +62,7 @@ export async function generateMetadata({
       template: '%s | V13 Studio',
     },
     description: dict.meta.description,
-    keywords: [
-      'product studio',
-      'software development',
-      'mobile development',
-      'web development',
-      'UX/UI design',
-      'React Native',
-      'NestJS',
-      'Catalonia',
-      'Spain',
-    ],
+    keywords: dict.meta.keywords,
     authors: [{ name: 'V13 Studio' }],
     creator: 'V13 Studio',
     publisher: 'V13 Studio',
@@ -132,10 +128,13 @@ export default async function LocaleLayout({
         url: siteUrl,
         logo: `${siteUrl}/logo-light.png`,
         email: 'v13studio@v13studio.com',
+        telephone: '+34650851990',
         description: dict.meta.description,
         address: {
           '@type': 'PostalAddress',
-          addressRegion: 'Catalonia',
+          addressLocality: 'Roquetes',
+          postalCode: '43520',
+          addressRegion: 'Tarragona',
           addressCountry: 'ES',
         },
         areaServed: 'Worldwide',
@@ -163,11 +162,14 @@ export default async function LocaleLayout({
         url: siteUrl,
         image: `${siteUrl}/logo-light.png`,
         email: 'v13studio@v13studio.com',
+        telephone: '+34650851990',
         priceRange: '$$',
         parentOrganization: { '@id': `${siteUrl}/#organization` },
         address: {
           '@type': 'PostalAddress',
-          addressRegion: 'Catalonia',
+          addressLocality: 'Roquetes',
+          postalCode: '43520',
+          addressRegion: 'Tarragona',
           addressCountry: 'ES',
         },
         hasOfferCatalog: {
@@ -191,7 +193,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${playfair.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <I18nProvider locale={locale} dict={dict}>

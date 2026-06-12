@@ -14,10 +14,17 @@ export function CustomCursor() {
   const [mode, setMode] = useState<CursorMode>("default")
   const [isMobile, setIsMobile] = useState(true)
 
-  // Detect mobile on mount
+  // Detect touch / small screens (no custom cursor there)
   useEffect(() => {
-    const isCoarse = window.matchMedia("(pointer: coarse)").matches
-    setIsMobile(isCoarse)
+    const check = () =>
+      setIsMobile(
+        window.matchMedia("(pointer: coarse), (hover: none)").matches ||
+          "ontouchstart" in window ||
+          window.innerWidth < 768
+      )
+    check()
+    window.addEventListener("resize", check, { passive: true })
+    return () => window.removeEventListener("resize", check)
   }, [])
 
   // Hide default cursor on non-mobile
@@ -108,9 +115,9 @@ export function CustomCursor() {
   if (isMobile) return null
 
   const circleSize =
-    mode === "interactive" ? 60 : mode === "text" ? 30 : 40
+    mode === "interactive" ? 52 : mode === "text" ? 28 : 36
   const circleOpacity =
-    mode === "interactive" ? 0.5 : 1
+    mode === "interactive" ? 0.9 : mode === "text" ? 0.5 : 0.7
 
   return (
     <>
@@ -119,15 +126,16 @@ export function CustomCursor() {
         ref={dotRef}
         className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
-          width: 8,
-          height: 8,
-          opacity: visible ? 1 : 0,
+          width: 6,
+          height: 6,
+          opacity: visible ? (mode === "text" ? 0 : 1) : 0,
           transition: "opacity 0.3s ease",
           willChange: "transform",
         }}
       >
         <div
-          className="w-full h-full rounded-full bg-primary"
+          className="h-full w-full rounded-full bg-[#cabfff]"
+          style={{ boxShadow: "0 0 8px 1px rgba(146,104,246,0.9)" }}
         />
       </div>
 
@@ -142,15 +150,15 @@ export function CustomCursor() {
           transition:
             "width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease",
           willChange: "transform",
-          mixBlendMode: "difference",
         }}
       >
         <div
-          className="w-full h-full rounded-full border border-primary"
+          className="h-full w-full rounded-full"
           style={{
-            transform:
-              mode === "interactive" ? "scale(1.5)" : "scale(1)",
-            transition: "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            border: "1px solid rgba(176,150,250,0.85)",
+            boxShadow: "0 0 12px rgba(146,104,246,0.35), inset 0 0 8px rgba(146,104,246,0.15)",
+            background: mode === "interactive" ? "rgba(146,104,246,0.08)" : "transparent",
+            transition: "background 0.3s ease",
           }}
         />
       </div>
