@@ -18,11 +18,18 @@ export function Hero({ hasProjects: _hasProjects }: { hasProjects: boolean }) {
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setLoaded(true))
-    setUse3D(can3D())
+    // Defer the heavy 3D scene (~960 KB three.js chunk) until the browser is
+    // idle, so it stays out of the critical load path. The CSS chrome logo
+    // (the !use3D branch) paints first and is the LCP element; 3D upgrades in
+    // shortly after, once the main thread is free.
+    const ric = (window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 200)))(
+      () => setUse3D(can3D())
+    )
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => {
       cancelAnimationFrame(id)
+      ;(window.cancelIdleCallback ?? window.clearTimeout)(ric as number)
       window.removeEventListener("scroll", handleScroll)
     }
   }, [])
