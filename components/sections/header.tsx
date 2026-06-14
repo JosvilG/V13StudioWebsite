@@ -14,14 +14,14 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
   const locale = useLocale()
   const pathname = usePathname()
   const navItems = [
-    { key: "home", label: t.nav.home, href: "#hero" },
-    { key: "services", label: t.nav.services, href: "#services" },
-    { key: "work", label: t.nav.work, href: "#work" },
-    { key: "process", label: t.nav.process, href: "#process" },
-    { key: "about", label: t.nav.about, href: "#about" },
-    { key: "contact", label: t.nav.contact, href: "#contact" },
-    { key: "blog", label: t.nav.blog, href: `/${locale}/blog` },
-    { key: "tools", label: t.nav.tools, href: "https://tools.v13studio.com" },
+    { label: t.nav.home, href: "#hero" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.work, href: "#work" },
+    { label: t.nav.process, href: "#process" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.blog, href: `/${locale}/blog` },
+    { label: t.nav.tools, href: "https://tools.v13studio.com" },
   ].filter((item) => hasProjects || item.href !== "#work")
   const [isOpen, setIsOpen] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -112,6 +112,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           "hover:border-[#9268f6] hover:bg-[#9268f6]/10 transition-all duration-300",
         )}
         aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
       >
         <div className="relative w-4 h-4 mx-auto">
           <span
@@ -143,6 +144,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         aria-hidden={!isOpen}
+        inert={!isOpen ? true : undefined}
       >
         {/* eyebrow — top left (desktop) */}
         <p className="absolute top-7 left-6 sm:left-10 md:left-16 z-20 hidden md:block text-[10px] font-mono uppercase tracking-[0.35em] text-white/55">
@@ -160,7 +162,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
                   <li key={item.href}>
                     <button
                       onClick={() => handleNav(item.href)}
-                      className="group flex w-full items-center gap-3 py-1.5 text-left transition-transform duration-300 hover:translate-x-2 focus-visible:translate-x-2 focus-visible:outline-none"
+                      className="group flex w-full items-center gap-3 py-1.5 text-left transition-[opacity,transform] duration-300 hover:translate-x-2 focus-visible:translate-x-2 focus-visible:outline-none"
                       style={{
                         transitionDelay: isOpen ? `${i * 50 + 120}ms` : "0ms",
                         opacity: isOpen ? 1 : 0,
@@ -232,7 +234,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           {/* contact email */}
           <a
             href="mailto:v13studio@v13studio.com"
-            className="text-xs font-mono text-white/50 transition-colors hover:text-[#9268f6] focus-visible:outline-none focus-visible:text-[#9268f6]"
+            className="text-xs font-mono text-white/50 transition-colors hover:text-[#9268f6] focus-visible:outline-none focus-visible:text-[#9268f6] focus-visible:underline"
           >
             v13studio@v13studio.com
           </a>
