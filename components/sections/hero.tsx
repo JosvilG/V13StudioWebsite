@@ -41,7 +41,7 @@ export function Hero({ hasProjects: _hasProjects }: { hasProjects: boolean }) {
     <section
       id="hero"
       ref={containerRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#050505] px-6"
+      className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-[#050505] px-6"
     >
       {/* Smoke / fog drifting layers */}
       <div className="pointer-events-none absolute inset-0 hero-smoke-1" />

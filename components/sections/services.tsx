@@ -114,7 +114,7 @@ export function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#070a0e]/80"
+      className="relative flex min-h-dvh items-center overflow-hidden bg-[#070a0e]/80"
     >
       <ServicesBackdrop />
 
@@ -183,7 +183,7 @@ export function Services() {
         </>
       )}
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center px-4 py-24 lg:min-h-screen lg:py-0">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center px-4 py-24 lg:min-h-dvh lg:py-0">
         <div className="relative w-full max-w-md lg:h-[64vh]">
           {/* Statement */}
           <div

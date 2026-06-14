@@ -79,7 +79,7 @@ export function SectionStack({ children, spans }: SectionStackProps) {
       style={{ height: `${totalSpan * 100}vh` }}
       className="relative"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-dvh w-full overflow-hidden">
         {items.map((child, index) => {
           const start = starts[index]
           const end = start + spanArr[index]

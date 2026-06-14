@@ -85,7 +85,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative flex min-h-screen items-center overflow-hidden bg-black py-16 lg:py-0"
+      className="relative flex min-h-dvh items-center overflow-hidden bg-black py-16 lg:py-0"
     >
       {/* Flat V13 — self-drawing glowing outline, centred behind the columns */}
       <div className="pointer-events-none absolute inset-0 z-[2] hidden items-center justify-center lg:flex">

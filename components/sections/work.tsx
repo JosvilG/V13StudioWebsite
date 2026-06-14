@@ -245,7 +245,7 @@ export function Work({ projects }: { projects: SheetProject[] }) {
     <section
       id="work"
       ref={sectionRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#04060a]"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[#04060a]"
     >
       <div id="process" className="pointer-events-none absolute" aria-hidden />
       <div id="about" className="pointer-events-none absolute" aria-hidden />
