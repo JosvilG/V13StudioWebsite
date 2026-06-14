@@ -7,7 +7,7 @@ import { navigateToSection } from "@/lib/navigate-stack"
 import { ThemeLogo } from "@/components/theme-logo"
 import { useT, useLocale } from "@/components/i18n-provider"
 import { locales, localeNames } from "@/lib/i18n/config"
-import { V13_PATH } from "./v13-path"
+import { MenuV13 } from "./menu-v13"
 
 export function Header({ hasProjects }: { hasProjects: boolean }) {
   const t = useT()
@@ -55,11 +55,13 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
 
   const handleNav = useCallback((href: string) => {
     if (href.startsWith("http")) {
+      setIsOpen(false)
       window.open(href, "_blank", "noopener,noreferrer")
       return
     }
     // Internal route (e.g. /blog) — full navigation, not in-page anchor
     if (href.startsWith("/")) {
+      setIsOpen(false)
       window.location.href = href
       return
     }
@@ -112,6 +114,8 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           "hover:border-[#9268f6] hover:bg-[#9268f6]/10 transition-all duration-300",
         )}
         aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
+        aria-controls="main-menu"
       >
         <div className="relative w-4 h-4 mx-auto">
           <span
@@ -135,75 +139,53 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
         </div>
       </button>
 
-      {/* ── Backdrop overlay ── */}
-      <div
+      {/* ── Fullscreen overlay menu ── */}
+      <nav
+        id="main-menu"
         className={cn(
-          "fixed inset-0 z-[55] bg-black/70 backdrop-blur-sm transition-opacity duration-300",
+          "fixed inset-0 z-[58] bg-[#050505] overflow-hidden flex flex-col",
+          "transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
-        onClick={() => setIsOpen(false)}
-      />
-
-      {/* ── Side panel ── */}
-      <nav
-        className={cn(
-          "fixed top-0 right-0 z-[58] h-full w-[85vw] sm:w-[60vw] md:w-[50vw] lg:w-[40vw]",
-          "bg-[#050505] backdrop-blur-xl border-l border-white/10",
-          "flex flex-col overflow-hidden",
-          "transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-          isOpen ? "translate-x-0" : "translate-x-full"
-        )}
+        aria-hidden={!isOpen}
+        inert={!isOpen ? true : undefined}
       >
-        {/* V13 watermark — behind all panel content */}
-        <svg
-          viewBox="232 348 560 312"
-          className="pointer-events-none absolute -right-10 bottom-24 w-[110%] opacity-[0.05]"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path d={V13_PATH} fill="none" stroke="#9268f6" strokeWidth={3} strokeLinejoin="round" />
-        </svg>
+        {/* eyebrow — top left (desktop) */}
+        <p className="absolute top-7 left-6 sm:left-10 md:left-16 z-20 hidden md:block text-[10px] font-mono uppercase tracking-[0.35em] text-white/55">
+          {t.menu.eyebrow}
+        </p>
 
-        {/* Panel content above watermark */}
-        <div className="relative z-10 flex flex-1 flex-col">
-          {/* Logo area */}
-          <div className="px-6 sm:px-8 pt-8 pb-4 border-b border-white/10">
-            <ThemeLogo size={48} className="sm:hidden" />
-            <ThemeLogo size={64} className="hidden sm:block" />
-            <p className="text-xs text-white/40 font-mono mt-2 tracking-[0.3em]">STUDIO</p>
-          </div>
-
-          {/* Nav links */}
-          <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-6">
-            <ul className="space-y-1">
+        {/* two-column body */}
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col md:flex-row">
+          {/* LEFT — nav */}
+          <div className="flex flex-[1.05] flex-col justify-center px-6 sm:px-10 md:px-16 py-24 md:py-0">
+            <ul className="space-y-1 sm:space-y-2">
               {navItems.map((item, i) => {
                 const isExternal = item.href.startsWith("http")
                 return (
                   <li key={item.href}>
                     <button
                       onClick={() => handleNav(item.href)}
-                      className={cn(
-                        "w-full text-left py-3 flex items-center gap-4 group transition-all duration-300",
-                        "hover:translate-x-2"
-                      )}
+                      className="group flex w-full items-center gap-3 py-1.5 text-left transition-[opacity,transform] duration-300 hover:translate-x-2 focus-visible:translate-x-2 focus-visible:outline-none"
                       style={{
-                        transitionDelay: isOpen ? `${i * 50 + 100}ms` : "0ms",
+                        transitionDelay: isOpen ? `${i * 50 + 120}ms` : "0ms",
                         opacity: isOpen ? 1 : 0,
-                        transform: isOpen ? undefined : "translateX(20px)",
+                        transform: isOpen ? undefined : "translateY(24px)",
                       }}
                     >
-                      <span className="text-xs font-mono text-[#9268f6]/70 w-5">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-lg font-medium text-white group-hover:text-[#9268f6] transition-colors">
+                      <span className="font-sans font-bold tracking-[-0.02em] leading-[1.05] text-[clamp(1.75rem,5vw,2.9rem)] text-white/70 transition-colors duration-300 group-hover:text-[#9268f6] group-focus-visible:text-[#9268f6]">
                         {item.label}
                       </span>
-                      {isExternal ? (
-                        <svg aria-hidden="true" className="ml-auto w-4 h-4 text-white/45 group-hover:text-[#9268f6] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      {isExternal && (
+                        <svg
+                          aria-hidden="true"
+                          className="ml-1 h-5 w-5 -translate-x-2 text-white/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
-                      ) : (
-                        <span className="ml-auto w-0 group-hover:w-6 h-px bg-[#9268f6] transition-all duration-300" />
                       )}
                     </button>
                   </li>
@@ -212,41 +194,54 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
             </ul>
           </div>
 
-          {/* Bottom section — language switcher + info */}
-          <div className="px-6 sm:px-8 py-6 border-t border-white/10 space-y-4">
-            {/* Language switcher */}
-            <div className="flex gap-2" role="group" aria-label="Language">
-              {locales.map((lng) => {
-                const segments = pathname.split("/")
-                segments[1] = lng
-                const href = segments.join("/") || `/${lng}`
-                return (
-                  <a
-                    key={lng}
-                    href={href}
-                    hrefLang={lng}
-                    aria-current={lng === locale ? "page" : undefined}
-                    className={cn(
-                      "flex-1 text-center py-2 text-xs font-mono tracking-[0.2em] border transition-all duration-300",
-                      lng === locale
-                        ? "border-[#9268f6] text-[#9268f6] bg-[#9268f6]/5"
-                        : "border-white/15 text-white/50 hover:border-[#9268f6]/50 hover:text-white"
-                    )}
-                  >
-                    {localeNames[lng]}
-                  </a>
-                )
-              })}
-            </div>
-
-            {/* Contact info */}
-            <a
-              href="mailto:v13studio@v13studio.com"
-              className="block text-xs text-white/50 hover:text-[#9268f6] transition-colors font-mono"
-            >
-              v13studio@v13studio.com
-            </a>
+          {/* RIGHT — living V13 signature */}
+          <div className="pointer-events-none relative hidden flex-[0.95] items-center justify-center overflow-hidden md:flex md:border-l md:border-white/10">
+            {/* purple ambient glow */}
+            <div
+              className="absolute inset-0"
+              style={{ background: "radial-gradient(60% 55% at 55% 45%, rgba(146,104,246,0.16), transparent 70%)" }}
+            />
+            <MenuV13
+              key={isOpen ? "open" : "closed"}
+              open={isOpen}
+              className="h-auto w-[min(85%,520px)] opacity-90 md:opacity-100"
+            />
           </div>
+        </div>
+
+        {/* bottom bar */}
+        <div className="relative z-10 flex flex-col gap-4 border-t border-white/10 px-6 sm:px-10 md:px-16 py-5 sm:flex-row sm:items-center sm:justify-between">
+          {/* language switcher */}
+          <div className="flex gap-2" role="group" aria-label="Language">
+            {locales.map((lng) => {
+              const segments = pathname.split("/")
+              segments[1] = lng
+              const href = segments.join("/") || `/${lng}`
+              return (
+                <a
+                  key={lng}
+                  href={href}
+                  hrefLang={lng}
+                  aria-current={lng === locale ? "page" : undefined}
+                  className={cn(
+                    "px-4 py-2 text-xs font-mono tracking-[0.2em] border transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#9268f6]",
+                    lng === locale
+                      ? "border-[#9268f6] text-[#9268f6] bg-[#9268f6]/5"
+                      : "border-white/15 text-white/50 hover:border-[#9268f6]/50 hover:text-white"
+                  )}
+                >
+                  {localeNames[lng]}
+                </a>
+              )
+            })}
+          </div>
+          {/* contact email */}
+          <a
+            href="mailto:v13studio@v13studio.com"
+            className="text-xs font-mono text-white/50 transition-colors hover:text-[#9268f6] focus-visible:outline-none focus-visible:text-[#9268f6] focus-visible:underline"
+          >
+            v13studio@v13studio.com
+          </a>
         </div>
       </nav>
 
@@ -257,7 +252,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           "fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center",
           "border border-white/15 bg-black/80 backdrop-blur-xl",
           "hover:border-[#9268f6] hover:bg-[#9268f6]/10 transition-all duration-300",
-          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+          showScrollTop && !isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}
         aria-label="Scroll to top"
       >

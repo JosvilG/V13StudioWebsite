@@ -12,6 +12,9 @@ export interface Dictionary {
     blog: string
     tools: string
   }
+  menu: {
+    eyebrow: string
+  }
   hero: {
     eyebrow: string
     line1: string
@@ -168,6 +171,9 @@ const en: Dictionary = {
     contact: 'Contact',
     blog: 'Blog',
     tools: 'Tools',
+  },
+  menu: {
+    eyebrow: 'Menu — V13 Studio',
   },
   hero: {
     eyebrow: 'V13 Studio',
@@ -452,6 +458,9 @@ const es: Dictionary = {
     blog: 'Blog',
     tools: 'Herramientas',
   },
+  menu: {
+    eyebrow: 'Menú — V13 Studio',
+  },
   hero: {
     eyebrow: 'V13 Studio',
     line1: 'CREAMOS',
@@ -734,6 +743,9 @@ const ca: Dictionary = {
     contact: 'Contacte',
     blog: 'Blog',
     tools: 'Eines',
+  },
+  menu: {
+    eyebrow: 'Menú — V13 Studio',
   },
   hero: {
     eyebrow: 'V13 Studio',
