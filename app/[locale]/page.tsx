@@ -7,7 +7,6 @@ import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
 import { SectionStack } from "@/components/section-stack"
 import { TransitionFlash } from "@/components/transition-flash"
-import { CustomCursor } from "@/components/custom-cursor"
 import { Preloader } from "@/components/preloader"
 import { HomeHashScroll } from "@/components/home-hash-scroll"
 import { getProjects } from "@/lib/content"
@@ -28,7 +27,6 @@ export default async function Home({
     <>
       <Preloader />
       <HomeHashScroll />
-      <CustomCursor />
       <Header hasProjects={hasProjects} />
       <main>
         <SectionStack spans={[1, 2, 7.5]}>
