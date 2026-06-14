@@ -9,7 +9,9 @@ import { V13_PATH } from "./v13-path"
  * Keyed on `open` by the parent so the draw replays on every open.
  */
 export function MenuV13({ open, className }: { open: boolean; className?: string }) {
-  const [reduce, setReduce] = useState(false)
+  const [reduce, setReduce] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  )
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -48,7 +50,7 @@ export function MenuV13({ open, className }: { open: boolean; className?: string
         strokeLinejoin="round"
         filter="url(#menu-v13-glow)"
         style={{
-          opacity: reduce ? 0.4 : draw ? undefined : 0.35,
+          opacity: reduce ? 0.4 : draw ? 0.22 : 0.35,
           animation: draw ? "contact-logo-glow 4.5s ease-in-out 3.2s infinite" : undefined,
         }}
       />

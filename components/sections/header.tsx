@@ -55,11 +55,13 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
 
   const handleNav = useCallback((href: string) => {
     if (href.startsWith("http")) {
+      setIsOpen(false)
       window.open(href, "_blank", "noopener,noreferrer")
       return
     }
     // Internal route (e.g. /blog) — full navigation, not in-page anchor
     if (href.startsWith("/")) {
+      setIsOpen(false)
       window.location.href = href
       return
     }
@@ -113,6 +115,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
         )}
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
+        aria-controls="main-menu"
       >
         <div className="relative w-4 h-4 mx-auto">
           <span
@@ -138,6 +141,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
 
       {/* ── Fullscreen overlay menu ── */}
       <nav
+        id="main-menu"
         className={cn(
           "fixed inset-0 z-[58] bg-[#050505] overflow-hidden flex flex-col",
           "transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
@@ -248,7 +252,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           "fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center",
           "border border-white/15 bg-black/80 backdrop-blur-xl",
           "hover:border-[#9268f6] hover:bg-[#9268f6]/10 transition-all duration-300",
-          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+          showScrollTop && !isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}
         aria-label="Scroll to top"
       >
