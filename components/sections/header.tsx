@@ -189,7 +189,7 @@ export function Header({ hasProjects }: { hasProjects: boolean }) {
           </div>
 
           {/* RIGHT — living V13 signature */}
-          <div className="pointer-events-none relative flex flex-[0.95] items-center justify-center overflow-hidden md:border-l md:border-white/10">
+          <div className="pointer-events-none relative hidden flex-[0.95] items-center justify-center overflow-hidden md:flex md:border-l md:border-white/10">
             {/* purple ambient glow */}
             <div
               className="absolute inset-0"
