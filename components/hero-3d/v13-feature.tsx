@@ -2,9 +2,9 @@
 
 import { Suspense, useRef } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { Environment } from "@react-three/drei"
 import type { Group } from "three"
 import { V13Model } from "./v13-model"
+import { StudioEnv } from "./logo-canvas"
 import { transition } from "@/lib/transition-store"
 
 const FEATURE_SCALE = 0.0132
@@ -57,8 +57,10 @@ export default function V13Feature() {
         <directionalLight position={[6, 9, 7]} intensity={1.8} />
         <directionalLight position={[-7, -3, 4]} intensity={0.9} color="#b4a2ea" />
         <FeatureLogo />
-        {/* real studio HDRI → genuine chrome reflections (loads from CDN) */}
-        <Environment preset="studio" environmentIntensity={2.2} />
+        {/* Local canvas-generated env (no CDN HDRI) — a flaky network fetch here
+            left the logo blank and could throw past the (absent) error boundary,
+            crashing the page. Shares hero's proven network-free environment. */}
+        <StudioEnv />
       </Suspense>
     </Canvas>
   )
