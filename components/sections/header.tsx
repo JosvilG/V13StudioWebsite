@@ -7,7 +7,6 @@ import { navigateToSection } from "@/lib/navigate-stack"
 import { ThemeLogo } from "@/components/theme-logo"
 import { useT, useLocale } from "@/components/i18n-provider"
 import { locales, localeNames } from "@/lib/i18n/config"
-import { V13_PATH } from "./v13-path"
 import { MenuV13 } from "./menu-v13"
 
 export function Header({ hasProjects }: { hasProjects: boolean }) {
